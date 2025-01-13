@@ -1,0 +1,15 @@
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/bin/Debug/net9.0/HIOF.V2025.BeerApp
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/bin/Debug/net9.0/HIOF.V2025.BeerApp.deps.json
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/bin/Debug/net9.0/HIOF.V2025.BeerApp.runtimeconfig.json
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/bin/Debug/net9.0/HIOF.V2025.BeerApp.dll
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/bin/Debug/net9.0/HIOF.V2025.BeerApp.pdb
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/obj/Debug/net9.0/HIOF.V2025.BeerApp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/obj/Debug/net9.0/HIOF.V2025.BeerApp.AssemblyInfoInputs.cache
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/obj/Debug/net9.0/HIOF.V2025.BeerApp.AssemblyInfo.cs
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/obj/Debug/net9.0/HIOF.V2025.BeerApp.csproj.CoreCompileInputs.cache
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/obj/Debug/net9.0/HIOF.V2025.BeerApp.sourcelink.json
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/obj/Debug/net9.0/HIOF.V2025.BeerApp.dll
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/obj/Debug/net9.0/refint/HIOF.V2025.BeerApp.dll
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/obj/Debug/net9.0/HIOF.V2025.BeerApp.pdb
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/obj/Debug/net9.0/HIOF.V2025.BeerApp.genruntimeconfig.cache
+/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.BeerApp/obj/Debug/net9.0/ref/HIOF.V2025.BeerApp.dll
