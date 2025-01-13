@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/Arbeidskrav1/Arbeidskrav1.csproj": {}
+    "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/HIOF.V2025.Arbeidskrav1.csproj": {}
   },
   "projects": {
-    "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/Arbeidskrav1/Arbeidskrav1.csproj": {
+    "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/HIOF.V2025.Arbeidskrav1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/Arbeidskrav1/Arbeidskrav1.csproj",
-        "projectName": "Arbeidskrav1",
-        "projectPath": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/Arbeidskrav1/Arbeidskrav1.csproj",
+        "projectUniqueName": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/HIOF.V2025.Arbeidskrav1.csproj",
+        "projectName": "HIOF.V2025.Arbeidskrav1",
+        "projectPath": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/HIOF.V2025.Arbeidskrav1.csproj",
         "packagesPath": "/Users/emil/.nuget/packages/",
-        "outputPath": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/Arbeidskrav1/obj/",
+        "outputPath": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/emil/.nuget/NuGet/NuGet.Config"
