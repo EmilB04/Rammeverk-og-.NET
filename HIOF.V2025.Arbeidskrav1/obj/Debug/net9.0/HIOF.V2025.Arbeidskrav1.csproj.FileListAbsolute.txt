@@ -1,0 +1,5 @@
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\HIOF.V2025.Arbeidskrav1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\HIOF.V2025.Arbeidskrav1.AssemblyInfoInputs.cache
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\HIOF.V2025.Arbeidskrav1.AssemblyInfo.cs
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\HIOF.V2025.Arbeidskrav1.csproj.CoreCompileInputs.cache
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\HIOF.V2025.Arbeidskrav1.sourcelink.json
