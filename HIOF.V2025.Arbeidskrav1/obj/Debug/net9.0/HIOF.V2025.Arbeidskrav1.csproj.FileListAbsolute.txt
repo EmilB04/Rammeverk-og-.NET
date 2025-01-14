@@ -3,3 +3,13 @@ C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\
 C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\HIOF.V2025.Arbeidskrav1.AssemblyInfo.cs
 C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\HIOF.V2025.Arbeidskrav1.csproj.CoreCompileInputs.cache
 C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\HIOF.V2025.Arbeidskrav1.sourcelink.json
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\bin\Debug\net9.0\HIOF.V2025.Arbeidskrav1.deps.json
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\bin\Debug\net9.0\HIOF.V2025.Arbeidskrav1.dll
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\bin\Debug\net9.0\HIOF.V2025.Arbeidskrav1.pdb
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\HIOF.V2025.Arbeidskrav1.dll
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\refint\HIOF.V2025.Arbeidskrav1.dll
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\HIOF.V2025.Arbeidskrav1.pdb
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\ref\HIOF.V2025.Arbeidskrav1.dll
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\bin\Debug\net9.0\HIOF.V2025.Arbeidskrav1.exe
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\bin\Debug\net9.0\HIOF.V2025.Arbeidskrav1.runtimeconfig.json
+C:\Users\emilb\Documents\GitHub\V2025\Rammeverk-og-.NET\HIOF.V2025.Arbeidskrav1\obj\Debug\net9.0\HIOF.V2025.Arbeidskrav1.genruntimeconfig.cache
