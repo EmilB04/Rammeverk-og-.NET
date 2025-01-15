@@ -40,18 +40,59 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
             bookStoreManager.AddCustomer((new Customer("Ola", "Nordmann", "olanordmann@hiof.no", 12345678)));
             bookStoreManager.AddCustomer((new Customer("Kari", "Nordmann", "karinordmann@hiof.no", 87654321)));
 
+            // Show books
+            Console.WriteLine();
+            Console.WriteLine("Books in store:");
+            bookStoreManager.PrintAllBooks();
+
+            // Show customers
+            Console.WriteLine();
+            Console.WriteLine("Customers in store:");
+            bookStoreManager.PrintAllCustomers();
+
+            // Search after books
+            Console.WriteLine();
+            Console.WriteLine("Search for book by title:");
+            Book book = bookStoreManager.FindBookByTitle("Harry Potter and the Philosopher's Stone");
+            Console.WriteLine(book);
+
+            Console.WriteLine("Search for book by ISBN:");
+            book = bookStoreManager.FindBookByIsbn("978-82-02-24357-9");
+            Console.WriteLine(book);
+
+            // Search after customers
+            Console.WriteLine();
+            Console.WriteLine("Search for customer by name:");
+            Customer customer = bookStoreManager.FindCustomerByName("Emil", "Berglund");
+            Console.WriteLine(customer);
+            Console.WriteLine("Search for a non-existing person:");
+            Customer nonExistingCustomer = bookStoreManager.FindCustomerByName("Emil", "Nordmann");
+            Console.WriteLine(nonExistingCustomer);
+            
+
+
+
+
+
+
+
+
+
+            
             Console.WriteLine("Welcome to the Book Store CLI!");
             while (true)
             {
                 ShowMenu();
-                GetInput();
+                GetInput(bookStoreManager);
 
             
             }
+            
         }
 
         private static void ShowMenu()
         {
+            Console.WriteLine();
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Add a book");
             Console.WriteLine("2. Add a customer");
@@ -63,49 +104,81 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
             Console.WriteLine("8. Show all orders");
             Console.WriteLine("9. Exit");
         }
-        private static void GetInput()
+        private static void GetInput(BookStoreManager BookStoreManager)
         {
             string input = Console.ReadLine();
-            if (input == "1")
+            Console.WriteLine();
+            if (input == "1") // OK
             {
-                //AddBook();
+                Console.WriteLine("Provide the following information to add a book:");
+                Console.WriteLine("Title:");
+                string title = Console.ReadLine();
+                Console.WriteLine("Author:");
+                string author = Console.ReadLine();
+                Console.WriteLine("ISBN:");
+                string isbn = Console.ReadLine();
+                Console.WriteLine("Price:");
+                double price = Convert.ToDouble(Console.ReadLine());
+                Book book = new Book(title, author, isbn, price);
+                BookStoreManager.AddBook(book);
+                Console.WriteLine("Book added: " + book);
             }
-            else if (input == "2")
+            else if (input == "2") // OK (Tar ikke høyde for feilskriving av tlfnummer)
             {
-                //AddCustomer();
+                Console.WriteLine("Provide the following information to add a customer:");
+                Console.WriteLine("First name:");
+                string firstName = Console.ReadLine();
+                Console.WriteLine("Last name:");
+                string lastName = Console.ReadLine();
+                Console.WriteLine("Email:");
+                string email = Console.ReadLine();
+                Console.WriteLine("Phone number:");
+                int phoneNumber = Convert.ToInt32(Console.ReadLine());
+                Customer customer = new Customer(firstName, lastName, email, phoneNumber);
+                BookStoreManager.AddCustomer(customer);
+                Console.WriteLine("Customer added: " + customer);
             }
-            else if (input == "3")
+            else if (input == "3") // OK
             {
-                //FindBookByTitle();
+                string titleInput = Console.ReadLine();
+                Book book = BookStoreManager.FindBookByTitle(titleInput);
+                Console.WriteLine(book);
             }
-            else if (input == "4")
+            else if (input == "4") // OK
             {
-                //FindBookByIsbn();
+                string isbnInput = Console.ReadLine();
+                Book book = BookStoreManager.FindBookByIsbn(isbnInput);
+                Console.WriteLine(book);
             }
-            else if (input == "5")
+            else if (input == "5") // OK
             {
                 //CreateOrder();
             }
-            else if (input == "6")
+            else if (input == "6") // OK
             {
-                //ShowAllBooks();
+                BookStoreManager.PrintAllBooks();
             }
-            else if (input == "7")
+            else if (input == "7") // OK
             {
-                //ShowAllCustomers();
+                BookStoreManager.PrintAllCustomers();
             }
             else if (input == "8")
             {
                 //ShowAllOrders();
             }
-            else if (input == "9")
+            else if (input == "9") // OK
             {
+                Console.WriteLine("Exiting...");
                 Environment.Exit(0);
             }
-            else
+            else                   // OK 
             {
                 Console.WriteLine("Invalid input, please try again.");
             }
         }
+    
+    
+    
+    
     }
 }
