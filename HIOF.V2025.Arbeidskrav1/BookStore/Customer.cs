@@ -7,41 +7,21 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
 {
     public class Customer
     {
-        private string _firstName;
-        private string _lastName;
-        private string _email;
-        private double _phoneNumber;
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public int PhoneNumber { get; set; }
 
-        public Customer(string firstName, string lastName, string email, double phoneNumber)
+        public Customer(string firstName, string lastName, string email, int phoneNumber)
         {
-            _firstName = firstName;
-            _lastName = lastName;
-            _email = email;
-            _phoneNumber = phoneNumber;
+            FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
+            LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
+            Email = email ?? throw new ArgumentNullException(nameof(email));
+            PhoneNumber = phoneNumber;
         }
-
-        public string FirstName
+        public override string ToString()
         {
-            get => _firstName;
-            set => _firstName = value;
-        }
-
-        public string LastName
-        {
-            get => _lastName;
-            set => _lastName = value;
-        }
-
-        public string Email
-        {
-            get => _email;
-            set => _email = value;
-        }
-
-        public double PhoneNumber
-        {
-            get => _phoneNumber;
-            set => _phoneNumber = value;
+            return $"Name: {FirstName} {LastName}, Email: {Email}, Phone number: {PhoneNumber}";
         }
     }
 }

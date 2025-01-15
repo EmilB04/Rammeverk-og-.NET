@@ -7,41 +7,21 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
 {
     public class Book
     {
-        private string _title;
-        private string _authorName;
-        private string _isbn;
-        private double _price;
+        public string Title { get; set; }
+        public string AuthorName { get; set; }
+        public string Isbn { get; set; }
+        public double Price { get; set; }
 
         public Book(string title, string authorName, string isbn, double price)
         {
-            _title = title;
-            _authorName = authorName;
-            _isbn = isbn;
-            _price = price;
+            Title = title ?? throw new ArgumentNullException(nameof(title));
+            AuthorName = authorName ?? throw new ArgumentNullException(nameof(authorName));
+            Isbn = isbn ?? throw new ArgumentNullException(nameof(isbn));
+            Price = price;
         }
-
-        public string Title
+        public override string ToString()
         {
-            get => _title;
-            set => _title = value;
-        }
-
-        public string AuthorName
-        {
-            get => _authorName;
-            set => _authorName = value;
-        }
-
-        public string Isbn
-        {
-            get => _isbn;
-            set => _isbn = value;
-        }
-
-        public double Price
-        {
-            get => _price;
-            set => _price = value;
+            return $"Title: {Title}, Author: {AuthorName}, ISBN: {Isbn}, Price: {Price}";
         }
     }
 }
