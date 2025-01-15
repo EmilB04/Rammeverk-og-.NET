@@ -20,43 +20,68 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             {
                 throw new ArgumentNullException(nameof(book), "Book cannot be null.");
             }
-            _books.Add(book);
+            else
+            {
+                _books.Add(book);
+            }
+        }
+
+        public void RemoveBook(Book book)
+        {
+            if (book == null)
+            {
+                Console.WriteLine("Book cannot be null.");
+            }
+            else
+            {
+                foreach (var b in _books)
+                {
+                    if (b == book)
+                    {
+                        _books.Remove(b);
+                        break;
+                    }
+                }
+                Console.WriteLine("Book not found.");
+            }
         }
 
         public Book FindBookByTitle(string title)
         {
             if (string.IsNullOrWhiteSpace(title))
             {
-                throw new ArgumentException("Title cannot be null, empty, or whitespace.", nameof(title));
+                Console.WriteLine("Title cannot be null, empty, or whitespace.");
             }
-
-            foreach (var book in _books)
+            else
             {
-                if (book.Title == title)
+                foreach (var book in _books)
                 {
-                    return book;
+                    if (book.Title == title)
+                    {
+                        return book;
+                    }
                 }
             }
-
-            return null; // Returner null hvis boken ikke finnes
+            return null; // Return null if no book is found
         }
 
         public Book FindBookByIsbn(string isbn)
         {
             if (string.IsNullOrWhiteSpace(isbn))
             {
-                throw new ArgumentException("ISBN cannot be null, empty, or whitespace.", nameof(isbn));
+                Console.WriteLine("ISBN cannot be null, empty, or whitespace.");
             }
-
-            foreach (var book in _books)
+            else
             {
-                if (book.Isbn == isbn)
+                foreach (var book in _books)
                 {
-                    return book;
+                    if (book.Isbn == isbn)
+                    {
+                        return book;
+                    }
                 }
             }
-
-            return null; // Returner null hvis boken ikke finnes
+            return null; // Return null if no book is found
         }
 
         public void AddCustomer(Customer customer)
@@ -71,25 +96,30 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                 throw new ArgumentException("First name cannot be null, empty, or whitespace.", nameof(customer.FirstName));
             }
 
-            _customers.Add(customer);
+            else
+            {
+                _customers.Add(customer);
+            }
         }
 
-        public Customer FindCustomer(string firstName)
+        public Customer FindCustomerByFirstName(string firstName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
             {
-                throw new ArgumentException("First name cannot be null, empty, or whitespace.", nameof(firstName));
+                Console.WriteLine("First name cannot be null, empty, or whitespace.");
             }
 
-            foreach (var customer in _customers)
+            else
             {
-                if (customer.FirstName == firstName)
+                foreach (var customer in _customers)
                 {
-                    return customer;
+                    if (customer.FirstName == firstName)
+                    {
+                        return customer;
+                    }
                 }
             }
-
-            return null; // Returner null hvis kunden ikke finnes
+            return null;
         }
     }
 }

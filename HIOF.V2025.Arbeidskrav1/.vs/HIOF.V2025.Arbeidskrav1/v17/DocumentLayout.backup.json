@@ -1,0 +1,111 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStoreCLI\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStoreCLI\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\Inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\Book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\BookStoreManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\BookStoreManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\Customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BookStore\\Customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Inventory.cs",
+              "DocumentMoniker": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\Inventory.cs",
+              "RelativeDocumentMoniker": "BookStore\\Inventory.cs",
+              "ToolTip": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\Inventory.cs",
+              "RelativeToolTip": "BookStore\\Inventory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T14:28:24.729Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\Customer.cs",
+              "RelativeDocumentMoniker": "BookStore\\Customer.cs",
+              "ToolTip": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\Customer.cs",
+              "RelativeToolTip": "BookStore\\Customer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T14:28:24.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookStoreManager.cs",
+              "DocumentMoniker": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\BookStoreManager.cs",
+              "RelativeDocumentMoniker": "BookStore\\BookStoreManager.cs",
+              "ToolTip": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\BookStoreManager.cs",
+              "RelativeToolTip": "BookStore\\BookStoreManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T14:28:23.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\Book.cs",
+              "RelativeDocumentMoniker": "BookStore\\Book.cs",
+              "ToolTip": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStore\\Book.cs",
+              "RelativeToolTip": "BookStore\\Book.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T14:28:19.603Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStoreCLI\\Program.cs",
+              "RelativeDocumentMoniker": "BookStoreCLI\\Program.cs",
+              "ToolTip": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\BookStoreCLI\\Program.cs",
+              "RelativeToolTip": "BookStoreCLI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T14:28:26.621Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
