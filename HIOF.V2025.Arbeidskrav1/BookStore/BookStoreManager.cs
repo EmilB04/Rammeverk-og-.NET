@@ -8,6 +8,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         private List<Book> _books;
         private List<Customer> _customers;
         private List<Order> _orders;
+        private int orderId = 1;
 
         public BookStoreManager()
         {
@@ -204,7 +205,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             return null;
         }
 
-        // Order methods - NOT DONE
+        // Order methods - DONE
 
         public void CreateOrder()
         {
@@ -288,8 +289,10 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
 
             Customer customer = FindCustomerByName(firstName, lastName);
             Book book = FindBookByTitle(title);
-            Order order = new(1, new() { book }, customer, DateTime.Now, book.Price * quantity);
+            Order order = new(orderId, new() { book }, customer, DateTime.Now, book.Price * quantity);
+            _orders.Add(order);
             Console.WriteLine("Order created: " + order);
+            orderId++;
         }
 
         public void PrintAllOrders()

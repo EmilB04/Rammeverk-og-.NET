@@ -162,7 +162,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
             {
                 BookStoreManager.PrintAllCustomers();
             }
-            else if (input == "8")
+            else if (input == "8") // OK
             {
                 BookStoreManager.PrintAllOrders();
             }
