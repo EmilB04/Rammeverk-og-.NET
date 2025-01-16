@@ -7,11 +7,13 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
     {
         private List<Book> _books;
         private List<Customer> _customers;
+        private List<Order> _orders;
 
         public BookStoreManager()
         {
             _books = new List<Book>();
             _customers = new List<Customer>();
+            _orders = new List<Order>();
         }
 
         // Book methods DONE - missing inventory functionality
@@ -204,5 +206,106 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
 
         // Order methods - NOT DONE
 
+        public void CreateOrder()
+        {
+            string firstName;
+            string lastName;
+            string title;
+            int quantity;
+
+            while (true)
+            {
+                Console.WriteLine("Provide the following information to create an order:");
+                while (true) // fName
+                {
+                    Console.WriteLine("Customer first name:");
+                    firstName = Console.ReadLine() ?? string.Empty;
+                    if (string.IsNullOrWhiteSpace(firstName))
+                    {
+                        Console.WriteLine("First name cannot be null, empty, or whitespace.");
+                    }
+                    else if (FindCustomerByFirstName(firstName) == null)
+                    {
+                        Console.WriteLine("Customer not found");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                while (true) // lName
+                {
+                    Console.WriteLine("Customer last name:");
+                    lastName = Console.ReadLine() ?? string.Empty;
+                    if (string.IsNullOrWhiteSpace(lastName))
+                    {
+                        Console.WriteLine("Last name cannot be null, empty, or whitespace.");
+                    }
+                    else if (FindCustomerByLastName(lastName) == null)
+                    {
+                        Console.WriteLine("Customer not found");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }     
+                while (true) // title
+                {
+                    Console.WriteLine("Book title or ISBN:");
+                    title = Console.ReadLine() ?? string.Empty;
+                    if (string.IsNullOrWhiteSpace(title))
+                    {
+                        Console.WriteLine("Title cannot be null, empty, or whitespace.");
+                    }
+                    else if (FindBookByTitle(title) == null && FindBookByIsbn(title) == null)
+                    {
+                        Console.WriteLine("Book not found");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                while (true) // quantity
+                {
+                    Console.WriteLine("Quantity:");
+                    if (!int.TryParse(Console.ReadLine(), out quantity) || quantity <= 0)
+                    {
+                        Console.WriteLine("Quantity must be a valid number greater than 0.");
+                    }
+                    else if (FindBookByTitle(title).Quantity < quantity)
+                    {
+                        Console.WriteLine("Not enough books in stock.");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                break;
+            }
+
+            Customer customer = FindCustomerByName(firstName, lastName);
+            Book book = FindBookByTitle(title);
+            Order order = new(1, new() { book }, customer, DateTime.Now, book.Price * quantity);
+            Console.WriteLine("Order created: " + order);
+        }
+
+        public void PrintAllOrders()
+        {
+            if (_orders.Count == 0)
+            {
+                Console.WriteLine("No orders in the store.");
+            }
+            else
+            {
+                Console.WriteLine("All orders:");
+                foreach (var order in _orders)
+                {
+                    Console.WriteLine(order);
+                }
+            }
+        }
     }
 }

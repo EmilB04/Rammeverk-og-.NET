@@ -17,8 +17,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
 
 
         Programmer skal kunne gjøre følgende:
-            - legge til bøker i systemet
-            - Søke etter bøker basert på tittel eller ISBN
+            - legge til bøker i systemet                        - OK
+            - Søke etter bøker basert på tittel eller ISBN      - OK
             - Simulere et kjøp
     */
     public class Program
@@ -28,18 +28,19 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
             BookStoreManager bookStoreManager = new BookStoreManager();
 
             // Ferdiglagde bøker og kunder
-            bookStoreManager.AddBook(new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50));
-            bookStoreManager.AddBook(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "978-82-02-24352-4", 199.50));
-            bookStoreManager.AddBook(new Book("Harry Potter and the Chamber of Secrets", "J.K. Rowling", "978-82-02-24353-1", 199.50));
-            bookStoreManager.AddBook(new Book("Harry Potter and the Prisoner of Azkaban", "J.K. Rowling", "978-82-02-24354-8", 199.50));
-            bookStoreManager.AddBook(new Book("Harry Potter and the Goblet of Fire", "J.K. Rowling", "978-82-02-24355-5", 199.50));
-            bookStoreManager.AddBook(new Book("Harry Potter and the Order of the Phoenix", "J.K. Rowling", "978-82-02-24356-2", 199.50));
-            bookStoreManager.AddBook(new Book("Harry Potter and the Half-Blood Prince", "J.K. Rowling", "978-82-02-24357-9", 199.50));
+            bookStoreManager.AddBook(new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2));
+            bookStoreManager.AddBook(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "978-82-02-24352-4", 199.50, 5));
+            bookStoreManager.AddBook(new Book("Harry Potter and the Chamber of Secrets", "J.K. Rowling", "978-82-02-24353-1", 199.50, 5));
+            bookStoreManager.AddBook(new Book("Harry Potter and the Prisoner of Azkaban", "J.K. Rowling", "978-82-02-24354-8", 199.50, 5));
+            bookStoreManager.AddBook(new Book("Harry Potter and the Goblet of Fire", "J.K. Rowling", "978-82-02-24355-5", 199.50, 5));
+            bookStoreManager.AddBook(new Book("Harry Potter and the Order of the Phoenix", "J.K. Rowling", "978-82-02-24356-2", 199.50, 5));
+            bookStoreManager.AddBook(new Book("Harry Potter and the Half-Blood Prince", "J.K. Rowling", "978-82-02-24357-9", 199.50, 5));
 
             bookStoreManager.AddCustomer((new Customer("Emil", "Berglund", "emilbe@hiof.no", 91234567)));
             bookStoreManager.AddCustomer((new Customer("Ola", "Nordmann", "olanordmann@hiof.no", 12345678)));
             bookStoreManager.AddCustomer((new Customer("Kari", "Nordmann", "karinordmann@hiof.no", 87654321)));
 
+            /*
             // Show books
             Console.WriteLine();
             Console.WriteLine("Books in store:");
@@ -68,12 +69,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
             Console.WriteLine("Search for a non-existing person:");
             Customer nonExistingCustomer = bookStoreManager.FindCustomerByName("Emil", "Nordmann");
             Console.WriteLine(nonExistingCustomer);
-            
-
-
-
-
-
+            */
 
 
 
@@ -119,7 +115,9 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
                 string isbn = Console.ReadLine();
                 Console.WriteLine("Price:");
                 double price = Convert.ToDouble(Console.ReadLine());
-                Book book = new Book(title, author, isbn, price);
+                Console.WriteLine("Quantity:");
+                double quantity = Convert.ToDouble(Console.ReadLine());
+                Book book = new Book(title, author, isbn, price, quantity);
                 BookStoreManager.AddBook(book);
                 Console.WriteLine("Book added: " + book);
             }
@@ -140,19 +138,21 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
             }
             else if (input == "3") // OK
             {
+                Console.WriteLine("Enter the title of the book you are looking for:");
                 string titleInput = Console.ReadLine();
                 Book book = BookStoreManager.FindBookByTitle(titleInput);
                 Console.WriteLine(book);
             }
             else if (input == "4") // OK
             {
+                Console.WriteLine("Enter the ISBN of the book you are looking for:");
                 string isbnInput = Console.ReadLine();
                 Book book = BookStoreManager.FindBookByIsbn(isbnInput);
                 Console.WriteLine(book);
             }
             else if (input == "5") // OK
             {
-                //CreateOrder();
+                BookStoreManager.CreateOrder();
             }
             else if (input == "6") // OK
             {
@@ -164,7 +164,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
             }
             else if (input == "8")
             {
-                //ShowAllOrders();
+                BookStoreManager.PrintAllOrders();
             }
             else if (input == "9") // OK
             {
