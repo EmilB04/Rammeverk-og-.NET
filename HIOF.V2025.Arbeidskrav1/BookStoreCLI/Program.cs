@@ -152,7 +152,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
             }
             else if (input == "5") // OK
             {
-                BookStoreManager.CreateOrder();
+                BookStoreManager.PurchaseBook();
             }
             else if (input == "6") // OK
             {

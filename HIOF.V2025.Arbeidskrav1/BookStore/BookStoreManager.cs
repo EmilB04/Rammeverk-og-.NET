@@ -207,7 +207,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
 
         // Order methods - DONE
 
-        public void CreateOrder()
+        public void PurchaseBook()
         {
             string firstName;
             string lastName;
@@ -293,6 +293,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             _orders.Add(order);
             Console.WriteLine("Order created: " + order);
             orderId++;
+            book.Quantity -= quantity;
         }
 
         public void PrintAllOrders()
