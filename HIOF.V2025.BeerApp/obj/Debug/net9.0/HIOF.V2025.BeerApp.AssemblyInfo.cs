@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HIOF.V2025.BeerApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ecbc98998b5761110102c93df189fc7c61cb556d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e859d8a8ce992632773a37a1709e07b7b428912")]
 [assembly: System.Reflection.AssemblyProductAttribute("HIOF.V2025.BeerApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HIOF.V2025.BeerApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

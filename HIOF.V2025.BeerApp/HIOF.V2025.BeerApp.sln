@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.002.0
+VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HIOF.V2025.BeerApp", "HIOF.V2025.BeerApp.csproj", "{18272C26-2EA5-4CF3-9196-9716D6F7E24D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Beers", "Beers", "{48390DC7-C6E8-4DB4-885F-600C64DBED52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "Beers\TestProject1\TestProject1.csproj", "{A9A08583-F7F5-48DA-AF88-975693A3D1F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,11 +19,18 @@ Global
 		{18272C26-2EA5-4CF3-9196-9716D6F7E24D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18272C26-2EA5-4CF3-9196-9716D6F7E24D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18272C26-2EA5-4CF3-9196-9716D6F7E24D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9A08583-F7F5-48DA-AF88-975693A3D1F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A08583-F7F5-48DA-AF88-975693A3D1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A08583-F7F5-48DA-AF88-975693A3D1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9A08583-F7F5-48DA-AF88-975693A3D1F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {539CFBE0-8BC1-4664-AE93-2E19A6F7444C}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A9A08583-F7F5-48DA-AF88-975693A3D1F7} = {48390DC7-C6E8-4DB4-885F-600C64DBED52}
 	EndGlobalSection
 EndGlobal

@@ -9,6 +9,8 @@ namespace HIOF.V2025.BeerApp.Beers
         {
             _name = name;
             _alcoholPercentage = alcoholPercentage;
+
+            var MyStruct = new MyStruct(5);
         }
 
         public string Name
