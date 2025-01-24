@@ -48,7 +48,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                         return book;
                     }
                 }
-                Console.WriteLine("Book not found");
+                Console.WriteLine($"Book with title '{title}' was not found");
             }
             return null; // Return null if no book is found
         }
@@ -67,7 +67,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                         return book;
                     }
                 }
-                Console.WriteLine("Book not found");
+                Console.WriteLine($"Book with ISBN '{isbn}' was not found");
             }
             return null; // Return null if no book is found
         }
@@ -227,7 +227,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                     }
                     else if (FindCustomerByFirstName(firstName) == null)
                     {
-                        Console.WriteLine("Customer not found");
+                        // Error handled by FindCustomerByFirstName
                     }
                     else
                     {
@@ -244,14 +244,14 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                     }
                     else if (FindCustomerByLastName(lastName) == null)
                     {
-                        Console.WriteLine("Customer not found");
+                        // Error handled by FindCustomerByLastName
                     }
                     else
                     {
                         break;
                     }
                 }     
-                while (true) // title
+                while (true) // title or ISBN
                 {
                     Console.WriteLine("Book title or ISBN:");
                     title = Console.ReadLine() ?? string.Empty;
@@ -261,7 +261,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                     }
                     else if (FindBookByTitle(title) == null && FindBookByIsbn(title) == null)
                     {
-                        Console.WriteLine("Book not found");
+                        // Error handled by FindBookByTitle and FindBookByIsbn
                     }
                     else
                     {
