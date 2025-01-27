@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj": {}
+    "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj": {}
   },
   "projects": {
-    "c:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj": {
+    "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj",
+        "projectUniqueName": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj",
         "projectName": "HIOF.V2025.Arbeidskrav1",
-        "projectPath": "c:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj",
+        "projectPath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj",
         "packagesPath": "C:\\Users\\emilb\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\obj\\",
+        "outputPath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\emilb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\emilb\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },

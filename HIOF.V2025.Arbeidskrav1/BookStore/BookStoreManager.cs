@@ -117,6 +117,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             {
                 Console.WriteLine("First name and last name cannot be null, empty, or whitespace.");
+                CheckIfUserWantsToExit();
             }
 
             else
@@ -137,6 +138,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             if (string.IsNullOrWhiteSpace(firstName))
             {
                 Console.WriteLine("First name cannot be null, empty, or whitespace.");
+                CheckIfUserWantsToExit();
             }
 
             else
@@ -157,6 +159,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             if (string.IsNullOrWhiteSpace(lastName))
             {
                 Console.WriteLine("Last name cannot be null, empty, or whitespace.");
+                CheckIfUserWantsToExit();
             }
 
             else
@@ -177,6 +180,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             if (string.IsNullOrWhiteSpace(email))
             {
                 Console.WriteLine("Email cannot be null, empty, or whitespace.");
+                CheckIfUserWantsToExit();
             }
 
             else
@@ -211,7 +215,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         {
             string firstName;
             string lastName;
-            string title;
+            string title = string.Empty;
+            string isbn = string.Empty;
             int quantity;
 
             while (true)
@@ -219,11 +224,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                 Console.WriteLine("Provide the following information to create an order:");
                 while (true) // fName
                 {
-                    Console.WriteLine("Customer first name:");
+                    Console.Write("Customer first name: ");
                     firstName = Console.ReadLine() ?? string.Empty;
                     if (string.IsNullOrWhiteSpace(firstName))
                     {
                         Console.WriteLine("First name cannot be null, empty, or whitespace.");
+                        CheckIfUserWantsToExit();
                     }
                     else if (FindCustomerByFirstName(firstName) == null)
                     {
@@ -236,11 +242,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                 }
                 while (true) // lName
                 {
-                    Console.WriteLine("Customer last name:");
+                    Console.Write("Customer last name: ");
                     lastName = Console.ReadLine() ?? string.Empty;
                     if (string.IsNullOrWhiteSpace(lastName))
                     {
                         Console.WriteLine("Last name cannot be null, empty, or whitespace.");
+                        CheckIfUserWantsToExit();
                     }
                     else if (FindCustomerByLastName(lastName) == null)
                     {
@@ -250,30 +257,45 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                     {
                         break;
                     }
-                }     
+                }
                 while (true) // title or ISBN
                 {
-                    Console.WriteLine("Book title or ISBN:");
-                    title = Console.ReadLine() ?? string.Empty;
-                    if (string.IsNullOrWhiteSpace(title))
+                    Console.WriteLine("Book title or ISBN: ");
+                    Console.WriteLine("1. Title \n2. ISBN");
+                    string input = Console.ReadLine() ?? string.Empty;
+
+                    if (string.IsNullOrWhiteSpace(input))
                     {
-                        Console.WriteLine("Title cannot be null, empty, or whitespace.");
+                        Console.WriteLine("Input cannot be null, empty, or whitespace.");
+                        CheckIfUserWantsToExit();
                     }
-                    else if (FindBookByTitle(title) == null && FindBookByIsbn(title) == null)
+                    if (input == "1")
                     {
-                        // Error handled by FindBookByTitle and FindBookByIsbn
+                        Console.Write("Book title: ");
+                        title = Console.ReadLine() ?? string.Empty;
+                        FindBookByTitle(title);
+                        break;
+                    }
+                    else if (input == "2")
+                    {
+                        Console.Write("Book ISBN: ");
+                        isbn = Console.ReadLine() ?? string.Empty;
+                        FindBookByIsbn(isbn);
+                        break;
                     }
                     else
                     {
-                        break;
+                        Console.WriteLine("Invalid input. Please try again.");
+                        continue;
                     }
                 }
                 while (true) // quantity
                 {
-                    Console.WriteLine("Quantity:");
+                    Console.Write("Quantity: ");
                     if (!int.TryParse(Console.ReadLine(), out quantity) || quantity <= 0)
                     {
                         Console.WriteLine("Quantity must be a valid number greater than 0.");
+                        CheckIfUserWantsToExit();
                     }
                     else if (FindBookByTitle(title).Quantity < quantity)
                     {
@@ -284,18 +306,19 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                         break;
                     }
                 }
+
+                Customer customer = FindCustomerByName(firstName, lastName);
+                Book book = FindBookByTitle(title);
+                Order order = new(orderId, new() { book }, customer, DateTime.Now, book.Price * quantity);
+                _orders.Add(order);
+                Console.WriteLine("Order created: " + order);
+
+                // Handle inventory and order creation
+                orderId++;
+                book.Quantity -= quantity;
                 break;
             }
-
-            Customer customer = FindCustomerByName(firstName, lastName);
-            Book book = FindBookByTitle(title);
-            Order order = new(orderId, new() { book }, customer, DateTime.Now, book.Price * quantity);
-            _orders.Add(order);
-            Console.WriteLine("Order created: " + order);
-            orderId++;
-            book.Quantity -= quantity;
         }
-
         public void PrintAllOrders()
         {
             if (_orders.Count == 0)
@@ -309,6 +332,24 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                 {
                     Console.WriteLine(order);
                 }
+            }
+        }
+        public void CheckIfUserWantsToExit()
+        {
+            Console.WriteLine("Do you want to exit the program? (yes/no)");
+            string input = Console.ReadLine() ?? string.Empty;
+            if (input == "yes" || input == "y")
+            {
+                Environment.Exit(0);
+            }
+            else if (input == "no" || input == "n")
+            {
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please try again.");
+                CheckIfUserWantsToExit();
             }
         }
     }
