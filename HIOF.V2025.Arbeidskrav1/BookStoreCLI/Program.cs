@@ -40,48 +40,11 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
             bookStoreManager.AddCustomer((new Customer("Ola", "Nordmann", "olanordmann@hiof.no", 12345678)));
             bookStoreManager.AddCustomer((new Customer("Kari", "Nordmann", "karinordmann@hiof.no", 87654321)));
 
-            /*
-            // Show books
-            Console.WriteLine();
-            Console.WriteLine("Books in store:");
-            bookStoreManager.PrintAllBooks();
-
-            // Show customers
-            Console.WriteLine();
-            Console.WriteLine("Customers in store:");
-            bookStoreManager.PrintAllCustomers();
-
-            // Search after books
-            Console.WriteLine();
-            Console.WriteLine("Search for book by title:");
-            Book book = bookStoreManager.FindBookByTitle("Harry Potter and the Philosopher's Stone");
-            Console.WriteLine(book);
-
-            Console.WriteLine("Search for book by ISBN:");
-            book = bookStoreManager.FindBookByIsbn("978-82-02-24357-9");
-            Console.WriteLine(book);
-
-            // Search after customers
-            Console.WriteLine();
-            Console.WriteLine("Search for customer by name:");
-            Customer customer = bookStoreManager.FindCustomerByName("Emil", "Berglund");
-            Console.WriteLine(customer);
-            Console.WriteLine("Search for a non-existing person:");
-            Customer nonExistingCustomer = bookStoreManager.FindCustomerByName("Emil", "Nordmann");
-            Console.WriteLine(nonExistingCustomer);
-            */
-
-
-
-
-
             Console.WriteLine("Welcome to the Book Store CLI!");
             while (true)
             {
                 ShowMenu();
                 GetInput(bookStoreManager);
-
-
             }
 
         }
