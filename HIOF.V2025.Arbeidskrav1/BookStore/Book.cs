@@ -43,6 +43,32 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <exception cref="ArgumentNullException"></exception>
         public Book(string title, string authorName, string isbn, double price, double quantity)
         {
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                throw new ArgumentNullException(nameof(title), "Title cannot be null or empty.");
+            }
+            if (string.IsNullOrWhiteSpace(authorName))
+            {
+                throw new ArgumentNullException(nameof(authorName), "Author name cannot be null or empty.");
+            }
+            if (string.IsNullOrWhiteSpace(isbn))
+            {
+                throw new ArgumentNullException(nameof(isbn), "ISBN cannot be null or empty.");
+            }
+            if (isbn.GetType() != typeof(string))
+            {
+                throw new ArgumentException("ISBN must be a string.", nameof(isbn));
+            }
+            if (price <= 0)
+            {
+                throw new ArgumentException("Price must be greater than zero.", nameof(price));
+            }
+            if (quantity <= 0)
+            {
+                throw new ArgumentException("Quantity must be greater than zero.", nameof(quantity));
+            }
+
+
             Title = title ?? throw new ArgumentNullException(nameof(title));
             AuthorName = authorName ?? throw new ArgumentNullException(nameof(authorName));
             Isbn = isbn ?? throw new ArgumentNullException(nameof(isbn));
