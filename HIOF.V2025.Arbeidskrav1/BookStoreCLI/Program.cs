@@ -14,12 +14,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
         2. Implementer funksjonalitet rundt beholdning, rabatter og bestillinger
 
         4. Se over dokument for mer
+        5. Fix Create order -> Book by ISBN or Title = Separere disse
 
-
-        Programmer skal kunne gjøre følgende:
-            - legge til bøker i systemet                        - OK
-            - Søke etter bøker basert på tittel eller ISBN      - OK
-            - Simulere et kjøp
     */
     public class Program
     {
