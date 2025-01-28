@@ -20,22 +20,17 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         }
         public void NewOrder(string firstName, string lastName, string titleOrIsbn, int quantity)
         {
-            // Find the customer
             var customer = _customerManager.GetCustomerByName(firstName, lastName);
             if (customer == null) throw new ArgumentException("Customer not found.");
 
-            // Find the book
             var book = _bookStoreManager.GetBookByTitle(titleOrIsbn) ?? _bookStoreManager.GetBookByIsbn(titleOrIsbn);
             if (book == null) throw new ArgumentException("Book not found.");
 
-            // Check stock
             if (book.Quantity < quantity) throw new ArgumentException("Not enough stock available.");
 
-            // Create the order
             var order = new Order(_orderIdCounter++, new List<Book> { book }, customer, DateTime.Now, book.Price * quantity);
             _orders.Add(order);
 
-            // Update inventory
             _bookStoreManager.UpdateBookStock(book.Isbn, -quantity);
 
             Console.WriteLine($"Order created successfully: {order}");
