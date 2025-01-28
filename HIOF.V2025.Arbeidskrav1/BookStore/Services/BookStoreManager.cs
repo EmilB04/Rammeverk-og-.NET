@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using HIOF.V2025.Arbeidskrav1.BookStore.Interfaces;
 
+// GOOD TO GO! 🚀
+
 namespace HIOF.V2025.Arbeidskrav1.BookStore
 {
     public class BookStoreManager : IBookService
@@ -15,36 +17,28 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
 
         public void AddBook(Book book)
         {
-            if (book == null)
-            {
-                throw new ArgumentNullException(nameof(book), "Book cannot be null.");
-            }
-            else if ((string.IsNullOrWhiteSpace(book.Title)) || string.IsNullOrWhiteSpace(book.Author) || string.IsNullOrWhiteSpace(book.Isbn))
-            {
-                throw new ArgumentException("Every field needs to be filled out", nameof(book.Title));
-            }
-            else
-            {
-                _books.Add(book);
-            }
+            if (book == null) throw new ArgumentNullException(nameof(book), "Book cannot be null.");
+            if (string.IsNullOrWhiteSpace(book.Title)) throw new ArgumentException("Title cannot be empty.");
+            if (string.IsNullOrWhiteSpace(book.Author)) throw new ArgumentException("Author cannot be empty.");
+            if (string.IsNullOrWhiteSpace(book.Isbn)) throw new ArgumentException("ISBN cannot be empty.");
+            if (_books.Exists(b => b.Isbn == book.Isbn))
+                throw new ArgumentException("A book with the same ISBN already exists.");
+
+            _books.Add(book);
+            Console.WriteLine("Book added successfully.");
         }
-        public void RemoveBook(Book book)
+        public void RemoveBook(Book book) // For further development
         {
-            if (book == null)
-            {
-                throw new ArgumentNullException(nameof(book), "Book cannot be null.");
-            }
-            else
-            {
-                _books.Remove(book);
-            }
+            if (book == null) throw new ArgumentNullException(nameof(book), "Book cannot be null.");
+            if (string.IsNullOrWhiteSpace(book.Title)) throw new ArgumentException("Title cannot be empty.");
+            if (string.IsNullOrWhiteSpace(book.Author)) throw new ArgumentException("Author cannot be empty.");
+            if (string.IsNullOrWhiteSpace(book.Isbn)) throw new ArgumentException("ISBN cannot be empty.");
+
+            _books.Remove(book);
         }
         public void PrintAllBooks()
         {
-            if (_books.Count == 0)
-            {
-                Console.WriteLine("No books in the store.");
-            }
+            if (_books.Count == 0) Console.WriteLine("No books in the store.");
             else
             {
                 foreach (var book in _books)
@@ -55,10 +49,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         }
         public Book GetBookByTitle(string title)
         {
-            if (string.IsNullOrWhiteSpace(title))
-            {
-                throw new ArgumentException("Title cannot be null, empty, or whitespace.", nameof(title));
-            }
+            if (string.IsNullOrWhiteSpace(title)) throw new ArgumentException("Title cannot be null, empty, or whitespace.", nameof(title));
             else
             {
                 foreach (var book in _books)
@@ -74,10 +65,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         }
         public Book GetBookByIsbn(string isbn)
         {
-            if (string.IsNullOrWhiteSpace(isbn))
-            {
-                throw new ArgumentException("ISBN cannot be null, empty, or whitespace.", nameof(isbn));
-            }
+            if (string.IsNullOrWhiteSpace(isbn)) throw new ArgumentException("ISBN cannot be null, empty, or whitespace.", nameof(isbn));
             else
             {
                 foreach (var book in _books)
@@ -93,10 +81,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         }
         public List<Book> GetBooksByAuthor(string author)
         {
-            if (string.IsNullOrWhiteSpace(author))
-            {
-                throw new ArgumentException("Author cannot be null, empty, or whitespace.", nameof(author));
-            }
+            if (string.IsNullOrWhiteSpace(author)) throw new ArgumentException("Author cannot be null, empty, or whitespace.", nameof(author));
             else
             {
                 List<Book> booksByAuthor = new List<Book>();
@@ -110,6 +95,19 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                 return booksByAuthor;
             }
         }
-        
+
+        public void UpdateBookStock(string isbn, int quantityChange)
+        {
+            var book = GetBookByIsbn(isbn);
+            if (book != null)
+            {
+                book.Quantity += quantityChange;
+            }
+            else
+            {
+                throw new ArgumentException("Book not found.");
+            }
+        }
     }
 }
+

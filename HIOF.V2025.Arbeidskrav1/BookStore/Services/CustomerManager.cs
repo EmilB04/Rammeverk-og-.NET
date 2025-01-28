@@ -18,16 +18,16 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
 
         public void AddCustomer(Customer customer)
         {
-            if (string.IsNullOrWhiteSpace(customer.FirstName))
-            {
-                throw new ArgumentException("First name cannot be null, empty, or whitespace.", nameof(customer.FirstName));
-            }
+            if (customer == null) throw new ArgumentNullException(nameof(customer), "Customer cannot be null.");
+            if (string.IsNullOrWhiteSpace(customer.FirstName)) throw new ArgumentException("First name cannot be empty.");
+            if (string.IsNullOrWhiteSpace(customer.LastName)) throw new ArgumentException("Last name cannot be empty.");
+            if (string.IsNullOrWhiteSpace(customer.Email)) throw new ArgumentException("Email cannot be empty.");
+            if (_customers.Any(c => c.Email == customer.Email))
+                throw new ArgumentException("A customer with the same email already exists.");
 
-            else
-            {
-                _customers.Add(customer);
-            }
+            _customers.Add(customer);
         }
+
         public void RemoveCustomer(Customer customer)
         {
             if (customer == null)

@@ -13,30 +13,15 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
 
         public Order(int orderId, List<Book> books, Customer customer, DateTime orderDate, double totalPrice)
         {
-            if (orderId <= 0)
-            {
-                throw new ArgumentException("OrderId must be greater than zero.", nameof(orderId));
-            }
+            if (orderId <= 0) throw new ArgumentException("OrderId must be greater than zero.", nameof(orderId));
 
-            if (books == null || books.Count == 0)
-            {
-                throw new ArgumentException("Books list cannot be null or empty.", nameof(books));
-            }
+            if (books == null || books.Count == 0) throw new ArgumentException("Books list cannot be null or empty.", nameof(books));
 
-            if (customer == null)
-            {
-                throw new ArgumentNullException(nameof(customer), "Customer cannot be null.");
-            }
+            if (customer == null) throw new ArgumentNullException(nameof(customer), "Customer cannot be null.");
 
-            if (orderDate == default)
-            {
-                throw new ArgumentException("OrderDate must be a valid date.", nameof(orderDate));
-            }
+            if (orderDate == default) throw new ArgumentException("Order date must be a valid date.", nameof(orderDate));
 
-            if (totalPrice < 0)
-            {
-                throw new ArgumentException("TotalPrice cannot be negative.", nameof(totalPrice));
-            }
+            if (totalPrice < 0) throw new ArgumentException("Total price cannot be negative.", nameof(totalPrice));
 
             OrderId = orderId;
             Books = books;
