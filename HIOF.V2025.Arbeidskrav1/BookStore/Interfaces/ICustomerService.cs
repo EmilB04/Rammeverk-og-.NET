@@ -10,7 +10,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Interfaces
         // Customer CRUD
         public void AddCustomer(Customer customer);
         public void RemoveCustomer(Customer customer);
-        public void UpdateCustomer(Customer customer);
+        public void PrintAllCustomers();
         Customer GetCustomerByEmail(string email);
         Customer GetCustomerByPhoneNumber(int phoneNumber);
         Customer GetCustomerByName(string firstName, string lastName);

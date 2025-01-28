@@ -10,10 +10,9 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Interfaces
         // Books CRUD
         public void AddBook(Book book);
         public void RemoveBook(Book book);
-        public void UpdateBook(Book book);
+        public void PrintAllBooks();
         Book GetBookByIsbn(string isbn);
         Book GetBookByTitle(string title);
-        List<Book> GetAllBooks();
         List<Book> GetBooksByAuthor(string author);
     }
 }

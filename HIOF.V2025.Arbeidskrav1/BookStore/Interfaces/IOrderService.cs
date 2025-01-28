@@ -10,8 +10,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Interfaces
         // Order CRUD
         public void NewOrder(Order order);
         public void RemoveOrder(Order order);
-        public void UpdateOrder(Order order);
+        public void PrintAllOrders();
         Order GetOrderByOrderId(int orderId);
-        List<Order> GetOrdersByCustomer(Customer customer);
+        List<Order> GetOrdersByCustomerName(Customer customer);
     }
 }

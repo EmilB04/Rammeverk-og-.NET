@@ -29,7 +29,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
 
         public override string ToString()
         {
-            return $"Title: {Title}, Author: {Author}, ISBN: {Isbn}, Price: {Price}, Quantity: {Quantity}";
+            return $"{Title} by {Author} (ISBN: {Isbn}) - ${Price} | Quantity: {Quantity}";
         }
     }
 }

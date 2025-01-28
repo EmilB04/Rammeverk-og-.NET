@@ -31,10 +31,6 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                 throw new ArgumentException("Phone number must be greater than zero.", nameof(phoneNumber));
             }
             
-
-
-
-
             FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
             LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
             Email = email ?? throw new ArgumentNullException(nameof(email));

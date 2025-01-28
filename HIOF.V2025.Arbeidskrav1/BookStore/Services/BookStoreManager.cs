@@ -1,23 +1,18 @@
 using System;
 using System.Collections.Generic;
+using HIOF.V2025.Arbeidskrav1.BookStore.Interfaces;
 
 namespace HIOF.V2025.Arbeidskrav1.BookStore
 {
-    public class BookStoreManager : IBookStoreManager
+    public class BookStoreManager : IBookService
     {
         private List<Book> _books;
-        private List<Customer> _customers;
-        private List<Order> _orders;
-        private int orderId = 1;
 
         public BookStoreManager()
         {
             _books = new List<Book>();
-            _customers = new List<Customer>();
-            _orders = new List<Order>();
         }
 
-        // Book methods DONE
         public void AddBook(Book book)
         {
             if (book == null)
@@ -33,7 +28,32 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                 _books.Add(book);
             }
         }
-        public Book FindBookByTitle(string title)
+        public void RemoveBook(Book book)
+        {
+            if (book == null)
+            {
+                throw new ArgumentNullException(nameof(book), "Book cannot be null.");
+            }
+            else
+            {
+                _books.Remove(book);
+            }
+        }
+        public void PrintAllBooks()
+        {
+            if (_books.Count == 0)
+            {
+                Console.WriteLine("No books in the store.");
+            }
+            else
+            {
+                foreach (var book in _books)
+                {
+                    Console.WriteLine(book);
+                }
+            }
+        }
+        public Book GetBookByTitle(string title)
         {
             if (string.IsNullOrWhiteSpace(title))
             {
@@ -52,7 +72,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             }
             return null; // Return null if no book is found
         }
-        public Book FindBookByIsbn(string isbn)
+        public Book GetBookByIsbn(string isbn)
         {
             if (string.IsNullOrWhiteSpace(isbn))
             {
@@ -71,286 +91,25 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             }
             return null; // Return null if no book is found
         }
-        public void AddCustomer(Customer customer)
+        public List<Book> GetBooksByAuthor(string author)
         {
-            if (string.IsNullOrWhiteSpace(customer.FirstName))
+            if (string.IsNullOrWhiteSpace(author))
             {
-                throw new ArgumentException("First name cannot be null, empty, or whitespace.", nameof(customer.FirstName));
-            }
-
-            else
-            {
-                _customers.Add(customer);
-            }
-        }
-        public void PrintAllBooks()
-        {
-            if (_books.Count == 0)
-            {
-                Console.WriteLine("No books in the store.");
+                throw new ArgumentException("Author cannot be null, empty, or whitespace.", nameof(author));
             }
             else
             {
+                List<Book> booksByAuthor = new List<Book>();
                 foreach (var book in _books)
                 {
-                    Console.WriteLine(book);
+                    if (book.Author == author)
+                    {
+                        booksByAuthor.Add(book);
+                    }
                 }
+                return booksByAuthor;
             }
         }
-        public void PrintAllCustomers()
-        {
-            if (_customers.Count == 0)
-            {
-                Console.WriteLine("No customers in the store.");
-            }
-            else
-            {
-                foreach (var customer in _customers)
-                {
-                    Console.WriteLine(customer);
-                }
-            }
-        }
-        // Customer methods DONE
-        public Customer FindCustomerByName(string firstName, string lastName)
-        {
-            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
-            {
-                Console.WriteLine("First name and last name cannot be null, empty, or whitespace.");
-                CheckIfUserWantsToExit();
-            }
-
-            else
-            {
-                foreach (var customer in _customers)
-                {
-                    if (customer.FirstName == firstName && customer.LastName == lastName)
-                    {
-                        return customer;
-                    }
-                }
-                Console.WriteLine($"Customer '{firstName} {lastName}' not found");
-            }
-            return null;
-        }
-        public Customer FindCustomerByFirstName(string firstName)
-        {
-            if (string.IsNullOrWhiteSpace(firstName))
-            {
-                Console.WriteLine("First name cannot be null, empty, or whitespace.");
-                CheckIfUserWantsToExit();
-            }
-
-            else
-            {
-                foreach (var customer in _customers)
-                {
-                    if (customer.FirstName == firstName)
-                    {
-                        return customer;
-                    }
-                }
-                Console.WriteLine($"Customer with firstname '{firstName}' was not found");
-            }
-            return null;
-        }
-        public Customer FindCustomerByLastName(string lastName)
-        {
-            if (string.IsNullOrWhiteSpace(lastName))
-            {
-                Console.WriteLine("Last name cannot be null, empty, or whitespace.");
-                CheckIfUserWantsToExit();
-            }
-
-            else
-            {
-                foreach (var customer in _customers)
-                {
-                    if (customer.LastName == lastName)
-                    {
-                        return customer;
-                    }
-                }
-                Console.WriteLine($"Customer with last name '{lastName}' was not found");
-            }
-            return null;
-        }
-        public Customer FindCustomerByEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                Console.WriteLine("Email cannot be null, empty, or whitespace.");
-                CheckIfUserWantsToExit();
-            }
-
-            else
-            {
-                foreach (var customer in _customers)
-                {
-                    if (customer.Email == email)
-                    {
-                        return customer;
-                    }
-                }
-                Console.WriteLine($"Customer with email '{email}' was not found");
-            }
-            return null;
-        }
-        public Customer FindCustomerByPhoneNumber(int phoneNumber)
-        {
-            foreach (var customer in _customers)
-            {
-                if (customer.PhoneNumber == phoneNumber)
-                {
-                    return customer;
-                }
-            }
-            Console.WriteLine($"Customer with phone number '{phoneNumber}' was not found");
-            return null;
-        }
-
-        // Order methods - DONE
-
-        public void PurchaseBook()
-        {
-            string firstName;
-            string lastName;
-            string title = string.Empty;
-            string isbn = string.Empty;
-            int quantity;
-
-            while (true)
-            {
-                Console.WriteLine("Provide the following information to create an order:");
-                while (true) // fName
-                {
-                    Console.Write("Customer first name: ");
-                    firstName = Console.ReadLine() ?? string.Empty;
-                    if (string.IsNullOrWhiteSpace(firstName))
-                    {
-                        Console.WriteLine("First name cannot be null, empty, or whitespace.");
-                        CheckIfUserWantsToExit();
-                    }
-                    else if (FindCustomerByFirstName(firstName) == null)
-                    {
-                        // Error handled by FindCustomerByFirstName
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                while (true) // lName
-                {
-                    Console.Write("Customer last name: ");
-                    lastName = Console.ReadLine() ?? string.Empty;
-                    if (string.IsNullOrWhiteSpace(lastName))
-                    {
-                        Console.WriteLine("Last name cannot be null, empty, or whitespace.");
-                        CheckIfUserWantsToExit();
-                    }
-                    else if (FindCustomerByLastName(lastName) == null)
-                    {
-                        // Error handled by FindCustomerByLastName
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                while (true) // title or ISBN
-                {
-                    Console.WriteLine("Book title or ISBN: ");
-                    Console.WriteLine("1. Title \n2. ISBN");
-                    string input = Console.ReadLine() ?? string.Empty;
-
-                    if (string.IsNullOrWhiteSpace(input))
-                    {
-                        Console.WriteLine("Input cannot be null, empty, or whitespace.");
-                        CheckIfUserWantsToExit();
-                    }
-                    if (input == "1")
-                    {
-                        Console.Write("Book title: ");
-                        title = Console.ReadLine() ?? string.Empty;
-                        FindBookByTitle(title);
-                        break;
-                    }
-                    else if (input == "2")
-                    {
-                        Console.Write("Book ISBN: ");
-                        isbn = Console.ReadLine() ?? string.Empty;
-                        FindBookByIsbn(isbn);
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid input. Please try again.");
-                        continue;
-                    }
-                }
-                while (true) // quantity
-                {
-                    Console.Write("Quantity: ");
-                    if (!int.TryParse(Console.ReadLine(), out quantity) || quantity <= 0)
-                    {
-                        Console.WriteLine("Quantity must be a valid number greater than 0.");
-                        CheckIfUserWantsToExit();
-                    }
-                    else if (FindBookByTitle(title).Quantity < quantity)
-                    {
-                        Console.WriteLine("Not enough books in stock.");
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-
-                Customer customer = FindCustomerByName(firstName, lastName);
-                Book book = FindBookByTitle(title);
-                Order order = new(orderId, new() { book }, customer, DateTime.Now, book.Price * quantity);
-                _orders.Add(order);
-                Console.WriteLine("Order created: " + order);
-
-                // Handle inventory and order creation
-                orderId++;
-                book.Quantity -= quantity;
-                break;
-            }
-        }
-        public void PrintAllOrders()
-        {
-            if (_orders.Count == 0)
-            {
-                Console.WriteLine("No orders in the store.");
-            }
-            else
-            {
-                Console.WriteLine("All orders:");
-                foreach (var order in _orders)
-                {
-                    Console.WriteLine(order);
-                }
-            }
-        }
-        public void CheckIfUserWantsToExit()
-        {
-            Console.WriteLine("Do you want to exit the program? (yes/no)");
-            string input = Console.ReadLine() ?? string.Empty;
-            if (input == "yes" || input == "y")
-            {
-                Environment.Exit(0);
-            }
-            else if (input == "no" || input == "n")
-            {
-                return;
-            }
-            else
-            {
-                Console.WriteLine("Invalid input. Please try again.");
-                CheckIfUserWantsToExit();
-            }
-        }
+        
     }
 }
