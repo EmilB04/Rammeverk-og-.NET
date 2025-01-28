@@ -6,17 +6,6 @@ using HIOF.V2025.Arbeidskrav1.BookStore;
 
 namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
 {
-
-
-    // TODO!
-    /*
-        1. Implementer ordre-funksjonalitet i BookStoreManager
-        2. Implementer funksjonalitet rundt beholdning, rabatter og bestillinger
-
-        4. Se over dokument for mer
-        5. Fix Create order -> Book by ISBN or Title = Separere disse
-
-    */
     public class Program
     {
         static void Main(string[] args)
@@ -332,9 +321,5 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
                 Console.WriteLine("Invalid input, please try again.");
             }
         }
-
-
-
-
     }
 }

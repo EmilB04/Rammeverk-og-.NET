@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HIOF.V2025.Arbeidskrav1.BookStore
 {
-    public class BookStoreManager
+    public class BookStoreManager : IBookStoreManager
     {
         private List<Book> _books;
         private List<Customer> _customers;
@@ -17,14 +17,14 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             _orders = new List<Order>();
         }
 
-        // Book methods DONE - missing inventory functionality
+        // Book methods DONE
         public void AddBook(Book book)
         {
             if (book == null)
             {
                 throw new ArgumentNullException(nameof(book), "Book cannot be null.");
             }
-            else if ((string.IsNullOrWhiteSpace(book.Title)) || string.IsNullOrWhiteSpace(book.AuthorName) || string.IsNullOrWhiteSpace(book.Isbn))
+            else if ((string.IsNullOrWhiteSpace(book.Title)) || string.IsNullOrWhiteSpace(book.Author) || string.IsNullOrWhiteSpace(book.Isbn))
             {
                 throw new ArgumentException("Every field needs to be filled out", nameof(book.Title));
             }
