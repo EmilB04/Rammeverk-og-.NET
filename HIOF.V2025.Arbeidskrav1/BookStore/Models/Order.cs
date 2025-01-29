@@ -13,7 +13,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
 
         public Order(int orderId, List<Book> books, Customer customer, DateTime orderDate, double totalPrice)
         {
-            if (orderId <= 0) throw new ArgumentException("OrderId must be greater than zero.", nameof(orderId));
+            // Copilot: Made these if-statements more compact
+            if (orderId <= 0) throw new ArgumentException("Order id must be greater than zero.", nameof(orderId));
 
             if (books == null || books.Count == 0) throw new ArgumentException("Books list cannot be null or empty.", nameof(books));
 
