@@ -17,6 +17,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
 
         public void AddBook(Book book)
         {
+            // Copilot: Made these if-statements more compact
             if (book == null) throw new ArgumentNullException(nameof(book), "Book cannot be null.");
             if (string.IsNullOrWhiteSpace(book.Title)) throw new ArgumentException("Title cannot be empty.");
             if (string.IsNullOrWhiteSpace(book.Author)) throw new ArgumentException("Author cannot be empty.");
@@ -99,10 +100,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         public void UpdateBookStock(string isbn, int quantityChange)
         {
             var book = GetBookByIsbn(isbn);
-            if (book != null)
-            {
-                book.Quantity += quantityChange;
-            }
+            if (book != null) book.Quantity += quantityChange;
             else
             {
                 throw new ArgumentException("Book not found.");
