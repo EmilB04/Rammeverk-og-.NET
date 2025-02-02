@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace HIOF.V2025.Arbeidskrav1.BookStore.Interfaces
 {
+    /// <summary>
+    /// Interface for OrderService.
+    /// Contains methods for creating new orders, removing orders, printing all orders, and getting orders by order ID and customer name.
+    /// </summary>
     public interface IOrderService
     {
         // Order CRUD

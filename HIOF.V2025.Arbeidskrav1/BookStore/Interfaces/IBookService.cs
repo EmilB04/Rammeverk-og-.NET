@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace HIOF.V2025.Arbeidskrav1.BookStore.Interfaces
 {
+    /// <summary>
+    /// Interface for BookService.
+    /// Contains methods for adding, removing, and printing books, as well as getting books by ISBN, title, and author.
+    /// </summary>
     public interface IBookService
     {
         // Books CRUD
