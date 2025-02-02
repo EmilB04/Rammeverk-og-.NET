@@ -8,6 +8,11 @@ using HIOF.V2025.Arbeidskrav1.BookStore.Services;
 
 namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
 {
+    /// <summary>
+    /// Class for the menu of the BookStoreCLI.
+    /// Contains methods for showing the menu and adding books, customers, and orders.
+    /// The menu is used to interact with the BookStoreManager, OrderManager, and CustomerManager.
+    /// </summary>
     public class Menu
     {
         private readonly BookStoreManager _bookStoreManager;
