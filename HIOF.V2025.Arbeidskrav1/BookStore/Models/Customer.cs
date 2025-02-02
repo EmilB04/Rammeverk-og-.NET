@@ -12,9 +12,17 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         public string Email { get; set; }
         public int PhoneNumber { get; set; }
 
+        /// <summary>
+        /// Constructor for Customer.
+        /// </summary>
+        /// <param name="firstName">The first name of the customer.</param>
+        /// <param name="lastName">The last name of the customer.</param>
+        /// <param name="email">The email of the customer.</param>
+        /// <param name="phoneNumber">The phone number of the customer.</param>
+        /// <exception cref="ArgumentNullException">Thrown when first name, last name, or email is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when phone number is less than or equal to zero.</exception>
         public Customer(string firstName, string lastName, string email, int phoneNumber)
         {
-            // Copilot: Made these if-statements more compact
             if (string.IsNullOrWhiteSpace(firstName)) throw new ArgumentNullException(nameof(firstName), "First name cannot be null or empty.");
             if (string.IsNullOrWhiteSpace(lastName)) throw new ArgumentNullException(nameof(lastName), "Last name cannot be null or empty.");
             if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email), "Email cannot be null or empty.");
@@ -25,6 +33,11 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             Email = email;
             PhoneNumber = phoneNumber;
         }
+
+        /// <summary>
+        /// Returns a string that represents the current customer.
+        /// </summary>
+        /// <returns>A string that represents the current customer.</returns>
         public override string ToString()
         {
             return $"Name: {FirstName} {LastName}, Email: {Email}, Phone number: {PhoneNumber}";

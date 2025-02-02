@@ -13,11 +13,28 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         private readonly List<Order> _orders = new();
         private int _orderIdCounter = 1;
 
+        /// <summary>
+        /// Constructor for OrderManager.
+        /// </summary>
+        /// <param name="bookStoreManager">The BookStoreManager instance.</param>
+        /// <param name="customerManager">The CustomerManager instance.</param>
         public OrderManager(BookStoreManager bookStoreManager, CustomerManager customerManager)
         {
             _bookStoreManager = bookStoreManager;
             _customerManager = customerManager;
         }
+
+        /// <summary>
+        /// Creates a new order.
+        /// Throws ArgumentException if customer is not found.
+        /// Throws ArgumentException if book is not found.
+        /// Throws ArgumentException if not enough stock is available.
+        /// </summary>
+        /// <param name="firstName">The first name of the customer.</param>
+        /// <param name="lastName">The last name of the customer.</param>
+        /// <param name="titleOrIsbn">The title or ISBN of the book.</param>
+        /// <param name="quantity">The quantity of the book to order.</param>
+        /// <exception cref="ArgumentException">Thrown when the customer is not found, the book is not found, or not enough stock is available.</exception>
         public void NewOrder(string firstName, string lastName, string titleOrIsbn, int quantity)
         {
             var customer = _customerManager.GetCustomerByName(firstName, lastName);
@@ -36,9 +53,10 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             Console.WriteLine($"Order created successfully: {order}");
         }
 
-
-
-
+        /// <summary>
+        /// Prints all orders in the store.
+        /// Prints "No orders in the store." if there are no orders in the store.
+        /// </summary>
         public void PrintAllOrders()
         {
             if (_orders.Count == 0)
@@ -55,18 +73,43 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             }
         }
 
+        /// <summary>
+        /// Removes an order from the store.
+        /// NOT IMPLEMENTED YET.
+        /// </summary>
+        /// <param name="order">The order to be removed.</param>
         public void RemoveOrder(Order order)
         {
             _orders.Remove(order);
         }
+
+        /// <summary>
+        /// Gets an order by order ID.
+        /// Throws ArgumentException if the order is not found.
+        /// NOT IMPLEMENTED YET.
+        /// </summary>
+        /// <param name="orderId">The ID of the order to be retrieved.</param>
+        /// <returns>The order with the specified ID.</returns>
+        /// <exception cref="ArgumentException">Thrown when the order is not found.</exception>
         public Order GetOrderByOrderId(int orderId)
         {
             return _orders.FirstOrDefault(o => o.OrderId == orderId) ?? throw new ArgumentException("Order not found.", nameof(orderId));
         }
+
+        /// <summary>
+        /// Gets orders by customer.
+        /// NOT IMPLEMENTED YET.
+        /// </summary>
+        /// <param name="customer">The customer whose orders are to be retrieved.</param>
+        /// <returns>A list of orders by the specified customer.</returns>
         public List<Order> GetOrdersByCustomerName(Customer customer)
         {
             return _orders.Where(o => o.Customer == customer).ToList();
         }
+
+        /// <summary>
+        /// Checks if the user wants to exit the program.
+        /// </summary>
         public void CheckIfUserWantsToExit()
         {
             Console.WriteLine("Do you want to exit the program? (yes/no)");

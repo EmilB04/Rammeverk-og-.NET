@@ -13,12 +13,23 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         public double Price { get; set; }
         public int Quantity { get; set; }
 
+        /// <summary>
+        /// Constructor for Book.
+        /// </summary>
+        /// <param name="title">The title of the book.</param>
+        /// <param name="author">The author of the book.</param>
+        /// <param name="isbn">The ISBN of the book.</param>
+        /// <param name="price">The price of the book.</param>
+        /// <param name="quantity">The quantity of the book in stock.</param>
+        /// <exception cref="ArgumentException">Thrown when title, author, or isbn is null, empty, or whitespace, or when price is less than or equal to zero, or when quantity is negative.</exception>
         public Book(string title, string author, string isbn, double price, int quantity)
         {
             if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(author) || string.IsNullOrWhiteSpace(isbn))
                 throw new ArgumentException("Title, Author, and ISBN cannot be empty.");
-            if (price <= 0 || quantity < 0)
-                throw new ArgumentException("Price must be positive and quantity cannot be negative.");
+            if (price <= 0)
+                throw new ArgumentException("Price must be positive.");
+            if (quantity < 0)
+                throw new ArgumentException("Quantity cannot be negative.");
 
             Title = title;
             Author = author;
@@ -27,6 +38,10 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             Quantity = quantity;
         }
 
+        /// <summary>
+        /// Returns a string that represents the current book.
+        /// </summary>
+        /// <returns>A string that represents the current book.</returns>
         public override string ToString()
         {
             return $"{Title} by {Author} (ISBN: {Isbn}) - ${Price} | Quantity: {Quantity}";
