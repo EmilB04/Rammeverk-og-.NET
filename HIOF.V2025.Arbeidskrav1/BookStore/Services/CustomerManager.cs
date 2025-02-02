@@ -10,12 +10,20 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
     {
         private readonly List<Customer> _customers;
 
-
+        /// <summary>
+        /// Constructor for CustomerManager.
+        /// </summary>
         public CustomerManager()
         {
             _customers = new List<Customer>();
         }
 
+        /// <summary>
+        /// Adds a customer to the store.
+        /// </summary>
+        /// <param name="customer">The customer to be added.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the customer is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when first name, last name, or email is null, empty, or whitespace, or if a customer with the same email already exists.</exception>
         public void AddCustomer(Customer customer)
         {
             if (customer == null) throw new ArgumentNullException(nameof(customer), "Customer cannot be null.");
@@ -28,18 +36,28 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             _customers.Add(customer);
         }
 
+        /// <summary>
+        /// Removes a customer from the store.
+        /// Throws ArgumentNullException if customer is null.
+        /// </summary>
+        /// <param name="customer">The customer to be removed.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the customer is null.</exception>
         public void RemoveCustomer(Customer customer)
         {
             if (customer == null)
             {
                 throw new ArgumentNullException(nameof(customer), "Customer cannot be null.");
             }
-
             else
             {
                 _customers.Remove(customer);
             }
         }
+
+        /// <summary>
+        /// Prints all customers in the store.
+        /// Prints "No customers in the store." if there are no customers in the store.
+        /// </summary>
         public void PrintAllCustomers()
         {
             if (_customers.Count == 0)
@@ -54,6 +72,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
                 }
             }
         }
+        /// <summary>
+        /// Gets a customer by first name and last name.
+        /// </summary>
+        /// <param name="firstName">The first name of the customer</param>
+        /// <param name="lastName">The last name of the customer</param>
+        /// <returns>Return customer object</returns>
         public Customer GetCustomerByName(string firstName, string lastName)
         {
             if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
@@ -75,6 +99,11 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             }
             return null;
         }
+        /// <summary>
+        /// Gets a customer by first name.
+        /// </summary>
+        /// <param name="firstName">The first name of the customer</param>
+        /// <returns>Returns customer object</returns>
         public Customer GetCustomerByFirstName(string firstName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
@@ -96,6 +125,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             }
             return null;
         }
+
+        /// <summary>
+        /// Gets a customer by last name.
+        /// </summary>
+        /// <param name="lastName">The last name of the customer</param>
+        /// <returns>Returns customer object</returns>
         public Customer GetCustomerByLastName(string lastName)
         {
             if (string.IsNullOrWhiteSpace(lastName))
@@ -117,6 +152,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             }
             return null;
         }
+
+        /// <summary>
+        /// Gets a customer by email.
+        /// </summary>
+        /// <param name="email">The email of the customer</param>
+        /// <returns>Returns customer object</returns>
         public Customer GetCustomerByEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
@@ -138,6 +179,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             }
             return null;
         }
+
+        /// <summary>
+        /// Gets a customer by phone number.
+        /// </summary>
+        /// <param name="phoneNumber">The phone numer of the customer</param>
+        /// <returns></returns>
         public Customer GetCustomerByPhoneNumber(int phoneNumber)
         {
             foreach (var customer in _customers)
@@ -151,10 +198,20 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             return null;
         }
 
+        /// <summary>
+        /// Gets all customers in the store.
+        /// </summary>
+        /// <returns>A list of customers</returns>
         public List<Customer> GetAllCustomers()
         {
             return _customers;
         }
+
+
+        /// <summary>
+        /// Checks if the user wants to exit the program.
+        /// If the user inputs "yes" or "y", the program will exit.
+        /// </summary>
         public void CheckIfUserWantsToExit()
         {
             Console.WriteLine("Do you want to exit the program? (yes/no)");
