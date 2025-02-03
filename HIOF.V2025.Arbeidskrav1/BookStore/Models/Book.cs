@@ -25,11 +25,11 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         public Book(string title, string author, string isbn, double price, int quantity)
         {
             if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(author) || string.IsNullOrWhiteSpace(isbn))
-                throw new ArgumentException("Title, Author, and ISBN cannot be empty.");
+                throw new ArgumentException("Title, Author, and ISBN cannot be empty." + "Please enter a valid title, author, and ISBN.");
             if (price <= 0)
-                throw new ArgumentException("Price must be positive.");
+                throw new ArgumentException("Price must be positive." + "Please enter a valid price.");
             if (quantity < 0)
-                throw new ArgumentException("Quantity cannot be negative.");
+                throw new ArgumentException("Quantity cannot be negative." + "Please enter a valid quantity.");
 
             Title = title;
             Author = author;

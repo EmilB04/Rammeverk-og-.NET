@@ -23,11 +23,11 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <exception cref="ArgumentNullException">Thrown when customer is null.</exception>
         public Order(int orderId, List<Book> books, Customer customer, DateTime orderDate, double totalPrice)
         {
-            if (orderId <= 0) throw new ArgumentException("Order id must be greater than zero.", nameof(orderId));
-            if (books == null || books.Count == 0) throw new ArgumentException("Books list cannot be null or empty.", nameof(books));
-            if (customer == null) throw new ArgumentNullException(nameof(customer), "Customer cannot be null.");
-            if (orderDate == default) throw new ArgumentException("Order date must be a valid date.", nameof(orderDate));
-            if (totalPrice < 0) throw new ArgumentException("Total price cannot be negative.", nameof(totalPrice));
+            if (orderId <= 0) throw new ArgumentException(nameof(orderId), "Order id must be greater than zero." + "Please enter a valid order id.");
+            if (books == null || books.Count == 0) throw new ArgumentException(nameof(books), "Books list cannot be null or empty." + "Please enter a valid list of books.");
+            if (customer == null) throw new ArgumentNullException(nameof(customer), "Customer cannot be null." + "Please enter a valid customer.");
+            if (orderDate == default) throw new ArgumentException(nameof(orderDate), "Order date must be a valid date." + "Please enter a valid order date.");
+            if (totalPrice < 0) throw new ArgumentException(nameof(totalPrice), "Total price cannot be negative." + "Please enter a valid total price.");
 
             OrderId = orderId;
             Books = books;

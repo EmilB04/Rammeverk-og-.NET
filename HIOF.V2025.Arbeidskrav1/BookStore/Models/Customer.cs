@@ -23,10 +23,10 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <exception cref="ArgumentException">Thrown when phone number is less than or equal to zero.</exception>
         public Customer(string firstName, string lastName, string email, int phoneNumber)
         {
-            if (string.IsNullOrWhiteSpace(firstName)) throw new ArgumentNullException(nameof(firstName), "First name cannot be null or empty.");
-            if (string.IsNullOrWhiteSpace(lastName)) throw new ArgumentNullException(nameof(lastName), "Last name cannot be null or empty.");
-            if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email), "Email cannot be null or empty.");
-            if (phoneNumber <= 0) throw new ArgumentException("Phone number must be greater than zero.", nameof(phoneNumber));
+            if (string.IsNullOrWhiteSpace(firstName)) throw new ArgumentNullException(nameof(firstName), "First name cannot be null or empty." + "Please enter a valid first name.");
+            if (string.IsNullOrWhiteSpace(lastName)) throw new ArgumentNullException(nameof(lastName), "Last name cannot be null or empty." + "Please enter a valid last name.");
+            if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email), "Email cannot be null or empty." + "Please enter a valid email.");
+            if (phoneNumber <= 0) throw new ArgumentException(nameof(phoneNumber),"Phone number must be greater than zero." + "Please enter a valid phone number.");
 
             FirstName = firstName;
             LastName = lastName;
