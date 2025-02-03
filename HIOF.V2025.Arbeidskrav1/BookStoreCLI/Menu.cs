@@ -116,14 +116,63 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
         private void NewOrder()
         {
             Console.WriteLine("Provide the following information to create an order:");
-            Console.Write("Customer first name: ");
-            string firstName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(firstName));
-            Console.Write("Customer last name: ");
-            string lastName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(lastName));
-            Console.Write("Book title or ISBN: ");
-            string titleOrIsbn = Console.ReadLine() ?? throw new ArgumentNullException(nameof(titleOrIsbn));
-            Console.Write("Quantity: ");
-            int quantity = int.Parse(Console.ReadLine() ?? throw new ArgumentNullException(nameof(quantity)));
+            string firstName = string.Empty;
+            string lastName = string.Empty;
+            string titleOrIsbn = string.Empty;
+            int quantity = 0;
+
+            while (true) // firstName
+            {
+                Console.Write("Customer first name: ");
+                firstName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(firstName));
+                if (string.IsNullOrWhiteSpace(firstName))
+                {
+                    Console.WriteLine("First name cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+            while (true) // lastName
+            {
+                Console.Write("Customer last name: ");
+                lastName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(lastName));
+                if (string.IsNullOrWhiteSpace(lastName))
+                {
+                    Console.WriteLine("Last name cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+            while (true) // titleOrIsbn
+            {
+                Console.Write("Book title or ISBN: ");
+                titleOrIsbn = Console.ReadLine() ?? throw new ArgumentNullException(nameof(titleOrIsbn));
+                if (string.IsNullOrWhiteSpace(titleOrIsbn))
+                {
+                    Console.WriteLine("Title or ISBN cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+            while (true) // quantity
+            {
+                Console.Write("Quantity: ");
+                quantity = int.Parse(Console.ReadLine() ?? throw new ArgumentNullException(nameof(quantity)));
+                if (quantity <= 0)
+                {
+                    Console.WriteLine("Quantity must be greater than 0.");
+                }
+                else
+                {
+                    break;
+                }
+            }
 
             try
             {

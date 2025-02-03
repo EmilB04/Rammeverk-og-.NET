@@ -8,24 +8,25 @@
     "net9.0": []
   },
   "packageFolders": {
-    "/Users/emil/.nuget/packages/": {}
+    "C:\\Users\\emilb\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/HIOF.V2025.Arbeidskrav1.csproj",
+      "projectUniqueName": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj",
       "projectName": "HIOF.V2025.Arbeidskrav1",
-      "projectPath": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/HIOF.V2025.Arbeidskrav1.csproj",
-      "packagesPath": "/Users/emil/.nuget/packages/",
-      "outputPath": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/obj/",
+      "projectPath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj",
+      "packagesPath": "C:\\Users\\emilb\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/emil/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\emilb\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -65,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
