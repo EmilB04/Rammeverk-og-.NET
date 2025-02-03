@@ -93,7 +93,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when the order is not found.</exception>
         public Order GetOrderByOrderId(int orderId)
         {
-            return _orders.FirstOrDefault(o => o.OrderId == orderId) ?? throw new ArgumentException("Order not found.", nameof(orderId));
+            return null;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         /// <returns>A list of orders by the specified customer.</returns>
         public List<Order> GetOrdersByCustomerName(Customer customer)
         {
-            return _orders.Where(o => o.Customer == customer).ToList();
+            return new List<Order>();
         }
 
         /// <summary>

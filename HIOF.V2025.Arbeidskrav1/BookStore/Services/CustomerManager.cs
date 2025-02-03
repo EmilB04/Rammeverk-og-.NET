@@ -30,8 +30,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             if (string.IsNullOrWhiteSpace(customer.FirstName)) throw new ArgumentException("First name cannot be empty.");
             if (string.IsNullOrWhiteSpace(customer.LastName)) throw new ArgumentException("Last name cannot be empty.");
             if (string.IsNullOrWhiteSpace(customer.Email)) throw new ArgumentException("Email cannot be empty.");
-            if (_customers.Any(c => c.Email == customer.Email))
-                throw new ArgumentException("A customer with the same email already exists.");
+            if (_customers.Any(c => c.Email == customer.Email)) throw new ArgumentException("A customer with the same email already exists.");
 
             _customers.Add(customer);
         }
