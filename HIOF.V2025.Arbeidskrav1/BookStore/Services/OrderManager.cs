@@ -45,7 +45,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
 
             if (book.Quantity < quantity) throw new ArgumentException("Not enough stock available.");
 
-            var order = new Order(_orderIdCounter++, new List<Book> { book }, customer, DateTime.Now, book.Price * quantity);
+            var order = new Order(_orderIdCounter++, new List<Book> { book }, customer, DateTime.Now, book.Price * quantity, quantity);
             _orders.Add(order);
 
             _bookStoreManager.UpdateBookStock(book.Isbn, -quantity);
@@ -105,28 +105,6 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         public List<Order> GetOrdersByCustomerName(Customer customer)
         {
             return new List<Order>();
-        }
-
-        /// <summary>
-        /// Checks if the user wants to exit the program.
-        /// </summary>
-        public void CheckIfUserWantsToExit()
-        {
-            Console.WriteLine("Do you want to exit the program? (yes/no)");
-            string input = Console.ReadLine() ?? string.Empty;
-            if (input == "yes" || input == "y")
-            {
-                Environment.Exit(0);
-            }
-            else if (input == "no" || input == "n")
-            {
-                return;
-            }
-            else
-            {
-                Console.WriteLine("Invalid input. Please try again.");
-                CheckIfUserWantsToExit();
-            }
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using HIOF.V2025.Arbeidskrav1.BookStore.Interfaces;
 
 // GOOD TO GO! 🚀
@@ -153,6 +154,15 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         {
             var book = GetBookByIsbn(isbn);
             if (book != null) book.Quantity += quantityChange;
+            else
+            {
+                throw new ArgumentException("Book not found.");
+            }
+        }
+        public int GetStockQuantity(string isbn)
+        {
+            var book = GetBookByIsbn(isbn);
+            if (book != null) return book.Quantity;
             else
             {
                 throw new ArgumentException("Book not found.");

@@ -82,7 +82,6 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             {
                 Console.WriteLine("First name and last name cannot be null, empty, or whitespace.");
-                CheckIfUserWantsToExit();
             }
 
             else
@@ -108,7 +107,6 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             if (string.IsNullOrWhiteSpace(firstName))
             {
                 Console.WriteLine("First name cannot be null, empty, or whitespace.");
-                CheckIfUserWantsToExit();
             }
 
             else
@@ -135,7 +133,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             if (string.IsNullOrWhiteSpace(lastName))
             {
                 Console.WriteLine("Last name cannot be null, empty, or whitespace.");
-                CheckIfUserWantsToExit();
+                
             }
 
             else
@@ -162,7 +160,6 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             if (string.IsNullOrWhiteSpace(email))
             {
                 Console.WriteLine("Email cannot be null, empty, or whitespace.");
-                CheckIfUserWantsToExit();
             }
 
             else
@@ -204,30 +201,6 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         public List<Customer> GetAllCustomers()
         {
             return _customers;
-        }
-
-
-        /// <summary>
-        /// Checks if the user wants to exit the program.
-        /// If the user inputs "yes" or "y", the program will exit.
-        /// </summary>
-        public void CheckIfUserWantsToExit()
-        {
-            Console.WriteLine("Do you want to exit the program? (yes/no)");
-            string input = Console.ReadLine() ?? string.Empty;
-            if (input == "yes" || input == "y")
-            {
-                Environment.Exit(0);
-            }
-            else if (input == "no" || input == "n")
-            {
-                return;
-            }
-            else
-            {
-                Console.WriteLine("Invalid input. Please try again.");
-                CheckIfUserWantsToExit();
-            }
         }
     }
 }

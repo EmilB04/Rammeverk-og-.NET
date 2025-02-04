@@ -128,6 +128,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
                 if (string.IsNullOrWhiteSpace(firstName))
                 {
                     Console.WriteLine("First name cannot be empty.");
+                    
                 }
                 else
                 {
@@ -141,6 +142,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
                 if (string.IsNullOrWhiteSpace(lastName))
                 {
                     Console.WriteLine("Last name cannot be empty.");
+                    
                 }
                 else
                 {
@@ -154,6 +156,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
                 if (string.IsNullOrWhiteSpace(titleOrIsbn))
                 {
                     Console.WriteLine("Title or ISBN cannot be empty.");
+                    
                 }
                 else
                 {
@@ -167,6 +170,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
                 if (quantity <= 0)
                 {
                     Console.WriteLine("Quantity must be greater than 0.");
+                    
                 }
                 else
                 {
