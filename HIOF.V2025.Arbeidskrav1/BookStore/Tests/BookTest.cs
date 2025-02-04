@@ -35,7 +35,5 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
             // Assert
         }
 
-        [TestMethod]
-        
     }
 }

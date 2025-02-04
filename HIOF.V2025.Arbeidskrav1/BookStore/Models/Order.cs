@@ -20,6 +20,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <param name="customer">The customer who placed the order.</param>
         /// <param name="orderDate">The date the order was placed.</param>
         /// <param name="totalPrice">The total price of the order.</param>
+        /// <param name="quantityPurchased">The quantity of books purchased.</param>
         /// <exception cref="ArgumentException">Thrown when orderId is less than or equal to zero, books list is null or empty, orderDate is not a valid date, or totalPrice is negative.</exception>
         /// <exception cref="ArgumentNullException">Thrown when customer is null.</exception>
         public Order(int orderId, List<Book> books, Customer customer, DateTime orderDate, double totalPrice, double quantityPurchased)
