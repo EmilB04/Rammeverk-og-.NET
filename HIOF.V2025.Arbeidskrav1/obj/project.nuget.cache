@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "coZ6so9x8RA=",
+  "dgSpecHash": "eXgNghorUnw=",
   "success": true,
   "projectFilePath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\emilb\\.nuget\\packages\\mstest.analyzers\\3.7.3\\mstest.analyzers.3.7.3.nupkg.sha512",
+    "C:\\Users\\emilb\\.nuget\\packages\\mstest.testframework\\3.7.3\\mstest.testframework.3.7.3.nupkg.sha512"
+  ],
   "logs": []
 }

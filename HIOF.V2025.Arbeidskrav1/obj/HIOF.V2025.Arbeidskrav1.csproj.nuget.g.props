@@ -12,4 +12,7 @@
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="C:\Users\emilb\.nuget\packages\" />
   </ItemGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMSTest_Analyzers Condition=" '$(PkgMSTest_Analyzers)' == '' ">C:\Users\emilb\.nuget\packages\mstest.analyzers\3.7.3</PkgMSTest_Analyzers>
+  </PropertyGroup>
 </Project>
