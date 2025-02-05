@@ -62,6 +62,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
 
         private void AddBook()
         {
+
             Console.WriteLine("Enter the nessesary information to add a book to the store.");
             Console.Write("Title: ");
             string title = Console.ReadLine() ?? throw new ArgumentNullException(nameof(title));
