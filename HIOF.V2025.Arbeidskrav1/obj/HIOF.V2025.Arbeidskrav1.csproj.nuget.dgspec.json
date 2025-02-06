@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj": {}
+    "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/HIOF.V2025.Arbeidskrav1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj": {
+    "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/HIOF.V2025.Arbeidskrav1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj",
+        "projectUniqueName": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/HIOF.V2025.Arbeidskrav1.csproj",
         "projectName": "HIOF.V2025.Arbeidskrav1",
-        "projectPath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\HIOF.V2025.Arbeidskrav1.csproj",
-        "packagesPath": "C:\\Users\\emilb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\HIOF.V2025.Arbeidskrav1\\obj\\",
+        "projectPath": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/HIOF.V2025.Arbeidskrav1.csproj",
+        "packagesPath": "/Users/emil/.nuget/packages/",
+        "outputPath": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/HIOF.V2025.Arbeidskrav1/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\emilb\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/emil/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -48,6 +47,18 @@
             "MSTest.TestFramework": {
               "target": "Package",
               "version": "[3.7.3, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.12.0, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[4.3.2, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.6.0, )"
             }
           },
           "imports": [
@@ -66,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
