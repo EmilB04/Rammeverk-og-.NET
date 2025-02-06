@@ -24,7 +24,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void CreateBook_ThrowsException_WhenTitleIsNull()
         {
             var book = new Book(null, "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
@@ -40,10 +40,27 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         [TestMethod]
         public void UpdateBookPrice_ChangesPriceCorrectly()
         {
-            var book = new Book("Dune", "Frank Herbert", "978-0-441-17271-9", 199.99, 3);
+            var book = new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
             book.Price = 179.99;
             
             Assert.AreEqual(179.99, book.Price);
+        }
+
+        [TestMethod]
+        public void CreateBook_NoWhiteSpace_NotNull()
+        {
+            var book = new Book("Dune", "Frank Herbert", "978-0-441-17271-9", 199.99, 3);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(book.Title));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(book.Author));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(book.Isbn));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateBook_WithWhiteSpace_Null()
+        {
+            var book = new Book(" ", " ", " ", 199.99, 3);
+            
         }
 
 

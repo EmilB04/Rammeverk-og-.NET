@@ -29,7 +29,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             if (price <= 0)
                 throw new ArgumentException("Price must be positive." + "Please enter a valid price.");
             if (quantity < 0)
-                throw new ArgumentException("Quantity cannot be negative." + "Please enter a valid quantity.");
+                throw new ArgumentException("Quantity must be positive." + "Please enter a valid quantity.");
 
             Title = title;
             Author = author;
