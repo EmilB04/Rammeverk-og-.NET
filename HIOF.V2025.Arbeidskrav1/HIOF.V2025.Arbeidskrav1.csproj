@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType> <!-- Legg til denne linjen -->
+    <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework> <!-- Bytt til en støttet TFM -->
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -9,9 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.7.3" />
     <PackageReference Include="MSTest.TestFramework" Version="3.7.3" />
     <PackageReference Include="NUnit" Version="4.3.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+    <ProjectReference Include="..\BookStore\BookStore.csproj" />
   </ItemGroup>
 
 </Project>

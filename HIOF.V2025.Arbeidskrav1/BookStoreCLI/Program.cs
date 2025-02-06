@@ -14,7 +14,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
     /// </summary>
     public class Program
     {
-        static void Main()
+        static void MainCLI()
         {
             var bookStoreManager = new BookStoreManager();
             var customerManager = new CustomerManager();
