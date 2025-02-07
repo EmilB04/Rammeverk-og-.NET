@@ -16,6 +16,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
+        // Copilot-prompt: "How do I test every object in a method for ArgumentNullException?"
+        // Copilot-result: Copilot suggested to add [ExpectedException(typeof(ArgumentNullException))] before the method.
         [ExpectedException(typeof(ArgumentNullException))]
         public void CreateCustomer_InvalidParameters_NullOrWhiteSpace()
         {

@@ -27,12 +27,13 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <exception cref="ArgumentException">Thrown when title, author, or isbn is null, empty, or whitespace, or if a book with the same ISBN already exists.</exception>
         public void AddBook(Book book)
         {
+            // Copilot-prompt: "How can this be shortned, while still following the .NET guidelines?"
+            // Copilot-result: Copilot formatted the if-statement with exception into a single line.
             if (book == null) throw new ArgumentNullException(nameof(book), "Book cannot be null.");
             if (string.IsNullOrWhiteSpace(book.Title)) throw new ArgumentException("Title cannot be empty.");
             if (string.IsNullOrWhiteSpace(book.Author)) throw new ArgumentException("Author cannot be empty.");
             if (string.IsNullOrWhiteSpace(book.Isbn)) throw new ArgumentException("ISBN cannot be empty.");
-            if (_books.Exists(b => b.Isbn == book.Isbn))
-                throw new ArgumentException("A book with the same ISBN already exists.");
+            if (_books.Exists(b => b.Isbn == book.Isbn)) throw new ArgumentException("A book with the same ISBN already exists.");
 
             _books.Add(book);
             Console.WriteLine("Book added successfully.");

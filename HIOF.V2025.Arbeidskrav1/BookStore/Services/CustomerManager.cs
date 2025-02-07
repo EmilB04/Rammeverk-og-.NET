@@ -26,6 +26,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when first name, last name, or email is null, empty, or whitespace, or if a customer with the same email already exists.</exception>
         public void AddCustomer(Customer customer)
         {
+            // Copilot-prompt: "How can this be shortned, while still following the .NET guidelines?"
+            // Copilot-result: Copilot formatted the if-statement with exception into a single line.
             if (customer == null) throw new ArgumentNullException(nameof(customer), "Customer cannot be null.");
             if (string.IsNullOrWhiteSpace(customer.FirstName)) throw new ArgumentException("First name cannot be empty.");
             if (string.IsNullOrWhiteSpace(customer.LastName)) throw new ArgumentException("Last name cannot be empty.");
@@ -133,7 +135,6 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
             if (string.IsNullOrWhiteSpace(lastName))
             {
                 Console.WriteLine("Last name cannot be null, empty, or whitespace.");
-                
             }
 
             else

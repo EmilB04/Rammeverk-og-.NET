@@ -25,6 +25,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
             Assert.AreEqual(2, book.Quantity);
         }
         [TestMethod]
+        // Copilot-prompt: "How do I test every object in a method for ArgumentNullException?"
+        // Copilot-result: Copilot suggested to add [ExpectedException(typeof(ArgumentNullException))] before the method.
         [ExpectedException(typeof(ArgumentNullException))]
         public void CreateBook_InvalidParameters_NullOrWhiteSpace()
         {
@@ -37,6 +39,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
+        
         [ExpectedException(typeof(ArgumentException))]
         public void CreateBook_InvalidNumbers()
         {

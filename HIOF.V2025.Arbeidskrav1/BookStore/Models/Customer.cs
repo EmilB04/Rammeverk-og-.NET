@@ -23,6 +23,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <exception cref="ArgumentException">Thrown when phone number is less than or equal to zero.</exception>
         public Customer(string firstName, string lastName, string email, int phoneNumber)
         {
+            // Copilot-prompt: "How can this be shortned, while still following the .NET guidelines?"
+            // Copilot-result: Copilot formatted the if-statement with exception into a single line.
             if (string.IsNullOrWhiteSpace(firstName)) throw new ArgumentNullException(nameof(firstName), "First name cannot be null or empty." + "Please enter a valid first name.");
             if (string.IsNullOrWhiteSpace(lastName)) throw new ArgumentNullException(nameof(lastName), "Last name cannot be null or empty." + "Please enter a valid last name.");
             if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email), "Email cannot be null or empty." + "Please enter a valid email.");

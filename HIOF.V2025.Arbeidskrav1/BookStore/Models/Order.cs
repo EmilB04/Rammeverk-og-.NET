@@ -25,6 +25,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <exception cref="ArgumentNullException">Thrown when customer is null.</exception>
         public Order(int orderId, List<Book> books, Customer customer, DateTime orderDate, double totalPrice, int quantityPurchased)
         {
+            // Copilot-prompt: "How can this be shortned, while still following the .NET guidelines?"
+            // Copilot-result: Copilot formatted the if-statement with exception into a single line.
             if (orderId <= 0) throw new ArgumentException(nameof(orderId), "Order id must be greater than zero." + "Please enter a valid order id.");
             if (books == null || books.Count == 0) throw new ArgumentException(nameof(books), "Books list cannot be null or empty." + "Please enter a valid list of books.");
             if (customer == null) throw new ArgumentNullException(nameof(customer), "Customer cannot be null." + "Please enter a valid customer.");

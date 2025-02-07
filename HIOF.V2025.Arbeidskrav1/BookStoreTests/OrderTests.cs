@@ -18,6 +18,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
+        // Copilot-prompt: "How do I test every object in a method for ArgumentException?"
+        // Copilot-result: Copilot suggested to add [ExpectedException(typeof(ArgumentException))] before the method.
         [ExpectedException(typeof(ArgumentException))]
         public void CreateOrder_InvalidParameters_Null()
         {
