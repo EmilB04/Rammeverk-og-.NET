@@ -168,6 +168,20 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
                 throw new ArgumentException("Book not found.");
             }
         }
+
+        /// <summary>
+        /// Gets the total quantity of all books in the store.
+        /// </summary>
+        /// <returns>The total quantity of all books in the store.</returns>
+        public int GetAllQuantity()
+        {
+            int totalQuantity = 0;
+            foreach (var book in _books)
+            {
+                totalQuantity += book.Quantity;
+            }
+            return totalQuantity;
+        }
     }
 }
 

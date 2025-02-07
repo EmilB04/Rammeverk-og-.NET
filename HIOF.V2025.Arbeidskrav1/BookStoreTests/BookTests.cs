@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HIOF.V2025.Arbeidskrav1.BookStore;
 
 namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
 {
@@ -58,6 +59,42 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
             Assert.IsFalse(string.IsNullOrWhiteSpace(book.Title));
             Assert.IsFalse(string.IsNullOrWhiteSpace(book.Author));
             Assert.IsFalse(string.IsNullOrWhiteSpace(book.Isbn));
+        }
+
+        /*
+        Sample Usage consisting og a unit test project demonstrating how to:
+● Add books to the system,
+● Search for a book by ISBN/title, and
+● Simulate a purchase
+        */
+
+        [TestMethod]
+        public void AddBookToSystem()
+        {
+            // Arrange
+            var bookStoreManager = new BookStoreManager();
+            var book = new Book("Test Book", "J.R.R. Tolkien", "123-456-78-9", 149.50, 1);
+
+            // Act
+            bookStoreManager.AddBook(book);
+
+            // Assert
+            Assert.AreEqual(1, bookStoreManager.GetAllQuantity());
+        }
+
+        [TestMethod]
+        public void SearchForBookByIsbn()
+        {
+            // Arrange
+            var bookStoreManager = new BookStoreManager();
+            var book = new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
+            bookStoreManager.AddBook(book);
+
+            // Act
+            var foundBook = bookStoreManager.GetBookByIsbn("978-0-395-07122-1");
+
+            // Assert
+            Assert.AreEqual(book, foundBook);
         }
 
 
