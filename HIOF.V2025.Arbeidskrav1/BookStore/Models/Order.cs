@@ -10,7 +10,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         public Customer Customer { get; set; }
         public DateTime OrderDate { get; set; }
         public double TotalPrice { get; set; }
-        public double QuantityPurchased { get; set; }
+        public int QuantityPurchased { get; set; }
 
         /// <summary>
         /// Constructor for Order.
@@ -23,7 +23,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <param name="quantityPurchased">The quantity of books purchased.</param>
         /// <exception cref="ArgumentException">Thrown when orderId is less than or equal to zero, books list is null or empty, orderDate is not a valid date, or totalPrice is negative.</exception>
         /// <exception cref="ArgumentNullException">Thrown when customer is null.</exception>
-        public Order(int orderId, List<Book> books, Customer customer, DateTime orderDate, double totalPrice, double quantityPurchased)
+        public Order(int orderId, List<Book> books, Customer customer, DateTime orderDate, double totalPrice, int quantityPurchased)
         {
             if (orderId <= 0) throw new ArgumentException(nameof(orderId), "Order id must be greater than zero." + "Please enter a valid order id.");
             if (books == null || books.Count == 0) throw new ArgumentException(nameof(books), "Books list cannot be null or empty." + "Please enter a valid list of books.");

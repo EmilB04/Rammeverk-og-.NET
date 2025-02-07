@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HIOF.V2025.Arbeidskrav1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+700b542bd67aae9dc70de765e97262a1e0d72516")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a53083913830c1febc284c89c4e84df0bc07320")]
 [assembly: System.Reflection.AssemblyProductAttribute("HIOF.V2025.Arbeidskrav1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HIOF.V2025.Arbeidskrav1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

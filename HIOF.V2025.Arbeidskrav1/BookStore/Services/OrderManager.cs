@@ -74,6 +74,15 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         }
 
         /// <summary>
+        /// Gets the total number of orders in the store.
+        /// </summary>
+        /// <returns>The total number of orders in the store.</returns>
+        public int OrderCount()
+        {
+            return _orders.Count;
+        }
+
+        /// <summary>
         /// Removes an order from the store.
         /// NOT IMPLEMENTED YET.
         /// </summary>
