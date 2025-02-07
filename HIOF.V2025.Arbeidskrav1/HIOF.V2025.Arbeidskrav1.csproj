@@ -5,6 +5,7 @@
     <TargetFramework>net9.0</TargetFramework> <!-- Bytt til en støttet TFM -->
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <StartupObject>HIOF.V2025.Arbeidskrav1.BookStoreCLI.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
