@@ -22,23 +22,28 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
             Assert.AreEqual(149.50, book.Price);
             Assert.AreEqual(2, book.Quantity);
         }
-
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CreateBook_ThrowsException_WhenTitleIsNull()
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void CreateBook_InvalidParameters_NullOrWhiteSpace()
         {
-            var book = new Book(null, "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
+            new Book(null, "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
+            new Book(" ", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
+            new Book("The Hobbit", null, "978-0-395-07122-1", 149.50, 2);
+            new Book("The Hobbit", " ", "978-0-395-07122-1", 149.50, 2);
+            new Book("The Hobbit", "J.R.R. Tolkien", null, 149.50, 2);
+            new Book("The Hobbit", "J.R.R. Tolkien", " ", 149.50, 2);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void CreateBook_ThrowsException_WhenPriceIsNegative()
+        public void CreateBook_InvalidNumbers()
         {
-            var book = new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", -149.50, 2);
+            new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", -149.50, 2);
+            new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, -2);
         }
 
         [TestMethod]
-        public void UpdateBookPrice_ChangesPriceCorrectly()
+        public void UpdateBook_Valid_ChangePrice()
         {
             var book = new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
             book.Price = 179.99;
@@ -47,7 +52,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
-        public void CreateBook_NoWhiteSpace_NotNull()
+        public void CreateBook_Valid_NotNullOrWhiteSpace()
         {
             var book = new Book("Dune", "Frank Herbert", "978-0-441-17271-9", 199.99, 3);
             Assert.IsFalse(string.IsNullOrWhiteSpace(book.Title));
@@ -55,13 +60,6 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
             Assert.IsFalse(string.IsNullOrWhiteSpace(book.Isbn));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CreateBook_WithWhiteSpace_Null()
-        {
-            var book = new Book(" ", " ", " ", 199.99, 3);
-            
-        }
 
 
     }

@@ -14,7 +14,6 @@
     <PackageReference Include="MSTest.TestFramework" Version="3.7.3" />
     <PackageReference Include="NUnit" Version="4.3.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
-    <ProjectReference Include="..\BookStore\BookStore.csproj" />
   </ItemGroup>
 
 </Project>

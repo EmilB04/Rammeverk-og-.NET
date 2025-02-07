@@ -32,5 +32,14 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
             new Customer("Emil", "Berglund", "emil.berglund@example.com", -1);
         }
         
+
+        [TestMethod]
+        public void CreateCustomer_Valid_NotNullOrWhiteSpace()
+        {
+            var customer = new Customer("Emil", "Berglund", "emil.berglund@example.com", 12345678);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customer.FirstName));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customer.LastName));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(customer.Email));
+        }
     }
 }
