@@ -28,16 +28,18 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         {
             // Copilot-prompt: "How can this be shortned, while still following the .NET guidelines?"
             // Copilot-result: Copilot formatted the if-statement with exception into a single line.
-            if (customer == null) throw new ArgumentNullException(nameof(customer), "Customer cannot be null.");
-            if (string.IsNullOrWhiteSpace(customer.FirstName)) throw new ArgumentException("First name cannot be empty.");
-            if (string.IsNullOrWhiteSpace(customer.LastName)) throw new ArgumentException("Last name cannot be empty.");
-            if (string.IsNullOrWhiteSpace(customer.Email)) throw new ArgumentException("Email cannot be empty.");
-            if (_customers.Any(c => c.Email == customer.Email)) throw new ArgumentException("A customer with the same email already exists.");
+            if (customer == null) throw new ArgumentNullException(nameof(customer), "Customer cannot be null." + "Enter a valid customer.");
+            if (string.IsNullOrWhiteSpace(customer.FirstName)) throw new ArgumentException("First name cannot be empty." + "Enter a valid first name.");
+            if (string.IsNullOrWhiteSpace(customer.LastName)) throw new ArgumentException("Last name cannot be empty." + "Enter a valid last name.");
+            if (string.IsNullOrWhiteSpace(customer.Email)) throw new ArgumentException("Email cannot be empty." + "Enter a valid email.");
+            if (_customers.Any(c => c.Email == customer.Email)) throw new ArgumentException("A customer with the same email already exists." + "Enter a unique email.");
 
             _customers.Add(customer);
+            Console.WriteLine("Customer added successfully.");
         }
 
         /// <summary>
+        /// NOT IMPLEMENTED YET.
         /// Removes a customer from the store.
         /// Throws ArgumentNullException if customer is null.
         /// </summary>
@@ -47,7 +49,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         {
             if (customer == null)
             {
-                throw new ArgumentNullException(nameof(customer), "Customer cannot be null.");
+                throw new ArgumentNullException(nameof(customer), "Customer cannot be null." + "Enter a valid customer.");
             }
             else
             {
@@ -83,7 +85,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         {
             if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             {
-                Console.WriteLine("First name and last name cannot be null, empty, or whitespace.");
+                Console.WriteLine("First name and last name cannot be null, empty, or whitespace." + "Please enter a valid first name and last name.");
             }
 
             else
@@ -108,7 +110,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         {
             if (string.IsNullOrWhiteSpace(firstName))
             {
-                Console.WriteLine("First name cannot be null, empty, or whitespace.");
+                Console.WriteLine("First name cannot be null, empty, or whitespace." + "Please enter a valid first name.");
             }
 
             else
@@ -134,7 +136,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         {
             if (string.IsNullOrWhiteSpace(lastName))
             {
-                Console.WriteLine("Last name cannot be null, empty, or whitespace.");
+                Console.WriteLine("Last name cannot be null, empty, or whitespace." + "Please enter a valid last name.");
             }
 
             else
@@ -160,7 +162,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         {
             if (string.IsNullOrWhiteSpace(email))
             {
-                Console.WriteLine("Email cannot be null, empty, or whitespace.");
+                Console.WriteLine("Email cannot be null, empty, or whitespace." + "Please enter a valid email.");
             }
 
             else
@@ -184,6 +186,10 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         /// <returns></returns>
         public Customer GetCustomerByPhoneNumber(int phoneNumber)
         {
+            if (phoneNumber == 0)
+            {
+                Console.WriteLine("Phone number cannot be 0." + "Please enter a valid phone number.");
+            }
             foreach (var customer in _customers)
             {
                 if (customer.PhoneNumber == phoneNumber)

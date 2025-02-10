@@ -29,11 +29,11 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         {
             // Copilot-prompt: "How can this be shortned, while still following the .NET guidelines?"
             // Copilot-result: Copilot formatted the if-statement with exception into a single line.
-            if (book == null) throw new ArgumentNullException(nameof(book), "Book cannot be null.");
-            if (string.IsNullOrWhiteSpace(book.Title)) throw new ArgumentException("Title cannot be empty.");
-            if (string.IsNullOrWhiteSpace(book.Author)) throw new ArgumentException("Author cannot be empty.");
-            if (string.IsNullOrWhiteSpace(book.Isbn)) throw new ArgumentException("ISBN cannot be empty.");
-            if (_books.Exists(b => b.Isbn == book.Isbn)) throw new ArgumentException("A book with the same ISBN already exists.");
+            if (book == null) throw new ArgumentNullException(nameof(book), "Book cannot be null." + "Enter a valid book.");
+            if (string.IsNullOrWhiteSpace(book.Title)) throw new ArgumentException("Title cannot be empty." + "Enter a valid title.");
+            if (string.IsNullOrWhiteSpace(book.Author)) throw new ArgumentException("Author cannot be empty." + "Enter a valid author.");
+            if (string.IsNullOrWhiteSpace(book.Isbn)) throw new ArgumentException("ISBN cannot be empty." + "Enter a valid ISBN.");
+            if (_books.Exists(b => b.Isbn == book.Isbn)) throw new ArgumentException("A book with the same ISBN already exists." + "Enter a unique ISBN.");
 
             _books.Add(book);
             Console.WriteLine("Book added successfully.");
@@ -46,12 +46,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <param name="book">The book to be removed.</param>
         /// <exception cref="ArgumentNullException">Thrown when the book is null.</exception>
         /// <exception cref="ArgumentException">Thrown when title, author, or isbn is null, empty, or whitespace.</exception>
-        public void RemoveBook(Book book) // For further development
+        public void RemoveBook(Book book)
         {
-            if (book == null) throw new ArgumentNullException(nameof(book), "Book cannot be null.");
-            if (string.IsNullOrWhiteSpace(book.Title)) throw new ArgumentException("Title cannot be empty.");
-            if (string.IsNullOrWhiteSpace(book.Author)) throw new ArgumentException("Author cannot be empty.");
-            if (string.IsNullOrWhiteSpace(book.Isbn)) throw new ArgumentException("ISBN cannot be empty.");
+            if (book == null) throw new ArgumentNullException(nameof(book), "Book cannot be null." + "Enter a valid book.");
+            if (string.IsNullOrWhiteSpace(book.Title)) throw new ArgumentException("Title cannot be empty." + "Enter a valid title.");
+            if (string.IsNullOrWhiteSpace(book.Author)) throw new ArgumentException("Author cannot be empty." + "Enter a valid author.");
+            if (string.IsNullOrWhiteSpace(book.Isbn)) throw new ArgumentException("ISBN cannot be empty." + "Enter a valid ISBN.");
 
             _books.Remove(book);
         }
@@ -81,7 +81,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <exception cref="ArgumentException">Thrown when the title is null, empty, or whitespace.</exception>
         public Book GetBookByTitle(string title)
         {
-            if (string.IsNullOrWhiteSpace(title)) throw new ArgumentException("Title cannot be null, empty, or whitespace.", nameof(title));
+            if (string.IsNullOrWhiteSpace(title)) throw new ArgumentException(nameof(title),"Title cannot be null, empty, or whitespace." + "Enter a valid title.");
             else
             {
                 foreach (var book in _books)
@@ -105,7 +105,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <exception cref="ArgumentException">Thrown when the ISBN is null, empty, or whitespace.</exception>
         public Book GetBookByIsbn(string isbn)
         {
-            if (string.IsNullOrWhiteSpace(isbn)) throw new ArgumentException("ISBN cannot be null, empty, or whitespace.", nameof(isbn));
+            if (string.IsNullOrWhiteSpace(isbn)) throw new ArgumentException(nameof(isbn), "ISBN cannot be null, empty, or whitespace." + "Enter a valid ISBN.");
             else
             {
                 foreach (var book in _books)
@@ -129,7 +129,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <exception cref="ArgumentException">Thrown when the author is null, empty, or whitespace.</exception>
         public List<Book> GetBooksByAuthor(string author)
         {
-            if (string.IsNullOrWhiteSpace(author)) throw new ArgumentException("Author cannot be null, empty, or whitespace.", nameof(author));
+            if (string.IsNullOrWhiteSpace(author)) throw new ArgumentException(nameof(author), "Author cannot be null, empty, or whitespace." + "Enter a valid author.");
             else
             {
                 List<Book> booksByAuthor = new List<Book>();
