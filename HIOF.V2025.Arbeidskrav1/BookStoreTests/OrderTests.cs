@@ -14,12 +14,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
             var customer = new Customer("John", "Doe", "john.doe@example.com", 12345678);
             var book = new Book("1984", "George Orwell", "978-0-452-28423-4", 129.99, 5);
             var books = new List<Book> { book };
-            var order = new Order(1, books, customer, DateTime.Now, 129.99, 2);
+            new Order(1, books, customer, DateTime.Now, 129.99, 2);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CreateOrder_WithNullParameters_ShouldThrowArgumentException()
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void CreateOrder_WithNullParameters_ShouldThrowArgumentNullException()
         {
             var customer = new Customer("Emil", "Berglund", "emil.berglund@example.com", 12345678);
             var book = new Book("1984", "George Orwell", "978-0-452-28423-4", 129.99, 5);

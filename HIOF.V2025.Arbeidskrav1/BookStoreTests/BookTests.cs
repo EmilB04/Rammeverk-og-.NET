@@ -39,7 +39,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void CreateBook_InvalidNumbers_ShouldThrowArgumentException()
+        public void CreateBook_InvalidNumbers_ShouldThrowArgumentOutOfRangeException()
         {
             new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", -149.50, 2);
             new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, -2);
