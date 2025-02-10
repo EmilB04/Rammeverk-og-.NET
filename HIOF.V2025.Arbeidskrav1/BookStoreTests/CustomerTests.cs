@@ -6,7 +6,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
     public class CustomerTests
     {
         [TestMethod]
-        public void CreateCustomer_ValidParameters()
+        public void CreateCustomer_WithValidParameters_ShouldSetPropertiesCorrectly()
         {
             var customer = new Customer("Emil", "Berglund", "emil.berglund@example.com", 12345678);
             Assert.AreEqual("Emil", customer.FirstName);
@@ -16,10 +16,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
-        // Copilot-prompt: "How do I test every object in a method for ArgumentNullException?"
-        // Copilot-result: Copilot suggested to add [ExpectedException(typeof(ArgumentNullException))] before the method.
         [ExpectedException(typeof(ArgumentNullException))]
-        public void CreateCustomer_InvalidParameters_NullOrWhiteSpace()
+        public void CreateCustomer_WithNullOrEmptyParameters_ShouldThrowArgumentNullException()
         {
             new Customer(null, "Berglund", "emil.berglund@example.com", 12345678);
             new Customer("", "Berglund", "emil.berglund@example.com", 12345678); 
@@ -34,9 +32,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
             new Customer("Emil", "Berglund", "emil.berglund@example.com", -1);
         }
         
-
         [TestMethod]
-        public void CreateCustomer_Valid_NotNullOrWhiteSpace()
+        public void CreateCustomer_WithValidParameters_ShouldNotHaveNullOrWhiteSpaceProperties()
         {
             var customer = new Customer("Emil", "Berglund", "emil.berglund@example.com", 12345678);
             Assert.IsFalse(string.IsNullOrWhiteSpace(customer.FirstName));

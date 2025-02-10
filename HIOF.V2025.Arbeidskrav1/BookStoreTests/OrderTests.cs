@@ -9,7 +9,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
     public class OrderTests
     {
         [TestMethod]
-        public void CreateOrder_ValidParameters()
+        public void CreateOrder_WithValidParameters_ShouldSucceed()
         {
             var customer = new Customer("John", "Doe", "john.doe@example.com", 12345678);
             var book = new Book("1984", "George Orwell", "978-0-452-28423-4", 129.99, 5);
@@ -18,10 +18,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
-        // Copilot-prompt: "How do I test every object in a method for ArgumentException?"
-        // Copilot-result: Copilot suggested to add [ExpectedException(typeof(ArgumentException))] before the method.
         [ExpectedException(typeof(ArgumentException))]
-        public void CreateOrder_InvalidParameters_Null()
+        public void CreateOrder_WithNullParameters_ShouldThrowArgumentException()
         {
             var customer = new Customer("Emil", "Berglund", "emil.berglund@example.com", 12345678);
             var book = new Book("1984", "George Orwell", "978-0-452-28423-4", 129.99, 5);
@@ -34,7 +32,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void CreateOrder_InvalidParameters_WhiteSpace()
+        public void CreateOrder_WithWhiteSpaceParameters_ShouldThrowArgumentNullException()
         {
             var customer = new Customer("Emil", "Berglund", "", 12345678);
             var book = new Book("1984", "George Orwell", "978-0-452-28423-4", 129.99, 5);
@@ -47,9 +45,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
             new Order(2, books2, customer2, DateTime.Now, 129.99, 2);
         }
 
-
         [TestMethod]
-        public void SimulatePurchase()
+        public void SimulatePurchase_ShouldUpdateOrderCount()
         {
             // Arrange
             var bookStoreManager = new BookStoreManager();
@@ -67,8 +64,6 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
 
             // Assert
             Assert.AreEqual(1, orderManager.OrderCount());
-            
-
         }
     }
 }
