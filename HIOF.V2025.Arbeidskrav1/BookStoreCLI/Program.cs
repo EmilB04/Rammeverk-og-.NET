@@ -36,7 +36,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
             customerManager.AddCustomer(new Customer("Ola", "Nordmann", "olanordmann@hiof.no", 12345678));
             customerManager.AddCustomer(new Customer("Kari", "Nordmann", "karinordmann@hiof.no", 87654321));
 
-            orderManager.NewOrder("Emil", "Berglund", "Harry Potter and the Half-Blood Prince6", 3);
+            orderManager.NewOrder("Emil", "Berglund", "Harry Potter and the Half-Blood Prince", 3);
 
             Console.WriteLine("Welcome to the Book Store CLI!");
             menu.Show();

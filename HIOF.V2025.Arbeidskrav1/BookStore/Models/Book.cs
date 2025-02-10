@@ -27,6 +27,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         public Book(string title, string author, string isbn, double price, int quantity)
         {
             // Copilot-prompt: "Do I need curly braces for this if-statement since it's so long with only one line?"
+            // Copilot-result : Answered "No" to the prompt
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentNullException(nameof(title), "Title cannot be null, empty, or whitespace. Please enter a valid title.");
             if (string.IsNullOrWhiteSpace(author))

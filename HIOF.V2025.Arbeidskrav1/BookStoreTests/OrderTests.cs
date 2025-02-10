@@ -46,7 +46,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
-        public void SimulatePurchase_ShouldUpdateOrderCount()
+        public void SimulatePurchase_ValidOrder_ShouldUpdateOrderCount()
         {
             // Arrange
             var bookStoreManager = new BookStoreManager();

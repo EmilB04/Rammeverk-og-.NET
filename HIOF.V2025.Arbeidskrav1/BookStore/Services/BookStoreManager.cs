@@ -40,7 +40,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
             if (book.Price <= 0)
                 throw new ArgumentOutOfRangeException(nameof(book.Price), "Price cannot be zero or negative. Enter a valid price.");
             if (double.IsNaN(book.Price))
-                throw new ArgumentException("Price cannot be NaN. Enter a valid price.");
+                throw new ArgumentException("Price cannot be something other than a number. Enter a valid price.");
             if (book.Quantity < 0)
                 throw new ArgumentOutOfRangeException(nameof(book.Quantity), "Quantity cannot be negative. Enter a positive quantity.");
             _books.Add(book);
