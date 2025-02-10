@@ -8,7 +8,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
 {
     public class CustomerManager : ICustomerService
     {
-        private readonly List<Customer> _customers;
+        private List<Customer> _customers;
 
         /// <summary>
         /// Constructor for CustomerManager.
@@ -26,13 +26,16 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when first name, last name, or email is null, empty, or whitespace, or if a customer with the same email already exists.</exception>
         public void AddCustomer(Customer customer)
         {
-            // Copilot-prompt: "How can this be shortned, while still following the .NET guidelines?"
-            // Copilot-result: Copilot formatted the if-statement with exception into a single line.
-            if (customer == null) throw new ArgumentNullException(nameof(customer), "Customer cannot be null." + "Enter a valid customer.");
-            if (string.IsNullOrWhiteSpace(customer.FirstName)) throw new ArgumentException("First name cannot be empty." + "Enter a valid first name.");
-            if (string.IsNullOrWhiteSpace(customer.LastName)) throw new ArgumentException("Last name cannot be empty." + "Enter a valid last name.");
-            if (string.IsNullOrWhiteSpace(customer.Email)) throw new ArgumentException("Email cannot be empty." + "Enter a valid email.");
-            if (_customers.Any(c => c.Email == customer.Email)) throw new ArgumentException("A customer with the same email already exists." + "Enter a unique email.");
+            if (customer == null) 
+                throw new ArgumentNullException(nameof(customer), "Customer cannot be null. Enter a valid customer.");
+            if (string.IsNullOrWhiteSpace(customer.FirstName)) 
+                throw new ArgumentException("First name cannot be empty. Enter a valid first name.");
+            if (string.IsNullOrWhiteSpace(customer.LastName)) 
+                throw new ArgumentException("Last name cannot be empty. Enter a valid last name.");
+            if (string.IsNullOrWhiteSpace(customer.Email)) 
+                throw new ArgumentException("Email cannot be empty. Enter a valid email.");
+            if (_customers.Any(c => c.Email == customer.Email)) 
+                throw new ArgumentException("A customer with the same email already exists. Enter a unique email.");
 
             _customers.Add(customer);
             Console.WriteLine("Customer added successfully.");
@@ -80,14 +83,14 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         /// </summary>
         /// <param name="firstName">The first name of the customer</param>
         /// <param name="lastName">The last name of the customer</param>
-        /// <returns>Return customer object</returns>
+        /// <returns>The customer with the specified first name and last name, if found.</returns>
+        /// <exception cref="ArgumentException">Thrown when the first name or last name is null, empty, or whitespace.</exception>
         public Customer GetCustomerByName(string firstName, string lastName)
         {
-            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
-            {
-                Console.WriteLine("First name and last name cannot be null, empty, or whitespace." + "Please enter a valid first name and last name.");
-            }
-
+            if (string.IsNullOrWhiteSpace(firstName))
+                throw new ArgumentException(nameof(firstName), "First name cannot be null, empty, or whitespace." + "Please enter a valid first name.");
+            if (string.IsNullOrWhiteSpace(lastName))
+                throw new ArgumentException(nameof(lastName), "Last name cannot be null, empty, or whitespace." + "Please enter a valid last name.");
             else
             {
                 foreach (var customer in _customers)
@@ -105,13 +108,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         /// Gets a customer by first name.
         /// </summary>
         /// <param name="firstName">The first name of the customer</param>
-        /// <returns>Returns customer object</returns>
+        /// <returns>The customer with the specified first name, if found.</returns>
+        /// <exception cref="ArgumentException">Thrown when the first name is null, empty, or whitespace.</exception>
         public Customer GetCustomerByFirstName(string firstName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
-            {
-                Console.WriteLine("First name cannot be null, empty, or whitespace." + "Please enter a valid first name.");
-            }
+                throw new ArgumentException(nameof(firstName), "First name cannot be null, empty, or whitespace." + "Please enter a valid first name.");
 
             else
             {
@@ -131,13 +133,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         /// Gets a customer by last name.
         /// </summary>
         /// <param name="lastName">The last name of the customer</param>
-        /// <returns>Returns customer object</returns>
+        /// <returns>The customer with the specified last name, if found.</returns>
+        /// <exception cref="ArgumentException">Thrown when the last name is null, empty, or whitespace.</exception>
         public Customer GetCustomerByLastName(string lastName)
         {
             if (string.IsNullOrWhiteSpace(lastName))
-            {
-                Console.WriteLine("Last name cannot be null, empty, or whitespace." + "Please enter a valid last name.");
-            }
+                throw new ArgumentException(nameof(lastName), "Last name cannot be null, empty, or whitespace." + "Please enter a valid last name.");
 
             else
             {
@@ -157,13 +158,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         /// Gets a customer by email.
         /// </summary>
         /// <param name="email">The email of the customer</param>
-        /// <returns>Returns customer object</returns>
+        /// <returns>The customer with the specified email, if found.</returns>
+        /// <exception cref="ArgumentException">Thrown when the email is null, empty, or whitespace.</exception>
         public Customer GetCustomerByEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
-            {
-                Console.WriteLine("Email cannot be null, empty, or whitespace." + "Please enter a valid email.");
-            }
+                throw new ArgumentException(nameof(email), "Email cannot be null, empty, or whitespace." + "Please enter a valid email.");
 
             else
             {
@@ -183,13 +183,12 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Services
         /// Gets a customer by phone number.
         /// </summary>
         /// <param name="phoneNumber">The phone numer of the customer</param>
-        /// <returns></returns>
+        /// <returns>The customer with the specified phone number, if found.</returns>
+        /// <exception cref="ArgumentException">Thrown when the phone number is zero.</exception>
         public Customer GetCustomerByPhoneNumber(int phoneNumber)
         {
             if (phoneNumber == 0)
-            {
-                Console.WriteLine("Phone number cannot be 0." + "Please enter a valid phone number.");
-            }
+                throw new ArgumentException("Phone number cannot be zero.", nameof(phoneNumber));
             foreach (var customer in _customers)
             {
                 if (customer.PhoneNumber == phoneNumber)

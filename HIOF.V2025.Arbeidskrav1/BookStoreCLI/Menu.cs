@@ -62,44 +62,167 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
 
         private void AddBook()
         {
+            Console.WriteLine("Enter the necessary information to add a book to the store.");
 
-            Console.WriteLine("Enter the nessesary information to add a book to the store.");
-            Console.Write("Title: ");
-            string title = Console.ReadLine() ?? throw new ArgumentNullException(nameof(title));
-            Console.Write("Author: ");
-            string author = Console.ReadLine() ?? throw new ArgumentNullException(nameof(author));
-            Console.Write("ISBN: ");
-            string isbn = Console.ReadLine() ?? throw new ArgumentNullException(nameof(isbn));
-            Console.Write("Price: ");
-            double price = double.Parse(Console.ReadLine() ?? throw new ArgumentNullException(nameof(price)));
-            Console.Write("Quantity: ");
-            int quantity = int.Parse(Console.ReadLine() ?? throw new ArgumentNullException(nameof(quantity)));
+            string title;
+            while (true)
+            {
+                Console.Write("Title: ");
+                title = Console.ReadLine() ?? throw new ArgumentNullException(nameof(title));
+                if (string.IsNullOrWhiteSpace(title))
+                {
+                    Console.WriteLine("Title cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            string author;
+            while (true)
+            {
+                Console.Write("Author: ");
+                author = Console.ReadLine() ?? throw new ArgumentNullException(nameof(author));
+                if (string.IsNullOrWhiteSpace(author))
+                {
+                    Console.WriteLine("Author cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            string isbn;
+            while (true)
+            {
+                Console.Write("ISBN: ");
+                isbn = Console.ReadLine() ?? throw new ArgumentNullException(nameof(isbn));
+                if (string.IsNullOrWhiteSpace(isbn))
+                {
+                    Console.WriteLine("ISBN cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            double price;
+            while (true)
+            {
+                Console.Write("Price: ");
+                string priceInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(price));
+                if (double.TryParse(priceInput, out price) && price > 0)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid price. Please enter a positive number.");
+                }
+            }
+
+            int quantity;
+            while (true)
+            {
+                Console.Write("Quantity: ");
+                string quantityInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(quantity));
+                if (int.TryParse(quantityInput, out quantity) && quantity >= 0)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid quantity. Please enter a positive number.");
+                }
+            }
 
             try
             {
                 _bookStoreManager.AddBook(new Book(title, author, isbn, price, quantity));
             }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
             catch (ArgumentException e)
             {
                 Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
             }
         }
         private void AddCustomer()
         {
             Console.WriteLine("Enter the necessary information to add a customer to the store.");
-            Console.Write("First name: ");
-            string firstName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(firstName));
-            Console.Write("Last name: ");
-            string lastName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(lastName));
-            Console.Write("Email: ");
-            string email = Console.ReadLine() ?? throw new ArgumentNullException(nameof(email));
-            Console.Write("Phone number: ");
-            int phoneNumber = int.Parse(Console.ReadLine() ?? throw new ArgumentNullException(nameof(phoneNumber)));
+
+            string firstName;
+            while (true)
+            {
+                Console.Write("First name: ");
+                firstName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(firstName));
+                if (string.IsNullOrWhiteSpace(firstName))
+                {
+                    Console.WriteLine("First name cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            string lastName;
+            while (true)
+            {
+                Console.Write("Last name: ");
+                lastName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(lastName));
+                if (string.IsNullOrWhiteSpace(lastName))
+                {
+                    Console.WriteLine("Last name cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            string email;
+            while (true)
+            {
+                Console.Write("Email: ");
+                email = Console.ReadLine() ?? throw new ArgumentNullException(nameof(email));
+                if (string.IsNullOrWhiteSpace(email))
+                {
+                    Console.WriteLine("Email cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            int phoneNumber;
+            while (true)
+            {
+                Console.Write("Phone number: ");
+                string phoneNumberInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(phoneNumber));
+                if (int.TryParse(phoneNumberInput, out phoneNumber) && phoneNumber > 0)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid phone number. Please enter a positive integer.");
+                }
+            }
 
             try
             {
                 _customerManager.AddCustomer(new Customer(firstName, lastName, email, phoneNumber));
-                Console.WriteLine("Customer added successfully.");
             }
             catch (ArgumentNullException e)
             {
@@ -117,11 +240,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
         private void NewOrder()
         {
             Console.WriteLine("Provide the following information to create an order:");
-            string firstName = string.Empty;
-            string lastName = string.Empty;
-            string titleOrIsbn = string.Empty;
-            int quantity = 0;
 
+            string firstName;
             while (true) // firstName
             {
                 Console.Write("Customer first name: ");
@@ -129,13 +249,14 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
                 if (string.IsNullOrWhiteSpace(firstName))
                 {
                     Console.WriteLine("First name cannot be empty.");
-                    
                 }
                 else
                 {
                     break;
                 }
             }
+            
+            string lastName;
             while (true) // lastName
             {
                 Console.Write("Customer last name: ");
@@ -143,13 +264,14 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
                 if (string.IsNullOrWhiteSpace(lastName))
                 {
                     Console.WriteLine("Last name cannot be empty.");
-                    
                 }
                 else
                 {
                     break;
                 }
             }
+            
+            string titleOrIsbn;
             while (true) // titleOrIsbn
             {
                 Console.Write("Book title or ISBN: ");
@@ -164,6 +286,8 @@ namespace HIOF.V2025.Arbeidskrav1.BookStoreCLI
                     break;
                 }
             }
+
+            int quantity = 0;
             while (true) // quantity
             {
                 Console.Write("Quantity: ");

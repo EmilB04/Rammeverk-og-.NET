@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+// Good to go! 🚀
 namespace HIOF.V2025.Arbeidskrav1.BookStore
 {
     public class Customer
@@ -20,15 +21,20 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <param name="email">The email of the customer.</param>
         /// <param name="phoneNumber">The phone number of the customer.</param>
         /// <exception cref="ArgumentNullException">Thrown when first name, last name, or email is null or empty.</exception>
-        /// <exception cref="ArgumentException">Thrown when phone number is less than or equal to zero.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when phone number is less than or equal to zero or not 8 digits long.</exception>
         public Customer(string firstName, string lastName, string email, int phoneNumber)
         {
             // Copilot-prompt: "How can this be shortned, while still following the .NET guidelines?"
-            // Copilot-result: Copilot formatted the if-statement with exception into a single line.
-            if (string.IsNullOrWhiteSpace(firstName)) throw new ArgumentNullException(nameof(firstName), "First name cannot be null or empty." + "Please enter a valid first name.");
-            if (string.IsNullOrWhiteSpace(lastName)) throw new ArgumentNullException(nameof(lastName), "Last name cannot be null or empty." + "Please enter a valid last name.");
-            if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email), "Email cannot be null or empty." + "Please enter a valid email.");
-            if (phoneNumber <= 0) throw new ArgumentException(nameof(phoneNumber),"Phone number must be greater than zero." + "Please enter a valid phone number.");
+            if (string.IsNullOrWhiteSpace(firstName)) 
+                throw new ArgumentNullException(nameof(firstName), "First name cannot be null or empty. Please enter a valid first name.");
+            if (string.IsNullOrWhiteSpace(lastName)) 
+                throw new ArgumentNullException(nameof(lastName), "Last name cannot be null or empty. Please enter a valid last name.");
+            if (string.IsNullOrWhiteSpace(email)) 
+                throw new ArgumentNullException(nameof(email), "Email cannot be null or empty. Please enter a valid email.");
+            if (phoneNumber <= 0) 
+                throw new ArgumentOutOfRangeException(nameof(phoneNumber), "Phone number must be greater than zero. Please enter a valid phone number.");
+            if (phoneNumber.ToString().Length != 8) 
+                throw new ArgumentOutOfRangeException(nameof(phoneNumber), "Phone number must be 8 digits. Please enter a valid phone number.");
 
             FirstName = firstName;
             LastName = lastName;

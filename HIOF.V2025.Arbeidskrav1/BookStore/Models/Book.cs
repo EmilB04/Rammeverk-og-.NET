@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+// Good to go! 🚀
 namespace HIOF.V2025.Arbeidskrav1.BookStore
 {
     public class Book
@@ -21,15 +22,21 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore
         /// <param name="isbn">The ISBN of the book.</param>
         /// <param name="price">The price of the book.</param>
         /// <param name="quantity">The quantity of the book in stock.</param>
-        /// <exception cref="ArgumentException">Thrown when title, author, or isbn is null, empty, or whitespace, or when price is less than or equal to zero, or when quantity is negative.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when title, author, or isbn is null, empty, or whitespace.</exception>
+        /// <exception cref="ArgumentException">Thrown when price is less than or equal to zero, or when quantity is negative.</exception>
         public Book(string title, string author, string isbn, double price, int quantity)
         {
             // Copilot-prompt: "Do I need curly braces for this if-statement since it's so long with only one line?"
-            // Copilot-result: Copilot said yes and removed the curly braces from the if-statements and suggested the current format.
-            if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(author) || string.IsNullOrWhiteSpace(isbn))
-                throw new ArgumentNullException("Title, Author, and ISBN cannot be empty." + "Please enter a valid title, author, and ISBN.");
-            if (price <= 0) throw new ArgumentException("Price must be positive." + "Please enter a valid price.");
-            if (quantity < 0) throw new ArgumentException("Quantity must be positive." + "Please enter a valid quantity.");
+            if (string.IsNullOrWhiteSpace(title))
+                throw new ArgumentNullException(nameof(title), "Title cannot be null, empty, or whitespace. Please enter a valid title.");
+            if (string.IsNullOrWhiteSpace(author))
+                throw new ArgumentNullException(nameof(author), "Author cannot be null, empty, or whitespace. Please enter a valid author.");
+            if (string.IsNullOrWhiteSpace(isbn))
+                throw new ArgumentNullException(nameof(isbn), "ISBN cannot be null, empty, or whitespace. Please enter a valid ISBN.");
+            if (price <= 0)
+                throw new ArgumentOutOfRangeException(nameof(price), "Price cannot be zero or negative. Please enter a positive price.");
+            if (quantity < 0)
+                throw new ArgumentOutOfRangeException(nameof(quantity), "Quantity cannot be negative. Please enter a positive quantity.");
 
             Title = title;
             Author = author;
