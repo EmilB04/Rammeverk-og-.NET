@@ -12,7 +12,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
     public class BookTests
     {
         [TestMethod]
-        public void CreateBook_ValidParameters()
+        public void CreateBook_ValidParameters_ShouldCreateBook()
         {
             // Arrange & Act
             var book = new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
@@ -24,11 +24,10 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
             Assert.AreEqual(149.50, book.Price);
             Assert.AreEqual(2, book.Quantity);
         }
+
         [TestMethod]
-        // Copilot-prompt: "How do I test every object in a method for ArgumentNullException?"
-        // Copilot-result: Copilot suggested to add [ExpectedException(typeof(ArgumentNullException))] before the method.
         [ExpectedException(typeof(ArgumentNullException))]
-        public void CreateBook_InvalidParameters_NullOrWhiteSpace()
+        public void CreateBook_InvalidParameters_ShouldThrowArgumentNullException()
         {
             new Book(null, "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
             new Book(" ", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
@@ -39,16 +38,15 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
-        
         [ExpectedException(typeof(ArgumentException))]
-        public void CreateBook_InvalidNumbers()
+        public void CreateBook_InvalidNumbers_ShouldThrowArgumentException()
         {
             new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", -149.50, 2);
             new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, -2);
         }
 
         [TestMethod]
-        public void UpdateBook_Valid_ChangePrice()
+        public void UpdateBook_ValidValue_ShouldChangePrice()
         {
             var book = new Book("The Hobbit", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
             book.Price = 179.99;
@@ -57,7 +55,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
-        public void CreateBook_Valid_NotNullOrWhiteSpace()
+        public void CreateBook_ValidParameters_ShouldNotBeNullOrWhiteSpace()
         {
             var book = new Book("Dune", "Frank Herbert", "978-0-441-17271-9", 199.99, 3);
             Assert.IsFalse(string.IsNullOrWhiteSpace(book.Title));
@@ -66,7 +64,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
-        public void AddBookToSystem()
+        public void AddBookToStore_ValidBook_ShouldIncreaseQuantity()
         {
             // Arrange
             var bookStoreManager = new BookStoreManager();
@@ -80,7 +78,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
-        public void SearchForBookByIsbn()
+        public void SearchForBookByIsbn_ValidIsbn_ShouldFindBook()
         {
             // Arrange
             var bookStoreManager = new BookStoreManager();
@@ -95,7 +93,7 @@ namespace HIOF.V2025.Arbeidskrav1.BookStore.Tests
         }
 
         [TestMethod]
-        public void SearchForBookByTitle()
+        public void SearchForBookByTitle_ValidTitle_ShouldFindBook()
         {
             // Arrange
             var bookStoreManager = new BookStoreManager();
