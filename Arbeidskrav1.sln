@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arbeidskrav1", "Arbeidskrav
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIOF.V2025.Arbeidskrav1", "HIOF.V2025.Arbeidskrav1\HIOF.V2025.Arbeidskrav1.csproj", "{57C8E42F-8F60-4AF6-B176-2871EC73CB6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arbeidskrav2", "Arbeidskrav2\Arbeidskrav2.csproj", "{806ABC06-2F0F-4036-AEA4-2D499D03BCDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIOF.V2025.Arbeidskrav2", "HIOF.V2025.Arbeidskrav2\HIOF.V2025.Arbeidskrav2.csproj", "{7488A59F-579A-4465-98D7-83494DD162E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{57C8E42F-8F60-4AF6-B176-2871EC73CB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57C8E42F-8F60-4AF6-B176-2871EC73CB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57C8E42F-8F60-4AF6-B176-2871EC73CB6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{806ABC06-2F0F-4036-AEA4-2D499D03BCDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{806ABC06-2F0F-4036-AEA4-2D499D03BCDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{806ABC06-2F0F-4036-AEA4-2D499D03BCDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{806ABC06-2F0F-4036-AEA4-2D499D03BCDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7488A59F-579A-4465-98D7-83494DD162E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7488A59F-579A-4465-98D7-83494DD162E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7488A59F-579A-4465-98D7-83494DD162E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7488A59F-579A-4465-98D7-83494DD162E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
