@@ -38,11 +38,9 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
                 Console.WriteLine("1. Add a book");
                 Console.WriteLine("2. Add a customer");
                 Console.WriteLine("3. New order");
-                Console.WriteLine("4. Print all books");
-                Console.WriteLine("5. Print all customers");
-                Console.WriteLine("6. Print all orders");
-                Console.WriteLine("7. Discount service");
-                Console.WriteLine("8. Exit");
+                Console.WriteLine("4. Print options");
+                Console.WriteLine("5. Discount service");
+                Console.WriteLine("6. Exit");
                 Console.WriteLine("Choose an option:");
                 var input = Console.ReadLine();
                 Console.WriteLine();
@@ -52,20 +50,69 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
                     case "1": AddBook(); break;
                     case "2": AddCustomer(); break;
                     case "3": NewOrder(); break;
-                    case "4": _bookStoreManager.PrintAllBooks(); break;
-                    case "5": _customerManager.PrintAllCustomers(); break;
-                    case "6": _orderManager.PrintAllOrders(); break;
-                    case "7": ShowDiscountMenu(); break;
-                    case "8": Console.WriteLine("Goodbye!"); return;
+                    case "4": ShowPrintOptions(); break;
+                    case "5": ShowDiscountOptions(); break;
+                    case "6": Console.WriteLine("Goodbye!"); return;
                     default: Console.WriteLine("Invalid option."); break;
                 }
             }
         }
 
+        // Additional menu options
+        private void ShowPrintOptions()
+        {
+            Console.WriteLine("1. Print all books");
+            Console.WriteLine("2. Print all customers");
+            Console.WriteLine("3. Print all orders");
+            Console.WriteLine("4. Print all discounts");
+            Console.WriteLine("5. Go back");
+            Console.WriteLine("Choose an option:");
+            var input = Console.ReadLine();
+            Console.WriteLine();
 
+            switch (input)
+            {
+                case "1": _bookStoreManager.PrintAllBooks(); break;
+                case "2": _customerManager.PrintAllCustomers(); break;
+                case "3": _orderManager.PrintAllOrders(); break;
+                case "4": _discountManager.PrintAllDiscounts(); break;
+                case "5": return;
+                default: Console.WriteLine("Invalid option."); break;
+            }
+        }
+        private void ShowDiscountOptions()
+        {
+            while (true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("1. Add a discount to inventory");
+                Console.WriteLine("2. Apply discount to book");
+                Console.WriteLine("3. Remove a discount from inventory");
+                Console.WriteLine("4. Remove a discount from a book");
+                Console.WriteLine("5. Get discount by code");
+                Console.WriteLine("6. Get discount by percentage");
+                Console.WriteLine("7. Get discount by amount");
+                Console.WriteLine("8. Go back");
+                Console.WriteLine("Choose an option:");
+                var input = Console.ReadLine();
+                Console.WriteLine();
 
+                switch (input)
+                {
+                    case "1": AddDiscountToInventory(); break;
+                    case "2": AddDiscountToBook(); break;
+                    case "3": RemoveDiscountFromInventory(); break;
+                    case "4": RemoveDiscountFromBook(); break;
+                    case "5": GetDiscountByCode(); break;
+                    case "6": GetDiscountByPercentage(); break;
+                    case "7": GetDiscountByAmount(); break;
+                    case "8": return;
+                    default: Console.WriteLine("Invalid option."); break;
+                }
+            }
+        }
 
-
+        // Add book, customer, and order
         private void AddBook()
         {
             Console.WriteLine("Enter the necessary information to add a book to the store.");
@@ -327,37 +374,8 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
             }
         }
 
-        private void ShowDiscountMenu()
-        {
-            while (true)
-            {
-                Console.WriteLine();
-                Console.WriteLine("1. Add a discount");
-                Console.WriteLine("2. Remove a discount");
-                Console.WriteLine("3. Print all discounts");
-                Console.WriteLine("4. Get discount by code");
-                Console.WriteLine("5. Get discount by percentage");
-                Console.WriteLine("6. Get discount by amount");
-                Console.WriteLine("7. Go back");
-                Console.WriteLine("Choose an option:");
-                var input = Console.ReadLine();
-                Console.WriteLine();
-
-                switch (input)
-                {
-                    case "1": AddDiscount(); break;
-                    case "2": RemoveDiscount(); break;
-                    case "3": _discountManager.PrintAllDiscounts(); break;
-                    case "4": GetDiscountByCode(); break;
-                    case "5": GetDiscountByPercentage(); break;
-                    case "6": GetDiscountByAmount(); break;
-                    case "7": return;
-                    default: Console.WriteLine("Invalid option."); break;
-                }
-            }
-        }
-
-        private void AddDiscount()
+        // Add discount to inventory or book
+        private void AddDiscountToInventory()
         {
             // Give choice of discount type
             Console.WriteLine("Choose a discount type:");
@@ -442,7 +460,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
 
             try 
             {
-                _discountManager.AddDiscount(new Discount(code, percentage, startDate, endDate));
+                _discountManager.AddDiscountToInventory(new Discount(code, percentage, startDate, endDate));
             }
             catch (ArgumentNullException e)
             {
@@ -526,7 +544,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
 
             try
             {
-                _discountManager.AddDiscount(new Discount(code, amount, startDate, endDate));
+                _discountManager.AddDiscountToInventory(new Discount(code, amount, startDate, endDate));
             }
             catch (ArgumentNullException e)
             {
@@ -541,8 +559,115 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
                 Console.WriteLine($"Unexpected error: {e.Message}");
             }
         }
-    
-        private void RemoveDiscount()
+        private void AddDiscountToBook()
+        {
+            Console.WriteLine("Enter the necessary information to apply a discount to a book.");
+
+            Book book;
+            while (true)
+            {
+                Console.Write("Enter the title or ISBN of the book: ");
+                string titleOrIsbn = Console.ReadLine() ?? throw new ArgumentNullException(nameof(titleOrIsbn));
+                book = _bookStoreManager.GetBookByTitle(titleOrIsbn) ?? _bookStoreManager.GetBookByIsbn(titleOrIsbn);
+                if (book == null)
+                {
+                    Console.WriteLine("Book not found.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            Discount discount;
+            while (true)
+            {
+                Console.Write("Enter the code of the discount: ");
+                string code = Console.ReadLine() ?? throw new ArgumentNullException(nameof(code));
+                discount = _discountManager.GetDiscountByCode(code);
+                if (discount == null)
+                {
+                    Console.WriteLine("Discount not found.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            try
+            {
+                _discountManager.AddDiscountToBook(discount, book);
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+            }
+        }
+        
+        // Remove discount from inventory or book
+        private void RemoveDiscountFromBook()
+        {
+            Console.WriteLine("Enter the necessary information to remove a discount from a book.");
+
+            Book book;
+            while (true)
+            {
+                Console.Write("Enter the title or ISBN of the book: ");
+                string titleOrIsbn = Console.ReadLine() ?? throw new ArgumentNullException(nameof(titleOrIsbn));
+                book = _bookStoreManager.GetBookByTitle(titleOrIsbn) ?? _bookStoreManager.GetBookByIsbn(titleOrIsbn);
+                if (book == null)
+                {
+                    Console.WriteLine("Book not found.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            Discount discount;
+            while (true)
+            {
+                Console.Write("Enter the code of the discount: ");
+                string code = Console.ReadLine() ?? throw new ArgumentNullException(nameof(code));
+                discount = _discountManager.GetDiscountByCode(code);
+                if (discount == null)
+                {
+                    Console.WriteLine("Discount not found.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            try
+            {
+                _discountManager.RemoveDiscountFromBook(discount, book);
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+            }
+        }
+        private void RemoveDiscountFromInventory()
         {
             // With code
             Console.WriteLine("Enter the code of the discount you want to remove:");
@@ -563,7 +688,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
 
             try
             {
-                _discountManager.RemoveDiscount(_discountManager.GetDiscountByCode(code));
+                _discountManager.RemoveDiscountFromInventory(_discountManager.GetDiscountByCode(code));
             }
             catch (ArgumentNullException e)
             {
@@ -580,6 +705,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
 
         }
     
+        // Get discount by code, percentage, or amount
         private void GetDiscountByCode()
         {
             // With code

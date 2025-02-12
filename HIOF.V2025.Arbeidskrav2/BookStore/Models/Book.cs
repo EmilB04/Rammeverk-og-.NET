@@ -13,6 +13,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore
         public string Isbn { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
+        public bool IsDiscounted { get; set; }
 
         /// <summary>
         /// Constructor for Book.
@@ -24,7 +25,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore
         /// <param name="quantity">The quantity of the book in stock.</param>
         /// <exception cref="ArgumentNullException">Thrown when title, author, or isbn is null, empty, or whitespace.</exception>
         /// <exception cref="ArgumentException">Thrown when price is less than or equal to zero, or when quantity is negative.</exception>
-        public Book(string title, string author, string isbn, double price, int quantity)
+        public Book(string title, string author, string isbn, double price, int quantity, bool isDiscounted = false)
         {
             // Copilot-prompt: "Do I need curly braces for this if-statement since it's so long with only one line?"
             // Copilot-result : Answered "No" to the prompt
@@ -38,12 +39,15 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore
                 throw new ArgumentOutOfRangeException(nameof(price), "Price cannot be zero or negative. Please enter a positive price.");
             if (quantity < 0)
                 throw new ArgumentOutOfRangeException(nameof(quantity), "Quantity cannot be negative. Please enter a positive quantity.");
+            if (isDiscounted != true && isDiscounted != false)
+                throw new ArgumentException(nameof(isDiscounted), "IsDiscounted must be true or false. Please enter a valid value.");
 
             Title = title;
             Author = author;
             Isbn = isbn;
             Price = price;
             Quantity = quantity;
+            IsDiscounted = isDiscounted;
         }
 
         /// <summary>

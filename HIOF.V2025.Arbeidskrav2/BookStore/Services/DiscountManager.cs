@@ -11,7 +11,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore.Services
     {
         private List<Discount> discounts = new List<Discount>();
 
-        public void AddDiscount(Discount discount)
+        public void AddDiscountToInventory(Discount discount)
         {
             if (discount == null)
                 throw new ArgumentNullException(nameof(discount), "Discount cannot be null. Enter a valid discount.");
@@ -30,7 +30,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore.Services
             Console.WriteLine("Discount successfully added.");
             discounts.Add(discount);
         }
-        public void RemoveDiscount(Discount discount)
+        public void RemoveDiscountFromInventory(Discount discount)
         {
             if (discount == null)
                 throw new ArgumentNullException(nameof(discount), "Discount cannot be null. Enter a valid discount.");
@@ -39,7 +39,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore.Services
             Console.WriteLine("Discount successfully removed.");
             discounts.Remove(discount);
         }
-        public void PrintAllDiscounts() 
+        public void PrintAllDiscounts()
         {
             if (discounts.Count == 0)
                 Console.WriteLine("No discounts available.");
@@ -94,6 +94,52 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore.Services
             if (discounts == null)
                 throw new ArgumentNullException(nameof(discounts), "No discounts available.");
             return discounts;
+        }
+        public void AddDiscountToBook(Discount discount, Book book)
+        {
+            if (book == null)
+                throw new ArgumentNullException(nameof(book), "Book cannot be null. Enter a valid book.");
+            if (discount == null)
+                throw new ArgumentNullException(nameof(discount), "Discount cannot be null. Enter a valid discount.");
+
+            if (discount.Amount.HasValue)
+            {
+                book.Price -= (double)discount.Amount;
+            }
+            else if (discount.Percentage.HasValue)
+            {
+                book.Price -= book.Price * (discount.Percentage.Value / 100.0);
+            }
+            else
+            {
+                throw new InvalidOperationException("Discount must have either an amount or a percentage.");
+            }
+
+            book.IsDiscounted = true;
+            Console.WriteLine($"Discount applied to book: {book.Title}");
+        }
+        public void RemoveDiscountFromBook(Discount discount, Book book)
+        {
+            if (discount == null)
+                throw new ArgumentNullException(nameof(discount), "Discount cannot be null. Enter a valid discount.");
+            if (book == null)
+                throw new ArgumentNullException(nameof(book), "Book cannot be null. Enter a valid book.");
+
+            if (discount.Amount.HasValue)
+            {
+                book.Price += (double)discount.Amount;
+            }
+            else if (discount.Percentage.HasValue)
+            {
+                book.Price /= (1 - discount.Percentage.Value / 100.0);
+            }
+            else
+            {
+                throw new InvalidOperationException("Discount must have either an amount or a percentage.");
+            }
+
+            book.IsDiscounted = false;
+            Console.WriteLine($"Discount removed from book: {book.Title}");
         }
     }
 }

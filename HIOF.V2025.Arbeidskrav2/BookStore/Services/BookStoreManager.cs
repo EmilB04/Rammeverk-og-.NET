@@ -214,6 +214,23 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore
             }
             return totalQuantity;
         }
+
+        /// <summary>
+        /// Checks if a book is discounted.
+        /// </summary>
+        /// <param name="book"></param>
+        /// <returns>A boolean which tells if the book is discounted or not</returns>
+        public bool IsBookDiscounted(Book book)
+        {
+            if (book.IsDiscounted)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
 

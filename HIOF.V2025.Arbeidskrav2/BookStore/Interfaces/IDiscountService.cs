@@ -8,7 +8,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore.Interfaces
 {
     /// <summary>
     /// Interface for the DiscountManager class.
-    /// Contains methods for adding, removing, printing and getting discounts.
+    /// Contains methods for adding, removing, printing, getting and applying discounts.
     /// </summary>
     /// <remarks>
     /// This interface is used to implement the DiscountManager class.
@@ -18,8 +18,10 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore.Interfaces
     public interface IDiscountService
     {
         // Discount CRUD
-        public void AddDiscount(Discount discount);
-        public void RemoveDiscount(Discount discount);
+        public void AddDiscountToInventory(Discount discount);
+        public void RemoveDiscountFromInventory(Discount discount);
+        public void AddDiscountToBook(Discount discount, Book book);
+        public void RemoveDiscountFromBook(Discount discount, Book book);
         public void PrintAllDiscounts();
         Discount GetDiscountByCode(string code);
         Discount GetDiscountByPercentage(int percentage);
