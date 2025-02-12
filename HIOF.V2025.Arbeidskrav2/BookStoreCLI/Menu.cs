@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using HIOF.V2025.Arbeidskrav2.BookStore;
 using HIOF.V2025.Arbeidskrav2.BookStore.Interfaces;
+using HIOF.V2025.Arbeidskrav2.BookStore.Models;
 using HIOF.V2025.Arbeidskrav2.BookStore.Services;
 
 namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
@@ -18,13 +20,15 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
         private readonly BookStoreManager _bookStoreManager;
         private readonly OrderManager _orderManager;
         private readonly CustomerManager _customerManager;
+        private readonly DiscountManager _discountManager;
 
 
-        public Menu(BookStoreManager bookStoreManager, OrderManager orderManager, CustomerManager customerManager)
+        public Menu(BookStoreManager bookStoreManager, OrderManager orderManager, CustomerManager customerManager, DiscountManager discountManager)
         {
             _bookStoreManager = bookStoreManager;
             _orderManager = orderManager;
             _customerManager = customerManager;
+            _discountManager = discountManager;
         }
         public void Show()
         {
@@ -37,7 +41,8 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
                 Console.WriteLine("4. Print all books");
                 Console.WriteLine("5. Print all customers");
                 Console.WriteLine("6. Print all orders");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("7. Discount service");
+                Console.WriteLine("8. Exit");
                 Console.WriteLine("Choose an option:");
                 var input = Console.ReadLine();
                 Console.WriteLine();
@@ -50,7 +55,8 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
                     case "4": _bookStoreManager.PrintAllBooks(); break;
                     case "5": _customerManager.PrintAllCustomers(); break;
                     case "6": _orderManager.PrintAllOrders(); break;
-                    case "7": Console.WriteLine("Goodbye!"); return;
+                    case "7": ShowDiscountMenu(); break;
+                    case "8": Console.WriteLine("Goodbye!"); return;
                     default: Console.WriteLine("Invalid option."); break;
                 }
             }
@@ -320,5 +326,377 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
                 Console.WriteLine($"Unexpected error: {e.Message}");
             }
         }
+
+        private void ShowDiscountMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("1. Add a discount");
+                Console.WriteLine("2. Remove a discount");
+                Console.WriteLine("3. Print all discounts");
+                Console.WriteLine("4. Get discount by code");
+                Console.WriteLine("5. Get discount by percentage");
+                Console.WriteLine("6. Get discount by amount");
+                Console.WriteLine("7. Go back");
+                Console.WriteLine("Choose an option:");
+                var input = Console.ReadLine();
+                Console.WriteLine();
+
+                switch (input)
+                {
+                    case "1": AddDiscount(); break;
+                    case "2": RemoveDiscount(); break;
+                    case "3": _discountManager.PrintAllDiscounts(); break;
+                    case "4": GetDiscountByCode(); break;
+                    case "5": GetDiscountByPercentage(); break;
+                    case "6": GetDiscountByAmount(); break;
+                    case "7": return;
+                    default: Console.WriteLine("Invalid option."); break;
+                }
+            }
+        }
+
+        private void AddDiscount()
+        {
+            // Give choice of discount type
+            Console.WriteLine("Choose a discount type:");
+            Console.WriteLine("1. Percentage");
+            Console.WriteLine("2. Amount");
+            Console.WriteLine("3. Go back");
+            Console.WriteLine("Choose an option:");
+            var input = Console.ReadLine();
+            Console.WriteLine();
+
+            switch (input)
+            {
+                case "1": AddDiscountWithPercentage(); break;
+                case "2": AddDiscountWithAmount(); break;
+                case "3": return;
+                default: Console.WriteLine("Invalid option."); break;
+            }
+        }
+        private void AddDiscountWithPercentage()
+        {
+            Console.WriteLine("Enter the necessary information to add the discount.");
+
+            string code;
+            while (true)
+            {
+                Console.Write("Code: ");
+                code = Console.ReadLine() ?? throw new ArgumentNullException(nameof(code));
+                if (string.IsNullOrWhiteSpace(code))
+                {
+                    Console.WriteLine("Code cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            int percentage;
+            while (true)
+            {
+                Console.Write("Percentage: ");
+                string percentageInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(percentage));
+                if (int.TryParse(percentageInput, out percentage) && percentage > 0 && percentage <= 100)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid percentage. Please enter a positive number between 1 and 100.");
+                }
+            }
+
+            DateTime startDate;
+            while (true)
+            {
+                Console.Write("Start date (yyyy-mm-dd): ");
+                string startDateInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(startDate));
+                if (DateTime.TryParse(startDateInput, out startDate))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid date. Please enter a valid date.");
+                }
+            }
+
+            DateTime endDate;
+            while (true)
+            {
+                Console.Write("End date (yyyy-mm-dd): ");
+                string endDateInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(endDate));
+                if (DateTime.TryParse(endDateInput, out endDate))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid date. Please enter a valid date.");
+                }
+            }
+
+            try 
+            {
+                _discountManager.AddDiscount(new Discount(code, percentage, startDate, endDate));
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+            }
+
+
+
+        }
+        private void AddDiscountWithAmount()
+        {
+            Console.WriteLine("Enter the necessary information to add the discount.");
+
+            string code;
+            while (true)
+            {
+                Console.Write("Code: ");
+                code = Console.ReadLine() ?? throw new ArgumentNullException(nameof(code));
+                if (string.IsNullOrWhiteSpace(code))
+                {
+                    Console.WriteLine("Code cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            double amount;
+            while (true)
+            {
+                Console.Write("Amount: ");
+                string amountInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(amount));
+                if (double.TryParse(amountInput, out amount) && amount > 0)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid amount. Please enter a positive number.");
+                }
+            }
+
+            DateTime startDate;
+            while (true)
+            {
+                Console.Write("Start date (yyyy-mm-dd): ");
+                string startDateInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(startDate));
+                if (DateTime.TryParse(startDateInput, out startDate))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid date. Please enter a valid date.");
+                }
+            }
+
+            DateTime endDate;
+            while (true)
+            {
+                Console.Write("End date (yyyy-mm-dd): ");
+                string endDateInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(endDate));
+                if (DateTime.TryParse(endDateInput, out endDate))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid date. Please enter a valid date.");
+                }
+            }
+
+            try
+            {
+                _discountManager.AddDiscount(new Discount(code, amount, startDate, endDate));
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+            }
+        }
+    
+        private void RemoveDiscount()
+        {
+            // With code
+            Console.WriteLine("Enter the code of the discount you want to remove:");
+            string code;
+            while (true)
+            {
+                Console.Write("Code: ");
+                code = Console.ReadLine() ?? throw new ArgumentNullException(nameof(code));
+                if (string.IsNullOrWhiteSpace(code))
+                {
+                    Console.WriteLine("Code cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            try
+            {
+                _discountManager.RemoveDiscount(_discountManager.GetDiscountByCode(code));
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+            }
+
+        }
+    
+        private void GetDiscountByCode()
+        {
+            // With code
+            Console.WriteLine("Enter the code of the discount you want to get:");
+            string code;
+            while (true)
+            {
+                Console.Write("Code: ");
+                code = Console.ReadLine() ?? throw new ArgumentNullException(nameof(code));
+                if (string.IsNullOrWhiteSpace(code))
+                {
+                    Console.WriteLine("Code cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            try
+            {
+                Console.WriteLine(_discountManager.GetDiscountByCode(code));
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+            }
+        }
+        private void GetDiscountByPercentage()
+        {
+            // With percentage
+            Console.WriteLine("Enter the percentage of the discount you want to get:");
+            int percentage;
+            while (true)
+            {
+                Console.Write("Percentage: ");
+                string percentageInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(percentage));
+                if (int.TryParse(percentageInput, out percentage) && percentage > 0 && percentage <= 100)
+                {
+                    break;
+                }
+                if (!_discountManager.GetAllDiscounts().Any(d => d.Percentage == percentage))
+                {
+                    Console.WriteLine("Percentage not found in discounts.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid percentage. Please enter a positive number between 1 and 100.");
+                }
+            }
+
+            try
+            {
+                Console.WriteLine(_discountManager.GetDiscountByPercentage(percentage));
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+            }
+        }
+        private void GetDiscountByAmount()
+        {
+            // With amount
+            Console.WriteLine("Enter the amount of the discount you want to get:");
+            double amount;
+            while (true)
+            {
+                Console.Write("Amount: ");
+                string amountInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(amount));
+                if (double.TryParse(amountInput, out amount) && amount > 0)
+                {
+                    break;
+                }
+                if (!_discountManager.GetAllDiscounts().Any(d => d.Amount == amount))
+                {
+                    Console.WriteLine("Amount not found in discounts.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid amount. Please enter a positive number.");
+                }
+            }
+
+            try
+            {
+                Console.WriteLine(_discountManager.GetDiscountByAmount(amount));
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+            }
+        }
+    
+    
     }
 }

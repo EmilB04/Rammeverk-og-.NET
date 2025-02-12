@@ -18,8 +18,9 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
         {
             var bookStoreManager = new BookStoreManager();
             var customerManager = new CustomerManager();
+            var DiscountManager = new DiscountManager();
             var orderManager = new OrderManager(bookStoreManager, customerManager);
-            var menu = new Menu(bookStoreManager, orderManager, customerManager);
+            var menu = new Menu(bookStoreManager, orderManager, customerManager, DiscountManager);
 
             // Ferdiglagde bøker og kunder
             // Copilot prompt: "Add some example books and customers"
