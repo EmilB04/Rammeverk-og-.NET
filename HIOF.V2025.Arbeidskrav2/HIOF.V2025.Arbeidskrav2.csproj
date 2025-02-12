@@ -4,6 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <StartupObject>HIOF.V2025.Arbeidskrav2.BookStoreCLI.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
