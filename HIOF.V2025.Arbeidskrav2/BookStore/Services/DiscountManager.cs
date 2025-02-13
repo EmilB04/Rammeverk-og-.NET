@@ -64,6 +64,8 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore.Services
             if (discounts.Count == 0)
                 throw new InvalidOperationException("No discounts available.");
             Console.WriteLine("Discount successfully removed.");
+            if (discount.DiscountInUse)
+                throw new InvalidOperationException("Discount is in use. Cannot remove discount.");
             discounts.Remove(discount);
         }
 
@@ -194,6 +196,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore.Services
             }
 
             book.IsDiscounted = true;
+            discount.DiscountInUse = true;
             Console.WriteLine($"Discount applied to book: {book.Title}");
         }
 
@@ -213,7 +216,11 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore.Services
             if (book == null)
                 throw new ArgumentNullException(nameof(book), "Book cannot be null. Enter a valid book.");
             if (!book.IsDiscounted)
-                throw new ArgumentException("Book does not have a discount applied.");
+                throw new ArgumentException($"The book {book.Title} does not have a discount applied.");
+            /*
+            if (discount.Code != book.DiscountCode)
+                throw new ArgumentException($"The discount {discount.Code} is not applied to the book {book.Title}.");
+            */
 
             if (discount.Amount.HasValue)
             {
@@ -229,6 +236,7 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore.Services
             }
 
             book.IsDiscounted = false;
+            discount.DiscountInUse = false;
             Console.WriteLine($"Discount removed from book: {book.Title}");
         }
     }

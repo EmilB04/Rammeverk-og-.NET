@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HIOF.V2025.Arbeidskrav2.BookStore;
 using HIOF.V2025.Arbeidskrav2.BookStore.Services;
+using HIOF.V2025.Arbeidskrav2.BookStore.Models;
 
 namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
 {
@@ -39,7 +40,11 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
 
             orderManager.NewOrder("Emil", "Berglund", "Harry Potter and the Half-Blood Prince", 3);
 
-            Console.WriteLine("Welcome to the Book Store CLI!");
+            DiscountManager.AddDiscountToInventory(new Discount("25OFF", 25, DateTime.Parse("2021-06-01"), DateTime.Parse("2021-08-31")));
+            DiscountManager.AddDiscountToBook(DiscountManager.GetDiscountByCode("25OFF"), bookStoreManager.GetBookByTitle("Harry Potter and the Half-Blood Prince"));
+
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("\nWelcome to the Book Store CLI!");
             menu.Show();
 
         }

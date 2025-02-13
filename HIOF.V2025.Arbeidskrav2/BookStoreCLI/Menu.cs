@@ -111,6 +111,25 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
                 }
             }
         }
+        private void AddDiscountToInventory()
+        {
+            // Give choice of discount type
+            Console.WriteLine("Choose a discount type:");
+            Console.WriteLine("1. Percentage");
+            Console.WriteLine("2. Amount");
+            Console.WriteLine("3. Go back");
+            Console.WriteLine("Choose an option:");
+            var input = Console.ReadLine();
+            Console.WriteLine();
+
+            switch (input)
+            {
+                case "1": AddDiscountWithPercentage(); break;
+                case "2": AddDiscountWithAmount(); break;
+                case "3": return;
+                default: Console.WriteLine("Invalid option."); break;
+            }
+        }
 
         // Add book, customer, and order
         private void AddBook()
@@ -375,25 +394,6 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
         }
 
         // Add discount to inventory or book
-        private void AddDiscountToInventory()
-        {
-            // Give choice of discount type
-            Console.WriteLine("Choose a discount type:");
-            Console.WriteLine("1. Percentage");
-            Console.WriteLine("2. Amount");
-            Console.WriteLine("3. Go back");
-            Console.WriteLine("Choose an option:");
-            var input = Console.ReadLine();
-            Console.WriteLine();
-
-            switch (input)
-            {
-                case "1": AddDiscountWithPercentage(); break;
-                case "2": AddDiscountWithAmount(); break;
-                case "3": return;
-                default: Console.WriteLine("Invalid option."); break;
-            }
-        }
         private void AddDiscountWithPercentage()
         {
             Console.WriteLine("Enter the necessary information to add the discount.");
@@ -431,12 +431,12 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
             DateTime startDate;
             while (true)
             {
-                Console.Write("Start date (yyyy-mm-dd): ");
+                Console.Write("Start date (dd-mm-yyyy): ");
                 string startDateInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(startDate));
-                if (DateTime.TryParse(startDateInput, out startDate))
+                if (DateTime.TryParseExact(startDateInput, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out startDate))
                 {
                     break;
-                }
+                }   
                 else
                 {
                     Console.WriteLine("Invalid date. Please enter a valid date.");
@@ -446,9 +446,9 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
             DateTime endDate;
             while (true)
             {
-                Console.Write("End date (yyyy-mm-dd): ");
+                Console.Write("End date (dd-mm-yyyy): ");
                 string endDateInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(endDate));
-                if (DateTime.TryParse(endDateInput, out endDate))
+                if (DateTime.TryParseExact(endDateInput, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out endDate))
                 {
                     break;
                 }
@@ -515,12 +515,12 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
             DateTime startDate;
             while (true)
             {
-                Console.Write("Start date (yyyy-mm-dd): ");
+                Console.Write("Start date (dd-mm-yyyy): ");
                 string startDateInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(startDate));
-                if (DateTime.TryParse(startDateInput, out startDate))
+                if (DateTime.TryParseExact(startDateInput, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out startDate))
                 {
                     break;
-                }
+                }   
                 else
                 {
                     Console.WriteLine("Invalid date. Please enter a valid date.");
@@ -530,9 +530,9 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
             DateTime endDate;
             while (true)
             {
-                Console.Write("End date (yyyy-mm-dd): ");
+                Console.Write("End date (dd-mm-yyyy): ");
                 string endDateInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(endDate));
-                if (DateTime.TryParse(endDateInput, out endDate))
+                if (DateTime.TryParseExact(endDateInput, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out endDate))
                 {
                     break;
                 }
@@ -623,6 +623,11 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
             {
                 Console.Write("Enter the title or ISBN of the book: ");
                 string titleOrIsbn = Console.ReadLine() ?? throw new ArgumentNullException(nameof(titleOrIsbn));
+                if (string.IsNullOrWhiteSpace(titleOrIsbn))
+                {
+                    Console.WriteLine("Title or ISBN cannot be empty.");
+                    continue;
+                }
                 book = _bookStoreManager.GetBookByTitle(titleOrIsbn) ?? _bookStoreManager.GetBookByIsbn(titleOrIsbn);
                 if (book == null)
                 {
@@ -639,6 +644,11 @@ namespace HIOF.V2025.Arbeidskrav2.BookStoreCLI
             {
                 Console.Write("Enter the code of the discount: ");
                 string code = Console.ReadLine() ?? throw new ArgumentNullException(nameof(code));
+                if (string.IsNullOrWhiteSpace(code))
+                {
+                    Console.WriteLine("Code cannot be empty.");
+                    continue;
+                }
                 discount = _discountManager.GetDiscountByCode(code);
                 if (discount == null)
                 {
