@@ -13,8 +13,8 @@ namespace HIOF.V2025.Arbeidskrav2.BookStore.Models
         public string Code { get; set; }
         public int? Percentage { get; set; }
         public double? Amount { get; set; }
-        public DateTime ValidFrom { get; set; }
-        public DateTime ValidTo { get; set; }
+        public DateTime? ValidFrom { get; set; }
+        public DateTime? ValidTo { get; set; }
         public bool DiscountInUse { get; set; }
 
         /// <summary>
