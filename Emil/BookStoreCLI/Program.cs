@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Emil.BookStore;
 using Emil.BookStore.Services;
 using Emil.BookStore.Models;
-using Emil.BookStoreCLI;
 
 namespace Emil.BookStoreCLI
 {

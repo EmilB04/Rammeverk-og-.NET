@@ -1,16 +1,38 @@
 using System;
 using System.Collections.Generic;
 
-// Good to go! 🚀
 namespace Emil.BookStore
 {
     public class Order
     {
+        /// <summary>
+        /// Gets or sets the ID of the order.
+        /// </summary>
         public int OrderId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of books in the order.
+        /// </summary>
         public List<Book> Books { get; set; }
+
+        /// <summary>
+        /// Gets or sets the customer who placed the order.
+        /// </summary>
         public Customer Customer { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date the order was placed.
+        /// </summary>
         public DateTime OrderDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total price of the order.
+        /// </summary>
         public double TotalPrice { get; set; }
+
+        /// <summary>
+        /// Gets or sets the quantity of books purchased.
+        /// </summary>
         public int QuantityPurchased { get; set; }
 
         /// <summary>

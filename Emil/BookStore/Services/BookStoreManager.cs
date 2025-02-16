@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Dynamic;
 using Emil.BookStore.Interfaces;
 
-// GOOD TO GO! 🚀
-
 namespace Emil.BookStore
 {
     public class BookStoreManager : IBookService
@@ -12,7 +10,7 @@ namespace Emil.BookStore
         private List<Book> _books;
 
         /// <summary>
-        /// Constructor for BookStoreManager
+        /// Represents a collection of books managed by the BookStoreManager.
         /// </summary>
         public BookStoreManager()
         {

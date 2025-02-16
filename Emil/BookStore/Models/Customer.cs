@@ -3,14 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// Good to go! 🚀
 namespace Emil.BookStore
 {
     public class Customer
     {
+        /// <summary>
+        /// Gets or sets the first name of the customer.
+        /// </summary>
         public string FirstName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last name of the customer.
+        /// </summary>
         public string LastName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the email of the customer.
+        /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// Gets or sets the phone number of the customer.
+        /// </summary>
         public int PhoneNumber { get; set; }
 
         /// <summary>
@@ -25,15 +39,15 @@ namespace Emil.BookStore
         public Customer(string firstName, string lastName, string email, int phoneNumber)
         {
             // Copilot-prompt: "How can this be shortned, while still following the .NET guidelines?"
-            if (string.IsNullOrWhiteSpace(firstName)) 
+            if (string.IsNullOrWhiteSpace(firstName))
                 throw new ArgumentNullException(nameof(firstName), "First name cannot be null or empty. Please enter a valid first name.");
-            if (string.IsNullOrWhiteSpace(lastName)) 
+            if (string.IsNullOrWhiteSpace(lastName))
                 throw new ArgumentNullException(nameof(lastName), "Last name cannot be null or empty. Please enter a valid last name.");
-            if (string.IsNullOrWhiteSpace(email)) 
+            if (string.IsNullOrWhiteSpace(email))
                 throw new ArgumentNullException(nameof(email), "Email cannot be null or empty. Please enter a valid email.");
-            if (phoneNumber <= 0) 
+            if (phoneNumber <= 0)
                 throw new ArgumentOutOfRangeException(nameof(phoneNumber), "Phone number must be greater than zero. Please enter a valid phone number.");
-            if (phoneNumber.ToString().Length != 8) 
+            if (phoneNumber.ToString().Length != 8)
                 throw new ArgumentOutOfRangeException(nameof(phoneNumber), "Phone number must be 8 digits. Please enter a valid phone number.");
 
             FirstName = firstName;

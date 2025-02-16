@@ -10,11 +10,34 @@ namespace Emil.BookStore.Models
     /// </summary>
     public class Discount
     {
+        /// <summary>
+        /// Gets or sets the code of the discount.
+        /// </summary>
         public string Code { get; set; }
+
+        /// <summary>
+        /// Gets or sets the percentage of the discount.
+        /// </summary>
         public int? Percentage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the amount of the discount.
+        /// </summary>
         public double? Amount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date the discount is valid from.
+        /// </summary>
         public DateTime? ValidFrom { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date the discount is valid to.
+        /// </summary>
         public DateTime? ValidTo { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the discount is in use.
+        /// </summary>
         public bool DiscountInUse { get; set; }
 
         /// <summary>
@@ -69,6 +92,7 @@ namespace Emil.BookStore.Models
             Amount = null;
             ValidFrom = validFrom;
             ValidTo = validTo;
+            DiscountInUse = false;
         }
 
         /// <summary>
@@ -95,6 +119,7 @@ namespace Emil.BookStore.Models
             Amount = amount;
             ValidFrom = validFrom;
             ValidTo = validTo;
+            DiscountInUse = false;
         }
 
         /// <summary>

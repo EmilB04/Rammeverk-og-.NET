@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Emil.BookStore;
-using Emil.BookStore.Interfaces;
 using Emil.BookStore.Models;
 using Emil.BookStore.Services;
 

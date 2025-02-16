@@ -6,17 +6,51 @@ using System.Threading.Tasks;
 namespace Emil.BookStore.Interfaces
 {
     /// <summary>
-    /// Interface for BookService.
-    /// Contains methods for adding, removing, and printing books, as well as getting books by ISBN, title, and author.
+    /// Interface for book service operations.
     /// </summary>
+    /// <remarks>
+    /// This interface is used to implement the BookStoreManager class
+    /// </remarks>
+    /// <seealso cref="BookStoreManger"/>
+    /// <seealso cref="Book"/>
     public interface IBookService
     {
-        // Books CRUD
-        public void AddBook(Book book);
-        public void RemoveBook(Book book);
-        public void PrintAllBooks();
+        /// <summary>
+        /// Adds a new book to the collection.
+        /// </summary>
+        /// <param name="book">The book to add.</param>
+        void AddBook(Book book);
+
+        /// <summary>
+        /// Removes a book from the collection.
+        /// </summary>
+        /// <param name="book">The book to remove.</param>
+        void RemoveBook(Book book);
+
+        /// <summary>
+        /// Prints all books in the collection.
+        /// </summary>
+        void PrintAllBooks();
+
+        /// <summary>
+        /// Retrieves a book by its ISBN.
+        /// </summary>
+        /// <param name="isbn">The ISBN of the book.</param>
+        /// <returns>The book with the specified ISBN.</returns>
         Book GetBookByIsbn(string isbn);
+
+        /// <summary>
+        /// Retrieves a book by its title.
+        /// </summary>
+        /// <param name="title">The title of the book.</param>
+        /// <returns>The book with the specified title.</returns>
         Book GetBookByTitle(string title);
+
+        /// <summary>
+        /// Retrieves a list of books by the author's name.
+        /// </summary>
+        /// <param name="author">The name of the author.</param>
+        /// <returns>A list of books by the specified author.</returns>
         List<Book> GetBooksByAuthor(string author);
     }
 }

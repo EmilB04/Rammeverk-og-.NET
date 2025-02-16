@@ -3,16 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// Good to go! 🚀
 namespace Emil.BookStore
 {
     public class Book
     {
+        /// <summary>
+        /// Gets or sets the title of the book.
+        /// </summary>
         public string Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the author of the book.
+        /// </summary>
         public string Author { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ISBN of the book.
+        /// </summary>
         public string Isbn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the price of the book.
+        /// </summary>
         public double Price { get; set; }
+
+        /// <summary>
+        /// Gets or sets the quantity of the book in stock.
+        /// </summary>
         public int Quantity { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the book is discounted.
+        /// </summary>
         public bool IsDiscounted { get; set; }
 
         /// <summary>
