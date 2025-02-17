@@ -18,16 +18,16 @@ namespace Emil.BookStore.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void CreateOrder_WithNullParameters_ShouldThrowArgumentNullException()
         {
             var customer = new Customer("Emil", "Berglund", "emil.berglund@example.com", 12345678);
             var book = new Book("1984", "George Orwell", "978-0-452-28423-4", 129.99, 5);
             var books = new List<Book> { book };
-            new Order(1, null, customer, DateTime.Now, 129.99, 2);
-            new Order(2, books, null, DateTime.Now, 129.99, 2);
-            new Order(3, books, customer, DateTime.Now, 0, 2);
-            new Order(4, books, customer, DateTime.Now, 129.99, 0);
+
+            Assert.ThrowsException<ArgumentNullException>(() => new Order(1, null!, customer, DateTime.Now, 129.99, 2));
+            Assert.ThrowsException<ArgumentNullException>(() => new Order(2, books, null!, DateTime.Now, 129.99, 2));
+            Assert.ThrowsException<ArgumentNullException>(() => new Order(3, books, customer, DateTime.Now, 0, 2));
+            Assert.ThrowsException<ArgumentNullException>(() => new Order(4, books, customer, DateTime.Now, 129.99, 0));
         }
 
         [TestMethod]
@@ -63,7 +63,9 @@ namespace Emil.BookStore.Tests
             orderManager.NewOrder(customer.FirstName, customer.LastName, book.Title, 1);
 
             // Assert
-            Assert.AreEqual(1, orderManager.GetOrdersByCustomerName(customer).Count);
+            var orders = orderManager.GetOrdersByCustomerName(customer);
+            Assert.IsNotNull(orders);
+            Assert.AreEqual(1, orders.Count);
         }
     }
 }

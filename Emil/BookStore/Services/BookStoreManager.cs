@@ -199,8 +199,8 @@ namespace Emil.BookStore
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the quantity is negative.</exception>
         public void UpdateBookStock(Book book, int quantityChange)
         {
-            if (quantityChange <= 0)
-                throw new ArgumentException(nameof(quantityChange), "Quanitity change cannot be 0 or negative. Enter a positive quantity.");
+            if (quantityChange == 0)
+                throw new ArgumentOutOfRangeException(nameof(quantityChange), "Quantity change cannot be zero. Enter a positive or negative quantity.");
             if (book == null)
                 throw new ArgumentException(nameof(book), "Book not found.");
             if (!_books.Contains(book))

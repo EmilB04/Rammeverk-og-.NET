@@ -26,15 +26,14 @@ namespace Emil.BookStore.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void CreateBook_InvalidParameters_ShouldThrowArgumentNullException()
         {
-            new Book(null, "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
-            new Book(" ", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2);
-            new Book("The Hobbit", null, "978-0-395-07122-1", 149.50, 2);
-            new Book("The Hobbit", " ", "978-0-395-07122-1", 149.50, 2);
-            new Book("The Hobbit", "J.R.R. Tolkien", null, 149.50, 2);
-            new Book("The Hobbit", "J.R.R. Tolkien", " ", 149.50, 2);
+            Assert.ThrowsException<ArgumentNullException>(() => new Book(string.Empty, "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2));
+            Assert.ThrowsException<ArgumentNullException>(() => new Book(" ", "J.R.R. Tolkien", "978-0-395-07122-1", 149.50, 2));
+            Assert.ThrowsException<ArgumentNullException>(() => new Book("The Hobbit", string.Empty, "978-0-395-07122-1", 149.50, 2));
+            Assert.ThrowsException<ArgumentNullException>(() => new Book("The Hobbit", " ", "978-0-395-07122-1", 149.50, 2));
+            Assert.ThrowsException<ArgumentNullException>(() => new Book("The Hobbit", "J.R.R. Tolkien", string.Empty, 149.50, 2));
+            Assert.ThrowsException<ArgumentNullException>(() => new Book("The Hobbit", "J.R.R. Tolkien", " ", 149.50, 2));
         }
 
         [TestMethod]

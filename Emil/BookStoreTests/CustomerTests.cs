@@ -20,17 +20,17 @@ namespace Emil.BookStore.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void CreateCustomer_WithNullOrEmptyParameters_ShouldThrowArgumentNullException()
         {
-            new Customer(null, "Berglund", "emil.berglund@example.com", 12345678);
-            new Customer("", "Berglund", "emil.berglund@example.com", 12345678); 
+            var customer1 = new Customer(string.Empty, "Berglund", "emil.berglund@example.com", 12345678);
+            var customer2 = new Customer("", "Berglund", "emil.berglund@example.com", 12345678); 
 
-            new Customer("Emil", null, "emil.berglund@example.com", 12345678);
-            new Customer("Emil", "", "emil.berglund@example.com", 12345678);
+            var customer3 = new Customer("Emil", string.Empty, "emil.berglund@example.com", 12345678);
+            var customer4 = new Customer("Emil", "", "emil.berglund@example.com", 12345678);
 
-            new Customer("Emil", "Berglund", null, 12345678);
-            new Customer("Emil", "Berglund", "", 12345678);
+            var customer5 = new Customer("Emil", "Berglund", string.Empty, 12345678);
+            var customer6 = new Customer("Emil", "Berglund", "", 12345678);
 
-            new Customer("Emil", "Berglund", "emil.berglund@example.com", 0);
-            new Customer("Emil", "Berglund", "emil.berglund@example.com", -1);
+            var customer7 = new Customer("Emil", "Berglund", "emil.berglund@example.com", 0);
+            var customer8 = new Customer("Emil", "Berglund", "emil.berglund@example.com", -1);
         }
         
         [TestMethod]

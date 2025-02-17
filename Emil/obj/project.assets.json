@@ -1233,11 +1233,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\Emil\\Emil.csproj",
+      "projectUniqueName": "c:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\Emil\\Emil.csproj",
       "projectName": "Emil",
-      "projectPath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\Emil\\Emil.csproj",
+      "projectPath": "c:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\Emil\\Emil.csproj",
       "packagesPath": "C:\\Users\\emilb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\Emil\\obj\\",
+      "outputPath": "c:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\Emil\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\emilb\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1315,13 +1315,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }

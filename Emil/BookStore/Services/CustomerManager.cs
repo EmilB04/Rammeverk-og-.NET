@@ -51,7 +51,7 @@ namespace Emil.BookStore.Services
         {
             if (customer == null)
             {
-                throw new ArgumentNullException(nameof(customer), "Customer cannot be null." + "Enter a valid customer.");
+                throw new ArgumentNullException(nameof(customer), "Customer was not found. Enter a valid customer.");
             }
             else
             {
