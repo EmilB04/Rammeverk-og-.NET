@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Emil.BookStore.Models;
 
 namespace Emil.BookStore
 {
@@ -38,6 +39,11 @@ namespace Emil.BookStore
         public bool IsDiscounted { get; set; }
 
         /// <summary>
+        /// Gets or sets the discount applied to the book.
+        /// </summary>
+        public Discount? AppliedDiscount { get; set; }
+
+        /// <summary>
         /// Constructor for Book.
         /// </summary>
         /// <param name="title">The title of the book.</param>
@@ -47,7 +53,7 @@ namespace Emil.BookStore
         /// <param name="quantity">The quantity of the book in stock.</param>
         /// <exception cref="ArgumentNullException">Thrown when title, author, or isbn is null, empty, or whitespace.</exception>
         /// <exception cref="ArgumentException">Thrown when price is less than or equal to zero, or when quantity is negative.</exception>
-        public Book(string title, string author, string isbn, double price, int quantity, bool isDiscounted = false)
+        public Book(string title, string author, string isbn, double price, int quantity, bool isDiscounted = false, Discount? appliedDiscount = null )
         {
             // Copilot-prompt: "Do I need curly braces for this if-statement since it's so long with only one line?"
             // Copilot-result : Answered "No" to the prompt
@@ -63,6 +69,10 @@ namespace Emil.BookStore
                 throw new ArgumentOutOfRangeException(nameof(quantity), "Quantity cannot be negative. Please enter a positive quantity.");
             if (isDiscounted != true && isDiscounted != false)
                 throw new ArgumentException(nameof(isDiscounted), "IsDiscounted must be true or false. Please enter a valid value.");
+            if (isDiscounted == true && appliedDiscount == null)
+                throw new ArgumentNullException(nameof(appliedDiscount), "AppliedDiscount cannot be null when IsDiscounted is true. Please enter a valid discount.");
+            if (isDiscounted == false && appliedDiscount != null)
+                throw new ArgumentException(nameof(appliedDiscount), "AppliedDiscount must be null when IsDiscounted is false. Please enter a valid value.");
 
             Title = title;
             Author = author;
@@ -70,6 +80,7 @@ namespace Emil.BookStore
             Price = price;
             Quantity = quantity;
             IsDiscounted = isDiscounted;
+            AppliedDiscount = appliedDiscount;
         }
 
         /// <summary>

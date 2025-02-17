@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Emil.BookStore;
+using Emil.BookStore.Exceptions;
 using Emil.BookStore.Models;
 using Emil.BookStore.Services;
 
@@ -129,7 +130,8 @@ namespace Emil.BookStoreCLI
                 Console.WriteLine("2. Print all customers");
                 Console.WriteLine("3. Print all orders");
                 Console.WriteLine("4. Print all discounts");
-                Console.WriteLine("5. Go back");
+                Console.WriteLine("5. Print all discounted books");
+                Console.WriteLine("6. Go back");
                 Console.WriteLine("Choose an option:");
                 var input = Console.ReadLine();
                 Console.WriteLine();
@@ -140,7 +142,8 @@ namespace Emil.BookStoreCLI
                     case "2": _customerManager.PrintAllCustomers(); break;
                     case "3": _orderManager.PrintAllOrders(); break;
                     case "4": _discountManager.PrintAllDiscounts(); break;
-                    case "5": return;
+                    case "5": _bookStoreManager.PrintAllDiscountedBooks(); break;
+                    case "6": return;
                     default: Console.WriteLine("Invalid option."); break;
                 }
             }
@@ -150,7 +153,7 @@ namespace Emil.BookStoreCLI
             while (true)
             {
                 Console.WriteLine();
-                Console.WriteLine("1. Add a discount to inventory");
+                Console.WriteLine("1. Add discount to inventory");
                 Console.WriteLine("2. Apply discount to book");
                 Console.WriteLine("3. Remove a discount from inventory");
                 Console.WriteLine("4. Remove a discount from a book");
@@ -426,7 +429,7 @@ namespace Emil.BookStoreCLI
             {
                 _customerManager.RemoveCustomer(GetCustomer() ?? throw new ArgumentNullException("Customer not found."));
             }
-            
+
             catch (ArgumentNullException)
             {
                 Console.WriteLine($"Error: Customer not found");
@@ -503,35 +506,53 @@ namespace Emil.BookStoreCLI
         private void RemoveOrder()
         {
             Console.WriteLine("Provide the following information to remove an order:");
-            Console.WriteLine("Do you want a list of your orders? (y/n)");
+            Console.Write("Do you want a list of your orders? (y/n) ");
             string? input = Console.ReadLine();
             while (true)
             {
-                if (input == "y")
+                try
                 {
-                    Customer? customer = GetCustomer();
-                    if (customer == null)
+                    if (input == "y")
                     {
-                        return;
+                        Customer? customer = GetCustomer();
+                        if (customer == null)
+                            return;
+                        var orders = _orderManager.GetCustomerOrders(customer);
+
+                        if (orders.Count == 0)
+                        {
+                            Console.WriteLine("No orders found.");
+                            return;
+                        }
+                        Console.WriteLine("Orders:");
+                        orders.ForEach(Console.WriteLine);
                     }
-                    if (_orderManager.GetCustomerOrders(customer).Count == 0)
+                    else if (input == "n")
                     {
-                        Console.WriteLine("No orders found.");
                         break;
                     }
-                    Console.WriteLine("Orders:");
-                    _orderManager.GetCustomerOrders(customer).ForEach(Console.WriteLine);
-                    break;
+                    else
+                    {
+                        Console.WriteLine("Invalid input. Please enter 'y' or 'n'.");
+                        return;
+                    }
                 }
-                else if (input == "n")
+                catch (ArgumentNullException e)
                 {
-                    break;
+                    Console.WriteLine($"Error: Missing input. {e.Message}");
+                    return;
                 }
-                else
+                catch (ArgumentException e)
                 {
-                    Console.WriteLine("Invalid input. Please enter 'y' or 'n'.");
-                    break;
+                    Console.WriteLine($"Error: {e.Message}");
+                    return;
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Unexpected error: {e.Message}");
+                    return;
+                }
+                break;
             }
 
             int orderId;
@@ -876,12 +897,9 @@ namespace Emil.BookStoreCLI
             {
                 Console.WriteLine($"Unexpected error: {e.Message}");
             }
-
-
         }
         private void RemoveDiscountFromInventory()
         {
-            // With code
             Console.WriteLine("Enter the code of the discount you want to remove:");
             string code;
             while (true)
@@ -917,6 +935,23 @@ namespace Emil.BookStoreCLI
             catch (ArgumentException e)
             {
                 Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (DiscountInUseException e)
+            {
+                Console.WriteLine($"Discount error: {e.Message}");
+                var booksWithDiscount = _bookStoreManager.GetBooksWithDiscount(code);
+                if (booksWithDiscount.Any())
+                {
+                    Console.WriteLine("The following books have this discount applied:");
+                    foreach (var book in booksWithDiscount)
+                    {
+                        Console.WriteLine($"Title: {book.Title}, Discount: {book.AppliedDiscount}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No books have this discount applied.");
+                }
             }
             catch (Exception e)
             {

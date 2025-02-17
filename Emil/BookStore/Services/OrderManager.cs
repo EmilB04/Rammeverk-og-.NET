@@ -98,9 +98,17 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when the customer has no orders.</exception>
         public List<Order> GetCustomerOrders(Customer customer)
         {
-            if (customer == null) throw new ArgumentNullException(nameof(customer));
-            if (!_orders.Any(o => o.Customer == customer)) throw new ArgumentException("Customer has no orders.");
-            return _orders.Where(o => o.Customer == customer).ToList();
+            if (customer == null) 
+                throw new ArgumentNullException(nameof(customer));
+            if (!_orders.Any(o => o.Customer == customer)) 
+                throw new ArgumentException("Customer has no orders.");
+            if (_orders.Count == 0)
+            {
+                Console.WriteLine("No orders in the store.");
+                return new List<Order>(); // Return an empty list
+            }
+            else
+                return _orders.Where(o => o.Customer == customer).ToList();
         }
 
         /// <summary>

@@ -40,7 +40,7 @@ namespace Emil.BookStoreCLI
 
             orderManager.NewOrder("Emil", "Berglund", "Harry Potter and the Half-Blood Prince", 3);
 
-            DiscountManager.AddDiscountToInventory(new Discount("25OFF", 25, DateTime.Parse("2021-06-01"), DateTime.Parse("2021-08-31")));
+            DiscountManager.AddDiscountToInventory(new Discount("25OFF", 25, DateTime.Parse("2024-06-01"), DateTime.Parse("2026-08-31")));
             DiscountManager.AddDiscountToBook(DiscountManager.GetDiscountByCode("25OFF"), bookStoreManager.GetBookByTitle("Harry Potter and the Half-Blood Prince"));
 
             Console.WriteLine("---------------------------------");

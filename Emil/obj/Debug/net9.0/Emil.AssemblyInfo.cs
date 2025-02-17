@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Emil")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+562410d88d78e22827b0d558855fca89f6e4db6a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d0fd170c755607dee0d9730de1819ba0fa4cd39")]
 [assembly: System.Reflection.AssemblyProductAttribute("Emil")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Emil")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

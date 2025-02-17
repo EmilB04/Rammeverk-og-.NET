@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using Emil.BookStore.Interfaces;
+using Emil.BookStore.Models;
 
 namespace Emil.BookStore
 {
@@ -260,6 +261,67 @@ namespace Emil.BookStore
             {
                 return false;
             }
+        }
+
+        public List<Book> GetAllBooks()
+        {
+            if (_books.Count == 0)
+                throw new ArgumentException("No books in the store.");
+            return _books;
+        }
+
+        public void PrintAllDiscountedBooks()
+        {
+            if (_books.Count == 0)
+            {
+                Console.WriteLine("No books in the store.");
+                return;
+            }
+
+            bool hasDiscountedBooks = false;
+            foreach (var book in _books)
+            {
+                if (book.IsDiscounted && book.AppliedDiscount != null)
+                {
+                    hasDiscountedBooks = true;
+                    var discount = book.AppliedDiscount;
+                    string discountDetails = discount.Amount.HasValue
+                        ? $"Amount: {discount.Amount.Value:C}"
+                        : $"Percentage: {discount.Percentage.Value}%";
+                    Console.WriteLine($"Title: {book.Title}, Discount: {discountDetails}");
+                }
+            }
+
+            if (!hasDiscountedBooks)
+            {
+                Console.WriteLine("No discounted books available.");
+            }
+        }
+
+        public List<Book> GetBooksWithDiscount(string discountCode)
+        {
+            if (string.IsNullOrWhiteSpace(discountCode))
+                throw new ArgumentException("Discount code cannot be null, empty, or whitespace.");
+
+            List<Book> discountedBooks = new List<Book>();
+            foreach (var book in _books)
+            {
+                if (book.IsDiscounted && book.AppliedDiscount != null)
+                {
+                    var discount = book.AppliedDiscount;
+                    if (discount.Code == discountCode)
+                    {
+                        discountedBooks.Add(book);
+                    }
+                }
+            }
+
+            if (discountedBooks.Count == 0)
+            {
+                Console.WriteLine("No books with the specified discount code found.");
+            }
+
+            return discountedBooks;
         }
     }
 }

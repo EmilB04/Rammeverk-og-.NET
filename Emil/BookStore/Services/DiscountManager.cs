@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Emil.BookStore.Exceptions;
 using Emil.BookStore.Interfaces;
 using Emil.BookStore.Models;
 
@@ -62,7 +64,7 @@ namespace Emil.BookStore.Services
             if (discounts.Count == 0)
                 throw new InvalidOperationException("No discounts available.");
             if (discount.DiscountInUse)
-                throw new InvalidOperationException("Discount is in use. Cannot remove discount.");
+                throw new DiscountInUseException("Discount is in use. Cannot remove discount.");
             discounts.Remove(discount);
             Console.WriteLine("Discount successfully removed.");
         }
@@ -99,6 +101,9 @@ namespace Emil.BookStore.Services
                 throw new InvalidOperationException("No discounts available.");
             if (discounts.Find(d => d.Code == code) == null)
                 throw new ArgumentException("Discount does not exist.");
+            // If the discount doesnt exist in the list, it will throw exception
+            
+
             return discounts.Find(d => d.Code == code);
         }
 
@@ -170,6 +175,7 @@ namespace Emil.BookStore.Services
         /// <param name="book">The book to add the discount to.</param>
         /// <exception cref="ArgumentNullException">Thrown when discount or book is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when discount has neither an amount nor a percentage.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when discount makes the book price negative.</exception>
         /// <exception cref="ArgumentException">Thrown when book already has a discount applied.</exception>
         public void AddDiscountToBook(Discount discount, Book book)
         {
@@ -181,18 +187,28 @@ namespace Emil.BookStore.Services
                 throw new ArgumentException("Book already has a discount applied.");
 
             if (discount.Amount.HasValue)
-            {
                 book.Price -= (double)discount.Amount;
-            }
             else if (discount.Percentage.HasValue)
-            {
                 book.Price -= book.Price * (discount.Percentage.Value / 100.0);
-            }
             else
-            {
                 throw new InvalidOperationException("Discount must have either an amount or a percentage.");
-            }
 
+            if (book.Price < 0)
+            {
+                if (discount.Amount.HasValue)
+                {
+                    book.Price += (double)discount.Amount;
+                }
+                else
+                {
+                    book.Price += book.Price * (discount.Percentage.GetValueOrDefault() / 100.0);
+                }
+                book.IsDiscounted = false;
+                discount.DiscountInUse = false;
+                Console.WriteLine($"Discount was not applied to book: {book.Title}");
+                throw new InvalidOperationException("Discount cannot make the book price negative.");
+            }
+            book.AppliedDiscount = discount;
             book.IsDiscounted = true;
             discount.DiscountInUse = true;
             Console.WriteLine($"Discount applied to book: {book.Title}");
@@ -217,6 +233,8 @@ namespace Emil.BookStore.Services
                 throw new ArgumentException($"The book {book.Title} does not have a discount applied.");
             if (!discount.DiscountInUse)
                 throw new ArgumentException("Discount is not applied to this book.");
+            if (!discounts.Contains(discount))
+                throw new ArgumentException("Discount does not exist.");
 
             if (discount.Amount.HasValue)
             {
@@ -231,9 +249,11 @@ namespace Emil.BookStore.Services
                 throw new InvalidOperationException("Discount must have either an amount or a percentage.");
             }
 
+            book.AppliedDiscount = null;
             book.IsDiscounted = false;
             discount.DiscountInUse = false;
             Console.WriteLine($"Discount removed from book: {book.Title}");
         }
+    
     }
 }
