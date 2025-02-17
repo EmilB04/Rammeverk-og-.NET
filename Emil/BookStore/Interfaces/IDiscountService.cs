@@ -47,26 +47,26 @@ namespace Emil.BookStore.Interfaces
         /// </summary>
         /// <param name="code">The code of the discount.</param>
         /// <returns>The discount with the specified code.</returns>
-        Discount GetDiscountByCode(string code);
+        Discount? GetDiscountByCode(string code);
 
         /// <summary>
         /// Retrieves a discount by its percentage.
         /// </summary>
         /// <param name="percentage">The percentage of the discount.</param>
         /// <returns>The discount with the specified percentage.</returns>
-        Discount GetDiscountByPercentage(int percentage);
+        Discount? GetDiscountByPercentage(int percentage);
 
         /// <summary>
         /// Retrieves a discount by its amount.
         /// </summary>
         /// <param name="amount">The amount of the discount.</param>
         /// <returns>The discount with the specified amount.</returns>
-        Discount GetDiscountByAmount(double amount);
+        Discount? GetDiscountByAmount(double amount);
 
         /// <summary>
         /// Retrieves all available discounts.
         /// </summary>
         /// <returns>A list of all discounts.</returns>
-        List<Discount> GetAllDiscounts();
+        List<Discount>? GetAllDiscounts();
     }
 }

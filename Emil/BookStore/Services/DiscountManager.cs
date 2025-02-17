@@ -36,10 +36,8 @@ namespace Emil.BookStore.Services
                 throw new ArgumentOutOfRangeException(nameof(discount.Percentage), "Percentage cannot be zero or negative. Enter a positive percentage.");
             if (discount.Percentage > 100)
                 throw new ArgumentOutOfRangeException(nameof(discount.Percentage), "Percentage cannot be higher than 100. Enter a valid percentage.");
-            if (discount.ValidFrom == null)
+            if (discount.ValidFrom == null || discount.ValidTo == null)
                 throw new ArgumentNullException(nameof(discount.ValidFrom), "Valid from date cannot be null. Enter a valid date.");
-            if (discount.ValidTo == null)
-                throw new ArgumentNullException(nameof(discount.ValidTo), "Valid to date cannot be null. Enter a valid date.");
             if (discount.ValidFrom > discount.ValidTo)
                 throw new ArgumentException("Valid from date cannot be later than valid to date. Enter a valid date range.");
             if (discounts.Contains(discount))
@@ -63,10 +61,10 @@ namespace Emil.BookStore.Services
                 throw new ArgumentException("Discount does not exist. Enter a valid discount.");
             if (discounts.Count == 0)
                 throw new InvalidOperationException("No discounts available.");
-            Console.WriteLine("Discount successfully removed.");
             if (discount.DiscountInUse)
                 throw new InvalidOperationException("Discount is in use. Cannot remove discount.");
             discounts.Remove(discount);
+            Console.WriteLine("Discount successfully removed.");
         }
 
         /// <summary>
@@ -93,7 +91,7 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when code is null, empty, or whitespace.</exception>
         /// <exception cref="InvalidOperationException">Thrown when no discounts are available.</exception>
         /// <exception cref="ArgumentException">Thrown when discount does not exist.</exception>
-        public Discount GetDiscountByCode(string code)
+        public Discount? GetDiscountByCode(string code)
         {
             if (string.IsNullOrWhiteSpace(code))
                 throw new ArgumentException("Code cannot be empty. Enter a valid code.");
@@ -113,7 +111,7 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentNullException">Thrown when discounts is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when no discounts are available.</exception>
         /// <exception cref="ArgumentException">Thrown when discount does not exist.</exception>
-        public Discount GetDiscountByPercentage(int percentage)
+        public Discount? GetDiscountByPercentage(int percentage)
         {
             if (percentage <= 0)
                 throw new ArgumentOutOfRangeException(nameof(percentage), "Percentage cannot be zero or negative. Enter a positive percentage.");
@@ -137,7 +135,7 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentNullException">Thrown when discounts is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when no discounts are available.</exception>
         /// <exception cref="ArgumentException">Thrown when discount does not exist.</exception>
-        public Discount GetDiscountByAmount(double amount)
+        public Discount? GetDiscountByAmount(double amount)
         {
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount), "Amount cannot be zero or negative. Enter a positive amount.");
@@ -156,7 +154,7 @@ namespace Emil.BookStore.Services
         /// <returns>A list of all discounts in the inventory.</returns>
         /// <exception cref="InvalidOperationException">Thrown when no discounts are available.</exception>
         /// <exception cref="ArgumentNullException">Thrown when discounts is null.</exception>
-        public List<Discount> GetAllDiscounts()
+        public List<Discount>? GetAllDiscounts()
         {
             if (discounts.Count == 0)
                 throw new InvalidOperationException("No discounts available.");
@@ -217,10 +215,8 @@ namespace Emil.BookStore.Services
                 throw new ArgumentNullException(nameof(book), "Book cannot be null. Enter a valid book.");
             if (!book.IsDiscounted)
                 throw new ArgumentException($"The book {book.Title} does not have a discount applied.");
-            /*
-            if (discount.Code != book.DiscountCode)
-                throw new ArgumentException($"The discount {discount.Code} is not applied to the book {book.Title}.");
-            */
+            if (!discount.DiscountInUse)
+                throw new ArgumentException("Discount is not applied to this book.");
 
             if (discount.Amount.HasValue)
             {
