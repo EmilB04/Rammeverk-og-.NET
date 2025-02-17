@@ -763,6 +763,26 @@ namespace Emil.BookStoreCLI
                 }
             }
 
+            Console.WriteLine("Do want to list possible dicounts? (y/n)");
+            string? input = Console.ReadLine();
+            while (true)
+            {
+                if (input == "y")
+                {
+                    _discountManager.PrintAllDiscounts();
+                    break;
+                }
+                else if (input == "n")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter 'y' or 'n'.");
+                    break;
+                }
+            }
+
             Discount? discount;
             while (true)
             {
