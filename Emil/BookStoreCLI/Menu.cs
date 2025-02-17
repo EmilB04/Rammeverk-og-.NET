@@ -854,8 +854,26 @@ namespace Emil.BookStoreCLI
                 }
                 else
                 {
-                    book = _bookStoreManager.GetBookByTitle(titleOrIsbn) ?? _bookStoreManager.GetBookByIsbn(titleOrIsbn);
-                    break;
+                    try
+                    {
+                        book = _bookStoreManager.GetBookByTitle(titleOrIsbn) ?? _bookStoreManager.GetBookByIsbn(titleOrIsbn);
+                        if (book == null)
+                            return;
+                        else
+                            break;
+                    }
+                    catch (ArgumentNullException e)
+                    {
+                        Console.WriteLine($"Error: Missing input. {e.Message}");
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine($"Error: {e.Message}");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Unexpected error: {e.Message}");
+                    }
                 }
             }
             Discount? discount;
@@ -869,21 +887,33 @@ namespace Emil.BookStoreCLI
                 }
                 else
                 {
-                    discount = _discountManager.GetDiscountByCode(code);
-                    break;
+                    try
+                    {
+                        discount = _discountManager.GetDiscountByCode(code);
+                        if (discount == null)
+                            return;
+                        else
+                            break;
+                    }
+                    catch (ArgumentNullException e)
+                    {
+                        Console.WriteLine($"Error: Missing input. {e.Message}");
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine($"Error: {e.Message}");
+                        return;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Unexpected error: {e.Message}");
+                    }
                 }
             }
 
             try
             {
-                if (book != null && discount != null)
-                {
-                    _discountManager.RemoveDiscountFromBook(discount, book);
-                }
-                else
-                {
-                    Console.WriteLine("Book or discount not found.");
-                }
+                _discountManager.RemoveDiscountFromBook(discount, book);
             }
             catch (ArgumentNullException e)
             {

@@ -99,12 +99,15 @@ namespace Emil.BookStore.Services
                 throw new ArgumentException("Code cannot be empty. Enter a valid code.");
             if (discounts.Count == 0)
                 throw new InvalidOperationException("No discounts available.");
-            if (discounts.Find(d => d.Code == code) == null)
+            if (discounts == null)
+                throw new ArgumentNullException(nameof(discounts), "Discounts cannot be null. Enter a valid discount.");
+            foreach (var discount in discounts)
+            {
+                if (discount.Code == code)
+                    return discount;
                 throw new ArgumentException("Discount does not exist.");
-            // If the discount doesnt exist in the list, it will throw exception
-            
-
-            return discounts.Find(d => d.Code == code);
+            }
+            return null;
         }
 
         /// <summary>
@@ -128,7 +131,9 @@ namespace Emil.BookStore.Services
                 throw new InvalidOperationException("No discounts available.");
             if (discounts.Find(d => d.Percentage == percentage) == null)
                 throw new ArgumentException("Discount does not exist.");
-            return discounts.Find(d => d.Percentage == percentage);
+            if (discounts.Find(d => d.Percentage == percentage) != null)
+                return discounts.Find(d => d.Percentage == percentage);
+            return null;
         }
 
         /// <summary>
@@ -150,7 +155,9 @@ namespace Emil.BookStore.Services
                 throw new InvalidOperationException("No discounts available.");
             if (discounts.Find(d => d.Amount == amount) == null)
                 throw new ArgumentException("Discount does not exist.");
-            return discounts.Find(d => d.Amount == amount);
+            if (discounts.Find(d => d.Amount == amount) != null)
+                return discounts.Find(d => d.Amount == amount);
+            return null;
         }
 
         /// <summary>
@@ -165,7 +172,9 @@ namespace Emil.BookStore.Services
                 throw new InvalidOperationException("No discounts available.");
             if (discounts == null)
                 throw new ArgumentNullException(nameof(discounts), "No discounts available.");
-            return discounts;
+            if (discounts.Count > 0)
+                return discounts;
+            return null;
         }
 
         /// <summary>
