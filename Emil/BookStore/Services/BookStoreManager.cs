@@ -88,12 +88,12 @@ namespace Emil.BookStore
 
         /// <summary>
         /// Gets a book by title.
-        /// Returns the book if found.
+        /// Returns the book if found or null if not found.
         /// </summary>
         /// <param name="title">The title of the book to be retrieved.</param>
         /// <returns>The book with the specified title, if found.</returns>
         /// <exception cref="ArgumentException">Thrown when the title is null, empty, or whitespace.</exception>
-        public Book GetBookByTitle(string title)
+        public Book? GetBookByTitle(string title)
         {
             if (string.IsNullOrWhiteSpace(title))
             {
@@ -115,12 +115,12 @@ namespace Emil.BookStore
 
         /// <summary>
         /// Gets a book by ISBN.
-        /// Returns the book if found.
+        /// Returns the book if found, or null if not found.
         /// </summary>
         /// <param name="isbn">The ISBN of the book to be retrieved.</param>
         /// <returns>The book with the specified ISBN, if found.</returns>
         /// <exception cref="ArgumentException">Thrown when the ISBN is null, empty, or whitespace.</exception>
-        public Book GetBookByIsbn(string isbn)
+        public Book? GetBookByIsbn(string isbn)
         {
             if (string.IsNullOrWhiteSpace(isbn))
             {
@@ -140,11 +140,27 @@ namespace Emil.BookStore
             return null; // Return null if no book is found
         }
 
-        public Book GetBookByTitleOrIsbn(string titleOrIsbn)
+        /// <summary>
+        /// Gets a book by title or ISBN.
+        /// Returns the book if found, or null if not found.
+        /// </summary>
+        /// <param name="titleOrIsbn">The title or ISBN of the book to be retrieved.</param>
+        /// <returns>The book with the specified title or ISBN, if found.</returns>
+        /// <exception cref="ArgumentException">Thrown when the title or ISBN is null, empty, or whitespace.</exception>
+        public Book? GetBookByTitleOrIsbn(string titleOrIsbn)
         {
-            if (string.IsNullOrWhiteSpace(titleOrIsbn)) throw new ArgumentException(nameof(titleOrIsbn), "Title or ISBN cannot be null, empty, or whitespace." + "Enter a valid title or ISBN.");
+            if (string.IsNullOrWhiteSpace(titleOrIsbn)) 
+                throw new ArgumentException(nameof(titleOrIsbn), "Title or ISBN cannot be null, empty, or whitespace. Enter a valid title or ISBN.");
             var book = GetBookByTitle(titleOrIsbn) ?? GetBookByIsbn(titleOrIsbn);
-            return book;
+            if (book != null)
+            {
+                return book;
+            }
+            else
+            {
+                Console.WriteLine($"Book with title or ISBN '{titleOrIsbn}' was not found");
+                return null;
+            }
         }
 
         /// <summary>
@@ -154,7 +170,7 @@ namespace Emil.BookStore
         /// <param name="author">The author whose books are to be retrieved.</param>
         /// <returns>A list of books by the specified author.</returns>
         /// <exception cref="ArgumentException">Thrown when the author is null, empty, or whitespace.</exception>
-        public List<Book> GetBooksByAuthor(string author)
+        public List<Book>? GetBooksByAuthor(string author)
         {
             if (string.IsNullOrWhiteSpace(author))
             {
@@ -179,14 +195,18 @@ namespace Emil.BookStore
         /// </summary>
         /// <param name="book">The book to update.</param>
         /// <param name="quantityChange">The quantity to add or remove.</param>
-        /// <exception cref="ArgumentException">Thrown when the book is null, or when the quantity change is zero or negative.</exception>
-        /// <exception cref="ArgumentException">Thrown when the book is not found.</exception>
+        /// <exception cref="ArgumentException">Thrown when the book is null or not found.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the quantity is negative.</exception>
         public void UpdateBookStock(Book book, int quantityChange)
         {
             if (quantityChange <= 0)
                 throw new ArgumentException(nameof(quantityChange), "Quanitity change cannot be 0 or negative. Enter a positive quantity.");
             if (book == null)
                 throw new ArgumentException(nameof(book), "Book not found.");
+            if (!_books.Contains(book))
+                throw new ArgumentException("Book not found.");
+            if (book.Quantity + quantityChange < 0)
+                throw new ArgumentOutOfRangeException(nameof(book.Quantity), "Quantity cannot be negative. Enter a positive quantity.");
             else
             {
                 book.Quantity += quantityChange;

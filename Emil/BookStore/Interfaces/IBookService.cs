@@ -37,28 +37,28 @@ namespace Emil.BookStore.Interfaces
         /// </summary>
         /// <param name="title">The title of the book.</param>
         /// <returns>The book with the specified title.</returns>
-        Book GetBookByTitle(string title);
+        Book? GetBookByTitle(string title);
 
         /// <summary>
         /// Retrieves a book by its ISBN.
         /// </summary>
         /// <param name="isbn">The ISBN of the book.</param>
         /// <returns>The book with the specified ISBN.</returns>
-        Book GetBookByIsbn(string isbn);
+        Book? GetBookByIsbn(string isbn);
 
         /// <summary>
         /// Retrieves a book by its title or ISBN.
         /// </summary>
         /// <param name="titleOrIsbn">The title or ISBN of the book.</param>
         /// <returns>The book with the specified title or ISBN.</returns>
-        Book GetBookByTitleOrIsbn(string titleOrIsbn);
+        Book? GetBookByTitleOrIsbn(string titleOrIsbn);
 
         /// <summary>
         /// Retrieves a list of books by the author's name.
         /// </summary>
         /// <param name="author">The name of the author.</param>
         /// <returns>A list of books by the specified author.</returns>
-        List<Book> GetBooksByAuthor(string author);
+        List<Book>? GetBooksByAuthor(string author);
 
         /// <summary>
         /// Updates the stock of a book.
