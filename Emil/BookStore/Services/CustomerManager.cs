@@ -42,7 +42,6 @@ namespace Emil.BookStore.Services
         }
 
         /// <summary>
-        /// NOT IMPLEMENTED YET.
         /// Removes a customer from the store.
         /// Throws ArgumentNullException if customer is null.
         /// </summary>
@@ -86,12 +85,13 @@ namespace Emil.BookStore.Services
         /// <param name="lastName">The last name of the customer</param>
         /// <returns>The customer with the specified first name and last name, if found.</returns>
         /// <exception cref="ArgumentException">Thrown when the first name or last name is null, empty, or whitespace.</exception>
-        public Customer GetCustomerByName(string firstName, string lastName)
+        /// <exception cref="ArgumentException">Thrown when the customer with the specified first name and last name is not found.</exception>
+        public Customer? GetCustomerByName(string firstName, string lastName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
-                throw new ArgumentException(nameof(firstName), "First name cannot be null, empty, or whitespace." + "Please enter a valid first name.");
+                throw new ArgumentException("First name cannot be null, empty, or whitespace. Please enter a valid first name.", nameof(firstName));
             if (string.IsNullOrWhiteSpace(lastName))
-                throw new ArgumentException(nameof(lastName), "Last name cannot be null, empty, or whitespace." + "Please enter a valid last name.");
+                throw new ArgumentException("Last name cannot be null, empty, or whitespace. Please enter a valid last name.", nameof(lastName));
             else
             {
                 foreach (var customer in _customers)
@@ -101,9 +101,9 @@ namespace Emil.BookStore.Services
                         return customer;
                     }
                 }
-                Console.WriteLine($"Customer '{firstName} {lastName}' not found");
+                Console.WriteLine($"Customer with name '{firstName} {lastName}' was not found");
+                return null;
             }
-            return null;
         }
         /// <summary>
         /// Gets a customer by first name.
@@ -111,7 +111,7 @@ namespace Emil.BookStore.Services
         /// <param name="firstName">The first name of the customer</param>
         /// <returns>The customer with the specified first name, if found.</returns>
         /// <exception cref="ArgumentException">Thrown when the first name is null, empty, or whitespace.</exception>
-        public Customer GetCustomerByFirstName(string firstName)
+        public Customer? GetCustomerByFirstName(string firstName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
                 throw new ArgumentException(nameof(firstName), "First name cannot be null, empty, or whitespace." + "Please enter a valid first name.");
@@ -136,7 +136,7 @@ namespace Emil.BookStore.Services
         /// <param name="lastName">The last name of the customer</param>
         /// <returns>The customer with the specified last name, if found.</returns>
         /// <exception cref="ArgumentException">Thrown when the last name is null, empty, or whitespace.</exception>
-        public Customer GetCustomerByLastName(string lastName)
+        public Customer? GetCustomerByLastName(string lastName)
         {
             if (string.IsNullOrWhiteSpace(lastName))
                 throw new ArgumentException(nameof(lastName), "Last name cannot be null, empty, or whitespace." + "Please enter a valid last name.");
@@ -161,7 +161,7 @@ namespace Emil.BookStore.Services
         /// <param name="email">The email of the customer</param>
         /// <returns>The customer with the specified email, if found.</returns>
         /// <exception cref="ArgumentException">Thrown when the email is null, empty, or whitespace.</exception>
-        public Customer GetCustomerByEmail(string email)
+        public Customer? GetCustomerByEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
                 throw new ArgumentException(nameof(email), "Email cannot be null, empty, or whitespace." + "Please enter a valid email.");
@@ -185,11 +185,14 @@ namespace Emil.BookStore.Services
         /// </summary>
         /// <param name="phoneNumber">The phone numer of the customer</param>
         /// <returns>The customer with the specified phone number, if found.</returns>
-        /// <exception cref="ArgumentException">Thrown when the phone number is zero.</exception>
-        public Customer GetCustomerByPhoneNumber(int phoneNumber)
+        /// <exception cref="ArgumentException">Thrown when the phone number is zer.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the phone number is negative.</exception>
+        public Customer? GetCustomerByPhoneNumber(int phoneNumber)
         {
             if (phoneNumber == 0)
                 throw new ArgumentException("Phone number cannot be zero.", nameof(phoneNumber));
+            if (phoneNumber < 0)
+                throw new ArgumentOutOfRangeException("Phone number cannot be negative.", nameof(phoneNumber));
             foreach (var customer in _customers)
             {
                 if (customer.PhoneNumber == phoneNumber)
@@ -204,9 +207,13 @@ namespace Emil.BookStore.Services
         /// <summary>
         /// Gets all customers in the store.
         /// </summary>
-        /// <returns>A list of customers</returns>
+        /// <returns>A list of customers</returns
         public List<Customer> GetAllCustomers()
         {
+            if (_customers.Count == 0)
+            {
+                Console.WriteLine("No customers in the store.");
+            }
             return _customers;
         }
     }

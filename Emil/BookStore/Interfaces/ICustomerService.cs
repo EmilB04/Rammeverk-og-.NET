@@ -37,14 +37,14 @@ namespace Emil.BookStore.Interfaces
         /// </summary>
         /// <param name="email">The email of the customer.</param>
         /// <returns>The customer with the specified email.</returns>
-        Customer GetCustomerByEmail(string email);
+        Customer? GetCustomerByEmail(string email);
 
         /// <summary>
         /// Gets a customer by their phone number.
         /// </summary>
         /// <param name="phoneNumber">The phone number of the customer.</param>
         /// <returns>The customer with the specified phone number.</returns>
-        Customer GetCustomerByPhoneNumber(int phoneNumber);
+        Customer? GetCustomerByPhoneNumber(int phoneNumber);
 
         /// <summary>
         /// Gets a customer by their first and last name.
@@ -52,21 +52,21 @@ namespace Emil.BookStore.Interfaces
         /// <param name="firstName">The first name of the customer.</param>
         /// <param name="lastName">The last name of the customer.</param>
         /// <returns>The customer with the specified first and last name.</returns>
-        Customer GetCustomerByName(string firstName, string lastName);
+        Customer? GetCustomerByName(string firstName, string lastName);
 
         /// <summary>
         /// Gets a customer by their first name.
         /// </summary>
         /// <param name="firstName">The first name of the customer.</param>
         /// <returns>The customer with the specified first name.</returns>
-        Customer GetCustomerByFirstName(string firstName);
+        Customer? GetCustomerByFirstName(string firstName);
 
         /// <summary>
         /// Gets a customer by their last name.
         /// </summary>
         /// <param name="lastName">The last name of the customer.</param>
         /// <returns>The customer with the specified last name.</returns>
-        Customer GetCustomerByLastName(string lastName);
+        Customer? GetCustomerByLastName(string lastName);
 
         /// <summary>
         /// Gets all customers.
