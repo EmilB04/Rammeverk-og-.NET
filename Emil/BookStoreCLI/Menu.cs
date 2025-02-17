@@ -33,12 +33,11 @@ namespace Emil.BookStoreCLI
         {
             while (true)
             {
-                Console.WriteLine();
-                Console.WriteLine("1. Add a book");
-                Console.WriteLine("2. Add a customer");
-                Console.WriteLine("3. New order");
+                Console.WriteLine("1. Book options");
+                Console.WriteLine("2. Customer options");
+                Console.WriteLine("3. Order options");
                 Console.WriteLine("4. Print options");
-                Console.WriteLine("5. Discount service");
+                Console.WriteLine("5. Discount options");
                 Console.WriteLine("6. Exit");
                 Console.WriteLine("Choose an option:");
                 var input = Console.ReadLine();
@@ -46,11 +45,11 @@ namespace Emil.BookStoreCLI
 
                 switch (input)
                 {
-                    case "1": AddBook(); break;
-                    case "2": AddCustomer(); break;
-                    case "3": NewOrder(); break;
+                    case "1": ShowBookOptions(); break;
+                    case "2": ShowCustomerOptions(); break;
+                    case "3": ShowOrderOptions(); break;
                     case "4": ShowPrintOptions(); break;
-                    case "5": ShowDiscountOptions(); break;
+                    case "5": AddDiscountToInventoryOptions(); break;
                     case "6": Console.WriteLine("Goodbye!"); return;
                     default: Console.WriteLine("Invalid option."); break;
                 }
@@ -58,25 +57,88 @@ namespace Emil.BookStoreCLI
         }
 
         // Additional menu options
+        private void ShowBookOptions()
+        {
+            while (true)
+            {
+                Console.WriteLine("1. Add a book");
+                Console.WriteLine("2. Remove a book");
+                Console.WriteLine("3. Go back");
+                Console.WriteLine("Choose an option:");
+                var input = Console.ReadLine();
+                Console.WriteLine();
+
+                switch (input)
+                {
+                    case "1": AddBook(); break;
+                    case "2": RemoveBook(); break;
+                    case "3": return;
+                    default: Console.WriteLine("Invalid option."); break;
+                }
+            }
+        }
+        private void ShowCustomerOptions()
+        {
+            while (true)
+            {
+                Console.WriteLine("1. Add a customer");
+                Console.WriteLine("2. Remove a customer");
+                Console.WriteLine("3. Go back");
+                Console.WriteLine("Choose an option:");
+                var input = Console.ReadLine();
+                Console.WriteLine();
+
+                switch (input)
+                {
+                    case "1": AddCustomer(); break;
+                    case "2": RemoveCustomer(); break;
+                    case "3": return;
+                    default: Console.WriteLine("Invalid option."); break;
+                }
+            }
+        }
+        private void ShowOrderOptions()
+        {
+            while (true)
+            {
+                Console.WriteLine("1. Create a new order");
+                Console.WriteLine("2. Remove an order");
+                Console.WriteLine("3. Go back");
+                Console.WriteLine("Choose an option:");
+                var input = Console.ReadLine();
+                Console.WriteLine();
+
+                switch (input)
+                {
+                    case "1": NewOrder(); break;
+                    case "2": RemoveOrder(); break;
+                    case "3": return;
+                    default: Console.WriteLine("Invalid option."); break;
+                }
+            }
+        }
         private void ShowPrintOptions()
         {
-            Console.WriteLine("1. Print all books");
-            Console.WriteLine("2. Print all customers");
-            Console.WriteLine("3. Print all orders");
-            Console.WriteLine("4. Print all discounts");
-            Console.WriteLine("5. Go back");
-            Console.WriteLine("Choose an option:");
-            var input = Console.ReadLine();
-            Console.WriteLine();
-
-            switch (input)
+            while (true)
             {
-                case "1": _bookStoreManager.PrintAllBooks(); break;
-                case "2": _customerManager.PrintAllCustomers(); break;
-                case "3": _orderManager.PrintAllOrders(); break;
-                case "4": _discountManager.PrintAllDiscounts(); break;
-                case "5": return;
-                default: Console.WriteLine("Invalid option."); break;
+                Console.WriteLine("1. Print all books");
+                Console.WriteLine("2. Print all customers");
+                Console.WriteLine("3. Print all orders");
+                Console.WriteLine("4. Print all discounts");
+                Console.WriteLine("5. Go back");
+                Console.WriteLine("Choose an option:");
+                var input = Console.ReadLine();
+                Console.WriteLine();
+
+                switch (input)
+                {
+                    case "1": _bookStoreManager.PrintAllBooks(); break;
+                    case "2": _customerManager.PrintAllCustomers(); break;
+                    case "3": _orderManager.PrintAllOrders(); break;
+                    case "4": _discountManager.PrintAllDiscounts(); break;
+                    case "5": return;
+                    default: Console.WriteLine("Invalid option."); break;
+                }
             }
         }
         private void ShowDiscountOptions()
@@ -98,7 +160,7 @@ namespace Emil.BookStoreCLI
 
                 switch (input)
                 {
-                    case "1": AddDiscountToInventory(); break;
+                    case "1": AddDiscountToInventoryOptions(); break;
                     case "2": AddDiscountToBook(); break;
                     case "3": RemoveDiscountFromInventory(); break;
                     case "4": RemoveDiscountFromBook(); break;
@@ -110,7 +172,7 @@ namespace Emil.BookStoreCLI
                 }
             }
         }
-        private void AddDiscountToInventory()
+        private void AddDiscountToInventoryOptions()
         {
             // Give choice of discount type
             Console.WriteLine("Choose a discount type:");
@@ -130,7 +192,7 @@ namespace Emil.BookStoreCLI
             }
         }
 
-        // Add book, customer, and order
+        // Book Options
         private void AddBook()
         {
             Console.WriteLine("Enter the necessary information to add a book to the store.");
@@ -227,6 +289,44 @@ namespace Emil.BookStoreCLI
                 Console.WriteLine($"Unexpected error: {e.Message}");
             }
         }
+        private void RemoveBook()
+        {
+            Console.WriteLine("Provide the following information to remove a book:");
+            string titleOrIsbn;
+            while (true)
+            {
+                Console.Write("Title or ISBN: ");
+                titleOrIsbn = Console.ReadLine() ?? throw new ArgumentNullException(nameof(titleOrIsbn));
+                if (string.IsNullOrWhiteSpace(titleOrIsbn))
+                {
+                    Console.WriteLine("Title or ISBN cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+            
+            try
+            {
+                Book book = _bookStoreManager.GetBookByTitle(titleOrIsbn) ?? _bookStoreManager.GetBookByIsbn(titleOrIsbn);
+                _bookStoreManager.RemoveBook(book);
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+            }
+        }
+
+        // Customer Options
         private void AddCustomer()
         {
             Console.WriteLine("Enter the necessary information to add a customer to the store.");
@@ -308,40 +408,34 @@ namespace Emil.BookStoreCLI
                 Console.WriteLine($"Unexpected error: {e.Message}");
             }
         }
+        private void RemoveCustomer()
+        {
+            Console.WriteLine("Provide the following information to remove a customer:");
+            try
+            {
+                _customerManager.RemoveCustomer(GetCustomer() ?? throw new ArgumentNullException("Customer not found."));
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+            }
+
+        }
+
+        // Order Options
         private void NewOrder()
         {
             Console.WriteLine("Provide the following information to create an order:");
+            Customer customer = GetCustomer() ?? throw new ArgumentNullException("Customer not found.");
 
-            string firstName;
-            while (true) // firstName
-            {
-                Console.Write("Customer first name: ");
-                firstName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(firstName));
-                if (string.IsNullOrWhiteSpace(firstName))
-                {
-                    Console.WriteLine("First name cannot be empty.");
-                }
-                else
-                {
-                    break;
-                }
-            }
-            
-            string lastName;
-            while (true) // lastName
-            {
-                Console.Write("Customer last name: ");
-                lastName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(lastName));
-                if (string.IsNullOrWhiteSpace(lastName))
-                {
-                    Console.WriteLine("Last name cannot be empty.");
-                }
-                else
-                {
-                    break;
-                }
-            }
-            
             string titleOrIsbn;
             while (true) // titleOrIsbn
             {
@@ -350,7 +444,7 @@ namespace Emil.BookStoreCLI
                 if (string.IsNullOrWhiteSpace(titleOrIsbn))
                 {
                     Console.WriteLine("Title or ISBN cannot be empty.");
-                    
+
                 }
                 else
                 {
@@ -366,7 +460,7 @@ namespace Emil.BookStoreCLI
                 if (quantity <= 0)
                 {
                     Console.WriteLine("Quantity must be greater than 0.");
-                    
+
                 }
                 else
                 {
@@ -376,7 +470,7 @@ namespace Emil.BookStoreCLI
 
             try
             {
-                _orderManager.NewOrder(firstName, lastName, titleOrIsbn, quantity);
+                _orderManager.NewOrder(customer.FirstName, customer.LastName, titleOrIsbn, quantity);
             }
             catch (ArgumentNullException e)
             {
@@ -391,6 +485,65 @@ namespace Emil.BookStoreCLI
                 Console.WriteLine($"Unexpected error: {e.Message}");
             }
         }
+        private void RemoveOrder()
+        {
+            Console.WriteLine("Provide the following information to remove an order:");
+            Console.WriteLine("Do you want a list of your orders? (y/n)");
+            string input = Console.ReadLine();
+            while (true)
+            {
+                if (input == "y")
+                {
+                    Customer customer = GetCustomer() ?? throw new ArgumentNullException("Customer not found.");
+                    Console.WriteLine("Orders:");
+                    _orderManager.GetCustomerOrders(customer).ForEach(Console.WriteLine);
+                    break;
+                }
+                else if (input == "n")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter 'y' or 'n'.");
+                }
+            }
+
+            int orderId;
+            while (true)
+            {
+                Console.Write("Order ID: ");
+                string orderIdInput = Console.ReadLine() ?? throw new ArgumentNullException(nameof(orderId));
+                if (int.TryParse(orderIdInput, out orderId) && orderId > 0)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid order ID. Please enter a positive integer.");
+                }
+            }
+
+            try
+            {
+                Order order = _orderManager.GetOrderByOrderId(orderId);
+                _orderManager.RemoveOrder(order);
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+            }
+        }
+
+
 
         // Add discount to inventory or book
         private void AddDiscountWithPercentage()
@@ -435,7 +588,7 @@ namespace Emil.BookStoreCLI
                 if (DateTime.TryParseExact(startDateInput, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out startDate))
                 {
                     break;
-                }   
+                }
                 else
                 {
                     Console.WriteLine("Invalid date. Please enter a valid date.");
@@ -457,7 +610,7 @@ namespace Emil.BookStoreCLI
                 }
             }
 
-            try 
+            try
             {
                 _discountManager.AddDiscountToInventory(new Discount(code, percentage, startDate, endDate));
             }
@@ -519,7 +672,7 @@ namespace Emil.BookStoreCLI
                 if (DateTime.TryParseExact(startDateInput, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out startDate))
                 {
                     break;
-                }   
+                }
                 else
                 {
                     Console.WriteLine("Invalid date. Please enter a valid date.");
@@ -611,7 +764,7 @@ namespace Emil.BookStoreCLI
                 Console.WriteLine($"Unexpected error: {e.Message}");
             }
         }
-        
+
         // Remove discount from inventory or book
         private void RemoveDiscountFromBook()
         {
@@ -713,7 +866,7 @@ namespace Emil.BookStoreCLI
             }
 
         }
-    
+
         // Get discount by code, percentage, or amount
         private void GetDiscountByCode()
         {
@@ -831,7 +984,60 @@ namespace Emil.BookStoreCLI
                 Console.WriteLine($"Unexpected error: {e.Message}");
             }
         }
-    
-    
+
+
+
+
+        private Customer? GetCustomer()
+        {
+            string firstName;
+            while (true)
+            {
+                Console.Write("First name: ");
+                firstName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(firstName));
+                if (string.IsNullOrWhiteSpace(firstName))
+                {
+                    Console.WriteLine("First name cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            string lastName;
+            while (true)
+            {
+                Console.Write("Last name: ");
+                lastName = Console.ReadLine() ?? throw new ArgumentNullException(nameof(lastName));
+                if (string.IsNullOrWhiteSpace(lastName))
+                {
+                    Console.WriteLine("Last name cannot be empty.");
+                }
+                else
+                {
+                    break;
+                }
+            }
+            try
+            {
+                return _customerManager.GetCustomerByName(firstName, lastName);
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine($"Error: Missing input. {e.Message}");
+                return null;
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+                return null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Unexpected error: {e.Message}");
+                return null;
+            }
+        }
     }
 }

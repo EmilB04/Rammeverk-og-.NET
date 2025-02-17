@@ -57,6 +57,7 @@ namespace Emil.BookStore.Services
             else
             {
                 _customers.Remove(customer);
+                Console.WriteLine("Customer removed successfully.");
             }
         }
 
