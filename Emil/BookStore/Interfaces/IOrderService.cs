@@ -31,17 +31,24 @@ namespace Emil.BookStore.Interfaces
         void PrintAllOrders();
 
         /// <summary>
+        /// Gets all orders for a customer.
+        /// </summary>
+        /// <param name="customer">The customer whose orders are to be retrieved.</param>
+        /// <returns>A list of orders made by the specified customer.</returns>
+        List<Order> GetCustomerOrders(Customer customer);
+
+        /// <summary>
         /// Gets an order by its order ID.
         /// </summary>
         /// <param name="orderId">The ID of the order.</param>
         /// <returns>The order with the specified ID.</returns>
-        Order GetOrderByOrderId(int orderId);
+        Order? GetOrderByOrderId(int orderId);
 
         /// <summary>
         /// Gets orders by the customer's name.
         /// </summary>
         /// <param name="customer">The customer whose orders are to be retrieved.</param>
         /// <returns>A list of orders made by the specified customer.</returns>
-        List<Order> GetOrdersByCustomerName(Customer customer);
+        List<Order>? GetOrdersByCustomerName(Customer customer);
     }
 }

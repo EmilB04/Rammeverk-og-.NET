@@ -49,7 +49,7 @@ namespace Emil.BookStoreCLI
                     case "2": ShowCustomerOptions(); break;
                     case "3": ShowOrderOptions(); break;
                     case "4": ShowPrintOptions(); break;
-                    case "5": AddDiscountToInventoryOptions(); break;
+                    case "5": ShowDiscountOptions(); break;
                     case "6": Console.WriteLine("Goodbye!"); return;
                     default: Console.WriteLine("Invalid option."); break;
                 }
@@ -174,7 +174,6 @@ namespace Emil.BookStoreCLI
         }
         private void AddDiscountToInventoryOptions()
         {
-            // Give choice of discount type
             Console.WriteLine("Choose a discount type:");
             Console.WriteLine("1. Percentage");
             Console.WriteLine("2. Amount");
@@ -309,8 +308,15 @@ namespace Emil.BookStoreCLI
             
             try
             {
-                Book book = _bookStoreManager.GetBookByTitle(titleOrIsbn) ?? _bookStoreManager.GetBookByIsbn(titleOrIsbn);
-                _bookStoreManager.RemoveBook(book);
+                Book? book = _bookStoreManager.GetBookByTitle(titleOrIsbn) ?? _bookStoreManager.GetBookByIsbn(titleOrIsbn);
+                if (book != null)
+                {
+                    _bookStoreManager.RemoveBook(book);
+                }
+                else
+                {
+                    Console.WriteLine("Book not found.");
+                }
             }
             catch (ArgumentNullException e)
             {
@@ -489,7 +495,7 @@ namespace Emil.BookStoreCLI
         {
             Console.WriteLine("Provide the following information to remove an order:");
             Console.WriteLine("Do you want a list of your orders? (y/n)");
-            string input = Console.ReadLine();
+            string? input = Console.ReadLine();
             while (true)
             {
                 if (input == "y")
@@ -526,8 +532,15 @@ namespace Emil.BookStoreCLI
 
             try
             {
-                Order order = _orderManager.GetOrderByOrderId(orderId);
-                _orderManager.RemoveOrder(order);
+                Order? order = _orderManager.GetOrderByOrderId(orderId);
+                if (order != null)
+                {
+                    _orderManager.RemoveOrder(order);
+                }
+                else
+                {
+                    Console.WriteLine("Order not found.");
+                }
             }
             catch (ArgumentNullException e)
             {
@@ -715,7 +728,7 @@ namespace Emil.BookStoreCLI
         {
             Console.WriteLine("Enter the necessary information to apply a discount to a book.");
 
-            Book book;
+            Book? book;
             while (true)
             {
                 Console.Write("Enter the title or ISBN of the book: ");
@@ -731,7 +744,7 @@ namespace Emil.BookStoreCLI
                 }
             }
 
-            Discount discount;
+            Discount? discount;
             while (true)
             {
                 Console.Write("Enter the code of the discount: ");
@@ -770,7 +783,7 @@ namespace Emil.BookStoreCLI
         {
             Console.WriteLine("Enter the necessary information to remove a discount from a book.");
 
-            Book book;
+            Book? book;
             while (true)
             {
                 Console.Write("Enter the title or ISBN of the book: ");
@@ -791,7 +804,7 @@ namespace Emil.BookStoreCLI
                 }
             }
 
-            Discount discount;
+            Discount? discount;
             while (true)
             {
                 Console.Write("Enter the code of the discount: ");
@@ -850,7 +863,15 @@ namespace Emil.BookStoreCLI
 
             try
             {
-                _discountManager.RemoveDiscountFromInventory(_discountManager.GetDiscountByCode(code));
+                var discount = _discountManager.GetDiscountByCode(code);
+                if (discount != null)
+                {
+                    _discountManager.RemoveDiscountFromInventory(discount);
+                }
+                else
+                {
+                    Console.WriteLine("Discount not found.");
+                }
             }
             catch (ArgumentNullException e)
             {
@@ -864,7 +885,6 @@ namespace Emil.BookStoreCLI
             {
                 Console.WriteLine($"Unexpected error: {e.Message}");
             }
-
         }
 
         // Get discount by code, percentage, or amount
@@ -906,7 +926,6 @@ namespace Emil.BookStoreCLI
         }
         private void GetDiscountByPercentage()
         {
-            // With percentage
             Console.WriteLine("Enter the percentage of the discount you want to get:");
             int percentage;
             while (true)
@@ -917,7 +936,8 @@ namespace Emil.BookStoreCLI
                 {
                     break;
                 }
-                if (!_discountManager.GetAllDiscounts().Any(d => d.Percentage == percentage))
+                var discounts = _discountManager.GetAllDiscounts();
+                if (discounts == null || !discounts.Any(d => d.Percentage == percentage))
                 {
                     Console.WriteLine("Percentage not found in discounts.");
                 }
@@ -946,7 +966,6 @@ namespace Emil.BookStoreCLI
         }
         private void GetDiscountByAmount()
         {
-            // With amount
             Console.WriteLine("Enter the amount of the discount you want to get:");
             double amount;
             while (true)
@@ -957,7 +976,8 @@ namespace Emil.BookStoreCLI
                 {
                     break;
                 }
-                if (!_discountManager.GetAllDiscounts().Any(d => d.Amount == amount))
+                var discounts = _discountManager.GetAllDiscounts();
+                if (discounts == null || !discounts.Any(d => d.Amount == amount))
                 {
                     Console.WriteLine("Amount not found in discounts.");
                 }

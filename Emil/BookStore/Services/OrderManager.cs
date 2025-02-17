@@ -51,41 +51,6 @@ namespace Emil.BookStore.Services
         }
 
         /// <summary>
-        /// Prints all orders in the store.
-        /// Prints "No orders in the store." if there are no orders in the store.
-        /// </summary>
-        public void PrintAllOrders()
-        {
-            if (_orders.Count == 0)
-            {
-                Console.WriteLine("No orders in the store.");
-            }
-            else
-            {
-                Console.WriteLine("All orders:");
-                foreach (var order in _orders)
-                {
-                    Console.WriteLine(order);
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// Gets the total number of orders in the store.
-        /// </summary>
-        /// <param name="customer">The customer whose orders are to be retrieved.</param>
-        /// <returns>A list of orders by the specified customer.</returns>
-        ///  <exception cref="ArgumentNullException">Thrown when the customer is null.</exception>
-        /// <exception cref="ArgumentException">Thrown when the customer has no orders.</exception>
-        public List<Order> GetCustomerOrders(Customer customer)
-        {
-            if (customer == null) throw new ArgumentNullException(nameof(customer));
-            if (!_orders.Any(o => o.Customer == customer)) throw new ArgumentException("Customer has no orders.");
-            return _orders.Where(o => o.Customer == customer).ToList();
-        }
-
-        /// <summary>
         /// Removes an order from the store.
         /// </summary>
         /// <param name="order">The order to be removed.</param>
@@ -105,6 +70,40 @@ namespace Emil.BookStore.Services
         }
 
         /// <summary>
+        /// Prints all orders in the store.
+        /// Prints "No orders in the store." if there are no orders in the store.
+        /// </summary>
+        public void PrintAllOrders()
+        {
+            if (_orders.Count == 0)
+            {
+                Console.WriteLine("No orders in the store.");
+            }
+            else
+            {
+                Console.WriteLine("All orders:");
+                foreach (var order in _orders)
+                {
+                    Console.WriteLine(order);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the total number of orders in the store.
+        /// </summary>
+        /// <param name="customer">The customer whose orders are to be retrieved.</param>
+        /// <returns>A list of orders by the specified customer.</returns>
+        ///  <exception cref="ArgumentNullException">Thrown when the customer is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the customer has no orders.</exception>
+        public List<Order> GetCustomerOrders(Customer customer)
+        {
+            if (customer == null) throw new ArgumentNullException(nameof(customer));
+            if (!_orders.Any(o => o.Customer == customer)) throw new ArgumentException("Customer has no orders.");
+            return _orders.Where(o => o.Customer == customer).ToList();
+        }
+
+        /// <summary>
         /// Gets an order by order ID.
         /// Throws ArgumentException if the order is not found.
         /// </summary>
@@ -112,7 +111,7 @@ namespace Emil.BookStore.Services
         /// <returns>The order with the specified ID.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the order ID is zero or negative.</exception>
         /// <exception cref="ArgumentException">Thrown when the order is not found.</exception>
-        public Order GetOrderByOrderId(int orderId)
+        public Order? GetOrderByOrderId(int orderId)
         {
             if (orderId == 0)
                 throw new ArgumentOutOfRangeException(nameof(orderId), "Order ID cannot be zero. Enter a positive order ID.");
@@ -136,7 +135,7 @@ namespace Emil.BookStore.Services
         /// <returns>A list of orders by the specified customer.</returns>
         /// <exception cref="ArgumentNullException">Thrown when the customer is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the customer has no orders.</exception>
-        public List<Order> GetOrdersByCustomerName(Customer customer)
+        public List<Order>? GetOrdersByCustomerName(Customer customer)
         {
             if (customer == null)
                 throw new ArgumentNullException(nameof(customer), "Customer cannot be null. Enter a valid customer.");
