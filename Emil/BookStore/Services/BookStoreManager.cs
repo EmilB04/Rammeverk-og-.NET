@@ -263,6 +263,11 @@ namespace Emil.BookStore
             }
         }
 
+        /// <summary>
+        /// Gets all books in the store.
+        /// </summary>
+        /// <returns>A list of all books in the store.</returns>
+        /// <exception cref="ArgumentException">Thrown when there are no books in the store.</exception>
         public List<Book> GetAllBooks()
         {
             if (_books.Count == 0)
@@ -270,6 +275,10 @@ namespace Emil.BookStore
             return _books;
         }
 
+        /// <summary>
+        /// Prints all discounted books in the store.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when there are no books in the store.</exception>
         public void PrintAllDiscountedBooks()
         {
             if (_books.Count == 0)
@@ -298,8 +307,16 @@ namespace Emil.BookStore
             }
         }
 
+        /// <summary>
+        /// Gets all discounted books in the store.
+        /// </summary>
+        /// <returns>A list of all discounted books in the store.</returns>
+        /// <exception cref="ArgumentException">Thrown when there are no books in the store.</exception>
+        /// <exception cref="ArgumentException">Thrown when provied discount code is null, empty, or whitespace.</exception>
         public List<Book> GetBooksWithDiscount(string discountCode)
         {
+            if (_books.Count == 0)
+                throw new ArgumentException("No books in the store.");
             if (string.IsNullOrWhiteSpace(discountCode))
                 throw new ArgumentException("Discount code cannot be null, empty, or whitespace.");
 

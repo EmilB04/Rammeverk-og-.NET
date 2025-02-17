@@ -78,6 +78,7 @@ namespace Emil.BookStore.Services
                 }
             }
         }
+
         /// <summary>
         /// Gets a customer by first name and last name.
         /// </summary>
