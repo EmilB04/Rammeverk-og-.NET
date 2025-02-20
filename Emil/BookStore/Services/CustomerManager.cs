@@ -26,15 +26,15 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when first name, last name, or email is null, empty, or whitespace, or if a customer with the same email already exists.</exception>
         public void AddCustomer(Customer customer)
         {
-            if (customer == null) 
-                throw new ArgumentNullException(nameof(customer), "Customer cannot be null. Enter a valid customer.");
-            if (string.IsNullOrWhiteSpace(customer.FirstName)) 
-                throw new ArgumentException("First name cannot be empty. Enter a valid first name.");
-            if (string.IsNullOrWhiteSpace(customer.LastName)) 
-                throw new ArgumentException("Last name cannot be empty. Enter a valid last name.");
-            if (string.IsNullOrWhiteSpace(customer.Email)) 
-                throw new ArgumentException("Email cannot be empty. Enter a valid email.");
-            if (_customers.Any(c => c.Email == customer.Email)) 
+            if (customer == null)
+                throw new ArgumentNullException(nameof(customer), "Entered customer is null. Enter a valid customer.");
+            if (string.IsNullOrWhiteSpace(customer.FirstName))
+                throw new ArgumentException("Entered first name is null, empty, or whitespace. Enter a valid first name.");
+            if (string.IsNullOrWhiteSpace(customer.LastName))
+                throw new ArgumentException("Entered last name is null, empty, or whitespace. Enter a valid last name.");
+            if (string.IsNullOrWhiteSpace(customer.Email))
+                throw new ArgumentException("Entred email is null, empty, or whitespace. Enter a valid email.");
+            if (_customers.Any(c => c.Email == customer.Email))
                 throw new ArgumentException("A customer with the same email already exists. Enter a unique email.");
 
             _customers.Add(customer);
@@ -90,9 +90,9 @@ namespace Emil.BookStore.Services
         public Customer? GetCustomerByName(string firstName, string lastName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
-                throw new ArgumentException("First name cannot be null, empty, or whitespace. Please enter a valid first name.", nameof(firstName));
+                throw new ArgumentException(nameof(firstName), "First name cannot be null, empty, or whitespace. Please enter a valid first name.");
             if (string.IsNullOrWhiteSpace(lastName))
-                throw new ArgumentException("Last name cannot be null, empty, or whitespace. Please enter a valid last name.", nameof(lastName));
+                throw new ArgumentException(nameof(lastName), "Last name cannot be null, empty, or whitespace. Please enter a valid last name.");
             else
             {
                 foreach (var customer in _customers)
@@ -188,12 +188,15 @@ namespace Emil.BookStore.Services
         /// <returns>The customer with the specified phone number, if found.</returns>
         /// <exception cref="ArgumentException">Thrown when the phone number is zer.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the phone number is negative.</exception>
+        /// <exception cref="FormatException">Thrown when the phone number is not 8 digits long.</exception>
         public Customer? GetCustomerByPhoneNumber(int phoneNumber)
         {
             if (phoneNumber == 0)
-                throw new ArgumentException("Phone number cannot be zero.", nameof(phoneNumber));
+                throw new ArgumentException(nameof(phoneNumber), "Phone number cannot be zero.");
             if (phoneNumber < 0)
-                throw new ArgumentOutOfRangeException("Phone number cannot be negative.", nameof(phoneNumber));
+                throw new ArgumentOutOfRangeException(nameof(phoneNumber), "Phone number cannot be negative.");
+            if (phoneNumber.ToString().Length != 8)
+                throw new FormatException("Phone number must be 8 digits long.");
             foreach (var customer in _customers)
             {
                 if (customer.PhoneNumber == phoneNumber)
@@ -212,9 +215,7 @@ namespace Emil.BookStore.Services
         public List<Customer> GetAllCustomers()
         {
             if (_customers.Count == 0)
-            {
-                Console.WriteLine("No customers in the store.");
-            }
+                throw new ArgumentException("No customers in the store.");
             return _customers;
         }
     }

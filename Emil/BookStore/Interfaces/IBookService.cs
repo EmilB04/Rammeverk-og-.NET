@@ -75,11 +75,33 @@ namespace Emil.BookStore.Interfaces
         int GetStockQuantity(Book book);
 
         /// <summary>
+        /// Gets the total quantity of all books in stock.
+        /// </summary>
+        /// <returns>The total quantity of all books in stock.</returns>
+        int GetAllQuantity();
+
+        /// <summary>
         /// Checks if a book is discounted.
         /// </summary>
         /// <param name="book">The book to check.</param>
         /// <returns>True if the book is discounted, false otherwise.</returns>
         bool IsBookDiscounted(Book book);
 
+        /// <summary>
+        /// Retrieves a list of all books in the collection.
+        /// </summary>
+        /// <returns>A list of all books in the collection.</returns>
+        List<Book> GetAllBooks();
+
+        /// <summary>
+        /// Prints list of all discounted books in the collection.
+        /// </summary>
+        void PrintAllDiscountedBooks();
+    
+        /// <summary>
+        /// Retrieves a list of all books in the collection with discount.
+        /// </summary>
+        /// <returns>A list of all books in the collection with discount.</returns>
+        List<Book> GetBooksWithDiscount(string discountCode);
     }
 }

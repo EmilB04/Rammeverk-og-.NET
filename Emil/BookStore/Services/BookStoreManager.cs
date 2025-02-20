@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using Emil.BookStore.Exceptions;
 using Emil.BookStore.Interfaces;
 using Emil.BookStore.Models;
 
@@ -27,19 +28,19 @@ namespace Emil.BookStore
         public void AddBook(Book book)
         {
             if (book == null)
-                throw new ArgumentNullException(nameof(book), "Book cannot be null. Enter a valid book.");
+                throw new ArgumentNullException(nameof(book), "Entered book is null, please enter a valid book.");
             if (string.IsNullOrWhiteSpace(book.Title))
-                throw new ArgumentException("Title cannot be empty. Enter a valid title.");
+                throw new ArgumentException("Entered title is null, empty, or whitespace. Enter a valid title.");
             if (string.IsNullOrWhiteSpace(book.Author))
-                throw new ArgumentException("Author cannot be empty. Enter a valid author.");
+                throw new ArgumentException("Entered author is null, empty, or whitespace. Enter a valid author.");
             if (string.IsNullOrWhiteSpace(book.Isbn))
-                throw new ArgumentException("ISBN cannot be empty. Enter a valid ISBN.");
+                throw new ArgumentException("Entered ISBN is null, empty, or whitespace. Enter a valid ISBN.");
             if (_books.Exists(b => b.Isbn == book.Isbn))
                 throw new ArgumentException("A book with the same ISBN already exists. Enter a unique ISBN.");
             if (book.Price <= 0)
                 throw new ArgumentOutOfRangeException(nameof(book.Price), "Price cannot be zero or negative. Enter a valid price.");
             if (double.IsNaN(book.Price))
-                throw new ArgumentException("Price cannot be something other than a number. Enter a valid price.");
+                throw new ArgumentException("Entered price is not a number. Enter a valid price.");
             if (book.Quantity < 0)
                 throw new ArgumentOutOfRangeException(nameof(book.Quantity), "Quantity cannot be negative. Enter a positive quantity.");
             _books.Add(book);
@@ -48,11 +49,11 @@ namespace Emil.BookStore
 
         /// <summary>
         /// Removes a book from the store.
-        /// NOT IMPLEMENTED YET.
         /// </summary>
         /// <param name="book">The book to be removed.</param>
         /// <exception cref="ArgumentNullException">Thrown when the book is null.</exception>
         /// <exception cref="ArgumentException">Thrown when title, author, or isbn is null, empty, or whitespace.</exception>
+        /// <exception cref="OutOfStockException">Thrown when the book is not found.</exception>
         public void RemoveBook(Book book)
         {
             if (book == null)
@@ -63,6 +64,8 @@ namespace Emil.BookStore
                 throw new ArgumentException("Author cannot be empty." + "Enter a valid author.");
             if (string.IsNullOrWhiteSpace(book.Isbn))
                 throw new ArgumentException("ISBN cannot be empty." + "Enter a valid ISBN.");
+            if (!_books.Contains(book))
+                throw new OutOfStockException("Book not found.");
 
             _books.Remove(book);
             Console.WriteLine("Book removed successfully.");
@@ -196,16 +199,17 @@ namespace Emil.BookStore
         /// </summary>
         /// <param name="book">The book to update.</param>
         /// <param name="quantityChange">The quantity to add or remove.</param>
-        /// <exception cref="ArgumentException">Thrown when the book is null or not found.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the quantity is negative.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the book is null.</exception>
+        /// <exception cref="OutOfStockException">Thrown when the book is not found.</exception>
         public void UpdateBookStock(Book book, int quantityChange)
         {
             if (quantityChange == 0)
                 throw new ArgumentOutOfRangeException(nameof(quantityChange), "Quantity change cannot be zero. Enter a positive or negative quantity.");
             if (book == null)
-                throw new ArgumentException(nameof(book), "Book not found.");
+                throw new ArgumentNullException(nameof(book), "Book not found.");
             if (!_books.Contains(book))
-                throw new ArgumentException("Book not found.");
+                throw new OutOfStockException("Book not found.");
             if (book.Quantity + quantityChange < 0)
                 throw new ArgumentOutOfRangeException(nameof(book.Quantity), "Quantity cannot be negative. Enter a positive quantity.");
             else
@@ -220,6 +224,7 @@ namespace Emil.BookStore
         /// </summary>
         /// <param name="book">The book to check.</param>
         /// <returns>The stock quantity of the book.</returns>
+        /// <exception cref="OutOfStockException">Thrown when the book is not found.</exception>
         public int GetStockQuantity(Book book)
         {
             if (book != null)
@@ -228,7 +233,7 @@ namespace Emil.BookStore
             }
             else
             {
-                throw new ArgumentException("Book not found.");
+                throw new OutOfStockException("Book not found.");
             }
         }
 
@@ -251,8 +256,14 @@ namespace Emil.BookStore
         /// </summary>
         /// <param name="book"></param>
         /// <returns>A boolean which tells if the book is discounted or not</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the book is null.</exception>
+        /// <exception cref="OutOfStockException">Thrown when the book is not found.</exception>
         public bool IsBookDiscounted(Book book)
         {
+            if (book == null)
+                throw new ArgumentNullException(nameof(book), "Book cannot be null. Enter a valid book.");
+            if (!_books.Contains(book))
+                throw new OutOfStockException("Book not found.");
             if (book.IsDiscounted)
             {
                 return true;
@@ -267,11 +278,11 @@ namespace Emil.BookStore
         /// Gets all books in the store.
         /// </summary>
         /// <returns>A list of all books in the store.</returns>
-        /// <exception cref="ArgumentException">Thrown when there are no books in the store.</exception>
+        /// <exception cref="OutOfStockException">Thrown when there are no books in the store.</exception>
         public List<Book> GetAllBooks()
         {
             if (_books.Count == 0)
-                throw new ArgumentException("No books in the store.");
+                throw new OutOfStockException("No books in the store.");
             return _books;
         }
 
@@ -316,7 +327,7 @@ namespace Emil.BookStore
         public List<Book> GetBooksWithDiscount(string discountCode)
         {
             if (_books.Count == 0)
-                throw new ArgumentException("No books in the store.");
+                throw new OutOfStockException("No books in the store.");
             if (string.IsNullOrWhiteSpace(discountCode))
                 throw new ArgumentException("Discount code cannot be null, empty, or whitespace.");
 
