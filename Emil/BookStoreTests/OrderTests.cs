@@ -26,8 +26,8 @@ namespace Emil.BookStore.Tests
 
             Assert.ThrowsException<ArgumentNullException>(() => new Order(1, null!, customer, DateTime.Now, 129.99, 2));
             Assert.ThrowsException<ArgumentNullException>(() => new Order(2, books, null!, DateTime.Now, 129.99, 2));
-            Assert.ThrowsException<ArgumentNullException>(() => new Order(3, books, customer, DateTime.Now, 0, 2));
-            Assert.ThrowsException<ArgumentNullException>(() => new Order(4, books, customer, DateTime.Now, 129.99, 0));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Order(3, books, customer, DateTime.Now, 0, 2));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Order(4, books, customer, DateTime.Now, 129.99, 0));
         }
 
         [TestMethod]
