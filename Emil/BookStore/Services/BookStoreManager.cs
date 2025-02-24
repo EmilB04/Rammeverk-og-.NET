@@ -4,6 +4,7 @@ using System.Dynamic;
 using Emil.BookStore.Exceptions;
 using Emil.BookStore.Interfaces;
 using Emil.BookStore.Models;
+using Emil.BookStore.Services;
 
 namespace Emil.BookStore
 {
@@ -292,6 +293,12 @@ namespace Emil.BookStore
         /// <exception cref="ArgumentException">Thrown when there are no books in the store.</exception>
         public void PrintAllDiscountedBooks()
         {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled.");
+                return;
+            }
+
             if (_books.Count == 0)
             {
                 Console.WriteLine("No books in the store.");
@@ -326,6 +333,12 @@ namespace Emil.BookStore
         /// <exception cref="ArgumentException">Thrown when provied discount code is null, empty, or whitespace.</exception>
         public List<Book> GetBooksWithDiscount(string discountCode)
         {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled.");
+                return new List<Book>();
+            }
+
             if (_books.Count == 0)
                 throw new OutOfStockException("No books in the store.");
             if (string.IsNullOrWhiteSpace(discountCode))

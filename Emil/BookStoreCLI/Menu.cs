@@ -160,7 +160,8 @@ namespace Emil.BookStoreCLI
                 Console.WriteLine("5. Get discount by code");
                 Console.WriteLine("6. Get discount by percentage");
                 Console.WriteLine("7. Get discount by amount");
-                Console.WriteLine("8. Go back");
+                Console.WriteLine("8. Toggle discounts");
+                Console.WriteLine("9. Go back");
                 Console.WriteLine("Choose an option:");
                 var input = Console.ReadLine();
                 Console.WriteLine();
@@ -174,13 +175,15 @@ namespace Emil.BookStoreCLI
                     case "5": GetDiscountByCode(); break;
                     case "6": GetDiscountByPercentage(); break;
                     case "7": GetDiscountByAmount(); break;
-                    case "8": return;
+                    case "8": FeatureFlags.ToggleDiscounts(); break;
+                    case "9": return;
                     default: Console.WriteLine("Invalid option."); break;
                 }
             }
         }
         private void AddDiscountToInventoryOptions()
         {
+            if (DiscountDisabled()) return;
             Console.WriteLine();
             Console.WriteLine("Choose a discount type:");
             Console.WriteLine("1. Percentage");
@@ -601,6 +604,7 @@ namespace Emil.BookStoreCLI
         // Add discount to inventory or book
         private void AddDiscountWithPercentage()
         {
+            if (DiscountDisabled()) return;
             Console.WriteLine("Enter the necessary information to add the discount.");
 
             string code;
@@ -685,6 +689,7 @@ namespace Emil.BookStoreCLI
         }
         private void AddDiscountWithAmount()
         {
+            if (DiscountDisabled()) return;
             Console.WriteLine("Enter the necessary information to add the discount.");
 
             string code;
@@ -766,6 +771,7 @@ namespace Emil.BookStoreCLI
         }
         private void AddDiscountToBook()
         {
+            if (DiscountDisabled()) return;
             Console.WriteLine("Enter the necessary information to apply a discount to a book.");
 
             Book? book;
@@ -777,6 +783,7 @@ namespace Emil.BookStoreCLI
                 if (book == null)
                 {
                     Console.WriteLine("Book not found.");
+                    return;
                 }
                 else
                 {
@@ -812,7 +819,7 @@ namespace Emil.BookStoreCLI
                 discount = _discountManager.GetDiscountByCode(code);
                 if (discount == null)
                 {
-                    Console.WriteLine("Discount not found.");
+                    return;
                 }
                 else
                 {
@@ -841,6 +848,7 @@ namespace Emil.BookStoreCLI
         // Remove discount from inventory or book
         private void RemoveDiscountFromBook()
         {
+            if (DiscountDisabled()) return;
             Console.WriteLine("Enter the necessary information to remove a discount from a book.");
 
             Book? book;
@@ -930,6 +938,7 @@ namespace Emil.BookStoreCLI
         }
         private void RemoveDiscountFromInventory()
         {
+            if (DiscountDisabled()) return;
             Console.WriteLine("Enter the code of the discount you want to remove:");
             string code;
             while (true)
@@ -992,6 +1001,7 @@ namespace Emil.BookStoreCLI
         // Get discount by code, percentage, or amount
         private void GetDiscountByCode()
         {
+            if (DiscountDisabled()) return;
             // With code
             Console.WriteLine("Enter the code of the discount you want to get:");
             string code;
@@ -1028,6 +1038,7 @@ namespace Emil.BookStoreCLI
         }
         private void GetDiscountByPercentage()
         {
+            if (DiscountDisabled()) return;
             Console.WriteLine("Enter the percentage of the discount you want to get:");
             int percentage;
             while (true)
@@ -1068,6 +1079,7 @@ namespace Emil.BookStoreCLI
         }
         private void GetDiscountByAmount()
         {
+            if (DiscountDisabled()) return;
             Console.WriteLine("Enter the amount of the discount you want to get:");
             double amount;
             while (true)
@@ -1158,6 +1170,16 @@ namespace Emil.BookStoreCLI
                 Console.WriteLine($"Unexpected error: {e.Message}");
                 return null;
             }
+        }
+
+        private bool DiscountDisabled()
+        {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled.");
+                return true;
+            }
+            return false;
         }
     }
 }

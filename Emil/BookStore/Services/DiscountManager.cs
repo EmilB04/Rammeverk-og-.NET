@@ -30,6 +30,11 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when valid from date is later than valid to date, or when discount already exists.</exception>
         public void AddDiscountToInventory(Discount discount)
         {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled. Discount not added.");
+                return;
+            }
             if (discount == null)
                 throw new ArgumentNullException(nameof(discount), "Discount cannot be null. Enter a valid discount.");
             if (discount.Amount <= 0)
@@ -57,6 +62,11 @@ namespace Emil.BookStore.Services
         /// <exception cref="InvalidOperationException">Thrown when no discounts are available.</exception>
         public void RemoveDiscountFromInventory(Discount discount)
         {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled. Discount not removed.");
+                return;
+            }
             if (discount == null)
                 throw new ArgumentNullException(nameof(discount), "Discount cannot be null. Enter a valid discount.");
             if (!discounts.Contains(discount))
@@ -74,6 +84,11 @@ namespace Emil.BookStore.Services
         /// </summary>
         public void PrintAllDiscounts()
         {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled.");
+                return;
+            }
             if (discounts.Count == 0)
                 Console.WriteLine("No discounts available.");
             else
@@ -95,19 +110,24 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when discount does not exist.</exception>
         public Discount? GetDiscountByCode(string code)
         {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled.");
+                return null;
+            }
+
             if (string.IsNullOrWhiteSpace(code))
                 throw new ArgumentException("Code cannot be empty. Enter a valid code.");
             if (discounts.Count == 0)
                 throw new InvalidOperationException("No discounts available.");
             if (discounts == null)
-                throw new ArgumentNullException(nameof(discounts), "Discounts cannot be null. Enter a valid discount.");
+                throw new ArgumentNullException(nameof(code), "Discounts cannot be null. Enter a valid discount.");
             foreach (var discount in discounts)
             {
                 if (discount.Code == code)
                     return discount;
-                throw new ArgumentException("Discount does not exist.");
             }
-            return null;
+            throw new ArgumentException("Discount does not exist.");
         }
 
         /// <summary>
@@ -121,6 +141,11 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when discount does not exist.</exception>
         public Discount? GetDiscountByPercentage(int percentage)
         {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled.");
+                return null;
+            }
             if (percentage <= 0)
                 throw new ArgumentOutOfRangeException(nameof(percentage), "Percentage cannot be zero or negative. Enter a positive percentage.");
             if (percentage > 100)
@@ -147,6 +172,11 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when discount does not exist.</exception>
         public Discount? GetDiscountByAmount(double amount)
         {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled.");
+                return null;
+            }
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount), "Amount cannot be zero or negative. Enter a positive amount.");
             if (discounts == null)
@@ -168,6 +198,11 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentNullException">Thrown when discounts is null.</exception>
         public List<Discount>? GetAllDiscounts()
         {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled.");
+                return null;
+            }
             if (discounts.Count == 0)
                 throw new InvalidOperationException("No discounts available.");
             if (discounts == null)
@@ -188,6 +223,11 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when book already has a discount applied.</exception>
         public void AddDiscountToBook(Discount discount, Book book)
         {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled.");
+                return;
+            }
             if (book == null)
                 throw new ArgumentNullException(nameof(book), "Book cannot be null. Enter a valid book.");
             if (discount == null)
@@ -234,6 +274,11 @@ namespace Emil.BookStore.Services
         /// <exception cref="ArgumentException">Thrown when book does not have a discount applied.</exception>
         public void RemoveDiscountFromBook(Discount discount, Book book)
         {
+            if (!FeatureFlags.EnableDiscounts)
+            {
+                Console.WriteLine("Discounts are currently disabled.");
+                return;
+            }
             if (discount == null)
                 throw new ArgumentNullException(nameof(discount), "Discount cannot be null. Enter a valid discount.");
             if (book == null)
