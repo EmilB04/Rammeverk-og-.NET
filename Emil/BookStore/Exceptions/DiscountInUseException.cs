@@ -11,9 +11,9 @@ namespace Emil.BookStore.Exceptions
     {
         public DiscountInUseException() { }
 
-        public DiscountInUseException(string message) { }
+        public DiscountInUseException(string message) : base(message) { }
 
-        public DiscountInUseException(string message, Exception inner) { }
+        public DiscountInUseException(string message, Exception inner) : base(message, inner) { }
 
     }
 }

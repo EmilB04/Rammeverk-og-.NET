@@ -6,7 +6,7 @@ using Emil.BookStore.Models;
 
 namespace Emil.BookStore
 {
-    public class Book // Make abstract 
+    public abstract class Book
     {
         /// <summary>
         /// Gets or sets the title of the book.
@@ -53,7 +53,7 @@ namespace Emil.BookStore
         /// <param name="quantity">The quantity of the book in stock.</param>
         /// <exception cref="ArgumentNullException">Thrown when title, author, or isbn is null, empty, or whitespace.</exception>
         /// <exception cref="ArgumentException">Thrown when price is less than or equal to zero, or when quantity is negative.</exception>
-        public Book(string title, string author, string isbn, double price, int quantity, bool isDiscounted = false, Discount? appliedDiscount = null ) // make protected
+        protected Book(string title, string author, string isbn, double price, int quantity, bool isDiscounted = false, Discount? appliedDiscount = null ) // make protected
         {
             // Copilot-prompt: "Do I need curly braces for this if-statement since it's so long with only one line?"
             // Copilot-result : Answered "No" to the prompt

@@ -281,7 +281,7 @@ namespace Emil.BookStoreCLI
 
             try
             {
-                _bookStoreManager.AddBook(new Book(title, author, isbn, price, quantity));
+                _bookStoreManager.AddBook(new PhysicalBook(title, author, isbn, price, quantity));
             }
             catch (ArgumentNullException e)
             {

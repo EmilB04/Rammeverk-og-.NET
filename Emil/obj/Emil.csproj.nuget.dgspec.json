@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\Emil\\Emil.csproj": {}
+    "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/Emil/Emil.csproj": {}
   },
   "projects": {
-    "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\Emil\\Emil.csproj": {
+    "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/Emil/Emil.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\Emil\\Emil.csproj",
+        "projectUniqueName": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/Emil/Emil.csproj",
         "projectName": "Emil",
-        "projectPath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\Emil\\Emil.csproj",
-        "packagesPath": "C:\\Users\\emilb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\emilb\\Documents\\GitHub\\V2025\\Rammeverk-og-.NET\\Emil\\obj\\",
+        "projectPath": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/Emil/Emil.csproj",
+        "packagesPath": "/Users/emil/.nuget/packages/",
+        "outputPath": "/Users/emil/Documents/GitHub-repos/V_2025/Rammeverk-og-.NET/Emil/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\emilb\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/emil/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -90,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

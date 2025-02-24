@@ -57,13 +57,13 @@ namespace Emil.BookStore
         public void RemoveBook(Book book)
         {
             if (book == null)
-                throw new ArgumentNullException(nameof(book), "Book cannot be null." + "Enter a valid book.");
+                throw new ArgumentNullException(nameof(book), "Book cannot be null. Enter a valid book.");
             if (string.IsNullOrWhiteSpace(book.Title))
-                throw new ArgumentException("Title cannot be empty." + "Enter a valid title.");
+                throw new ArgumentException("Title cannot be empty. Enter a valid title.");
             if (string.IsNullOrWhiteSpace(book.Author))
-                throw new ArgumentException("Author cannot be empty." + "Enter a valid author.");
+                throw new ArgumentException("Author cannot be empty. Enter a valid author.");
             if (string.IsNullOrWhiteSpace(book.Isbn))
-                throw new ArgumentException("ISBN cannot be empty." + "Enter a valid ISBN.");
+                throw new ArgumentException("ISBN cannot be empty. Enter a valid ISBN.");
             if (!_books.Contains(book))
                 throw new OutOfStockException("Book not found.");
 
@@ -101,7 +101,7 @@ namespace Emil.BookStore
         {
             if (string.IsNullOrWhiteSpace(title))
             {
-                throw new ArgumentException(nameof(title), "Title cannot be null, empty, or whitespace." + "Enter a valid title.");
+                throw new ArgumentException(nameof(title), "Title cannot be null, empty, or whitespace. Enter a valid title.");
             }
             else
             {
@@ -128,7 +128,7 @@ namespace Emil.BookStore
         {
             if (string.IsNullOrWhiteSpace(isbn))
             {
-                throw new ArgumentException(nameof(isbn), "ISBN cannot be null, empty, or whitespace." + "Enter a valid ISBN.");
+                throw new ArgumentException(nameof(isbn), "ISBN cannot be null, empty, or whitespace. Enter a valid ISBN.");
             }
             else
             {
@@ -178,7 +178,7 @@ namespace Emil.BookStore
         {
             if (string.IsNullOrWhiteSpace(author))
             {
-                throw new ArgumentException(nameof(author), "Author cannot be null, empty, or whitespace." + "Enter a valid author.");
+                throw new ArgumentException(nameof(author), "Author cannot be null, empty, or whitespace. Enter a valid author.");
             }
             else
             {
@@ -307,7 +307,7 @@ namespace Emil.BookStore
                     var discount = book.AppliedDiscount;
                     string discountDetails = discount.Amount.HasValue
                         ? $"Amount: {discount.Amount.Value:C}"
-                        : $"Percentage: {discount.Percentage.Value}%";
+                        : $"Percentage: {(discount.Percentage.HasValue ? discount.Percentage.Value.ToString() : "N/A")}%";
                     Console.WriteLine($"Title: {book.Title}, Discount: {discountDetails}");
                 }
             }
