@@ -7,6 +7,9 @@ using Emil.BookStore.Models;
 
 namespace Emil.BookStore.Exceptions
 {
+    /// <summary>
+    /// Exception thrown when a discount is in use.
+    /// </summary>
     public class DiscountInUseException : Exception, ISerializable
     {
         public DiscountInUseException() { }

@@ -6,6 +6,12 @@ using Emil.BookStore.Models;
 
 namespace Emil.BookStore.Factories
 {
+    /// <summary>
+    /// Factory class for creating books.
+    /// </summary>
+    /// <remarks>
+    /// This class is not currently in use.
+    /// </remarks>
     public static class BookFactory
     {
         /// <summary>

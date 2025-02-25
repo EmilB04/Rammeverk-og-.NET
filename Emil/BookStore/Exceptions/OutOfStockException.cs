@@ -7,6 +7,9 @@ using Emil.BookStore.Models;
 
 namespace Emil.BookStore.Exceptions
 {
+    /// <summary>
+    /// Exception thrown when a book is out of stock.
+    /// </summary>
     public class OutOfStockException : Exception, ISerializable 
     {
         public OutOfStockException() { }

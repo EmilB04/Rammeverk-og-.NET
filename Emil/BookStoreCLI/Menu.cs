@@ -819,6 +819,7 @@ namespace Emil.BookStoreCLI
                 discount = _discountManager.GetDiscountByCode(code);
                 if (discount == null)
                 {
+                    Console.WriteLine("Discount not found.");
                     return;
                 }
                 else

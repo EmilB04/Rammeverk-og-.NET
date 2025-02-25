@@ -99,7 +99,7 @@ namespace Emil.BookStore.Interfaces
         void PrintAllDiscountedBooks();
     
         /// <summary>
-        /// Retrieves a list of all books in the collection with discount.
+        /// Retrieves a list of all books in the collection with a spesiifed discount code.
         /// </summary>
         /// <returns>A list of all books in the collection with discount.</returns>
         List<Book> GetBooksWithDiscount(string discountCode);
