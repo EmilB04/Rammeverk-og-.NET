@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Workshop.CsvParseCLI/1.0.0": {
+        "dependencies": {
+          "Workshop.Data": "1.0.0"
+        },
+        "runtime": {
+          "Workshop.CsvParseCLI.dll": {}
+        }
+      },
+      "Workshop.Data/1.0.0": {
+        "runtime": {
+          "Workshop.Data.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Workshop.CsvParseCLI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Workshop.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

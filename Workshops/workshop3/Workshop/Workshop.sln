@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.CsvParseCLI", "Workshop.CsvParseCLI\Workshop.CsvParseCLI.csproj", "{ED4C3B0E-C852-4512-8D97-A5D531D8E080}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.Data", "Workshop.Data\Workshop.Data.csproj", "{33ECF665-C721-4678-BF4B-9E2386AE8ABA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED4C3B0E-C852-4512-8D97-A5D531D8E080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED4C3B0E-C852-4512-8D97-A5D531D8E080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED4C3B0E-C852-4512-8D97-A5D531D8E080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED4C3B0E-C852-4512-8D97-A5D531D8E080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33ECF665-C721-4678-BF4B-9E2386AE8ABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33ECF665-C721-4678-BF4B-9E2386AE8ABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33ECF665-C721-4678-BF4B-9E2386AE8ABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33ECF665-C721-4678-BF4B-9E2386AE8ABA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

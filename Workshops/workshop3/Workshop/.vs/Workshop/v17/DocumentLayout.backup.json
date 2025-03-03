@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\andyi\\Dropbox\\IT_Skole\\hiof\\.Net\\workshop\\workshop3\\Workshop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ED4C3B0E-C852-4512-8D97-A5D531D8E080}|Workshop.CsvParseCLI\\Workshop.CsvParseCLI.csproj|c:\\users\\andyi\\dropbox\\it_skole\\hiof\\.net\\workshop\\workshop3\\workshop\\workshop.csvparsecli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED4C3B0E-C852-4512-8D97-A5D531D8E080}|Workshop.CsvParseCLI\\Workshop.CsvParseCLI.csproj|solutionrelative:workshop.csvparsecli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED4C3B0E-C852-4512-8D97-A5D531D8E080}|Workshop.CsvParseCLI\\Workshop.CsvParseCLI.csproj|c:\\users\\andyi\\dropbox\\it_skole\\hiof\\.net\\workshop\\workshop3\\workshop\\workshop.csvparsecli\\names.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{ED4C3B0E-C852-4512-8D97-A5D531D8E080}|Workshop.CsvParseCLI\\Workshop.CsvParseCLI.csproj|solutionrelative:workshop.csvparsecli\\names.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33ECF665-C721-4678-BF4B-9E2386AE8ABA}|Workshop.Data\\Workshop.Data.csproj|c:\\users\\andyi\\dropbox\\it_skole\\hiof\\.net\\workshop\\workshop3\\workshop\\workshop.data\\dataparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33ECF665-C721-4678-BF4B-9E2386AE8ABA}|Workshop.Data\\Workshop.Data.csproj|solutionrelative:workshop.data\\dataparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33ECF665-C721-4678-BF4B-9E2386AE8ABA}|Workshop.Data\\Workshop.Data.csproj|c:\\users\\andyi\\dropbox\\it_skole\\hiof\\.net\\workshop\\workshop3\\workshop\\workshop.data\\parseroptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33ECF665-C721-4678-BF4B-9E2386AE8ABA}|Workshop.Data\\Workshop.Data.csproj|solutionrelative:workshop.data\\parseroptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 323,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "names.csv",
+              "DocumentMoniker": "C:\\Users\\andyi\\Dropbox\\IT_Skole\\hiof\\.Net\\workshop\\workshop3\\Workshop\\Workshop.CsvParseCLI\\names.csv",
+              "RelativeDocumentMoniker": "Workshop.CsvParseCLI\\names.csv",
+              "ToolTip": "C:\\Users\\andyi\\Dropbox\\IT_Skole\\hiof\\.Net\\workshop\\workshop3\\Workshop\\Workshop.CsvParseCLI\\names.csv",
+              "RelativeToolTip": "Workshop.CsvParseCLI\\names.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2025-02-10T09:50:46.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DataParser.cs",
+              "DocumentMoniker": "C:\\Users\\andyi\\Dropbox\\IT_Skole\\hiof\\.Net\\workshop\\workshop3\\Workshop\\Workshop.Data\\DataParser.cs",
+              "RelativeDocumentMoniker": "Workshop.Data\\DataParser.cs",
+              "ToolTip": "C:\\Users\\andyi\\Dropbox\\IT_Skole\\hiof\\.Net\\workshop\\workshop3\\Workshop\\Workshop.Data\\DataParser.cs",
+              "RelativeToolTip": "Workshop.Data\\DataParser.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAzwB4AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T09:34:02.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ParserOptions.cs",
+              "DocumentMoniker": "C:\\Users\\andyi\\Dropbox\\IT_Skole\\hiof\\.Net\\workshop\\workshop3\\Workshop\\Workshop.Data\\ParserOptions.cs",
+              "RelativeDocumentMoniker": "Workshop.Data\\ParserOptions.cs",
+              "ToolTip": "C:\\Users\\andyi\\Dropbox\\IT_Skole\\hiof\\.Net\\workshop\\workshop3\\Workshop\\Workshop.Data\\ParserOptions.cs",
+              "RelativeToolTip": "Workshop.Data\\ParserOptions.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T09:34:23.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\andyi\\Dropbox\\IT_Skole\\hiof\\.Net\\workshop\\workshop3\\Workshop\\Workshop.CsvParseCLI\\Program.cs",
+              "RelativeDocumentMoniker": "Workshop.CsvParseCLI\\Program.cs",
+              "ToolTip": "C:\\Users\\andyi\\Dropbox\\IT_Skole\\hiof\\.Net\\workshop\\workshop3\\Workshop\\Workshop.CsvParseCLI\\Program.cs*",
+              "RelativeToolTip": "Workshop.CsvParseCLI\\Program.cs*",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwBEAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T09:32:47.248Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

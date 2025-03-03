@@ -1,0 +1,11 @@
+C:\Users\andyi\Dropbox\IT_Skole\hiof\.Net\workshop\workshop3\Workshop\Workshop.Data\bin\Debug\net8.0\Workshop.Data.deps.json
+C:\Users\andyi\Dropbox\IT_Skole\hiof\.Net\workshop\workshop3\Workshop\Workshop.Data\bin\Debug\net8.0\Workshop.Data.dll
+C:\Users\andyi\Dropbox\IT_Skole\hiof\.Net\workshop\workshop3\Workshop\Workshop.Data\bin\Debug\net8.0\Workshop.Data.pdb
+C:\Users\andyi\Dropbox\IT_Skole\hiof\.Net\workshop\workshop3\Workshop\Workshop.Data\obj\Debug\net8.0\Workshop.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andyi\Dropbox\IT_Skole\hiof\.Net\workshop\workshop3\Workshop\Workshop.Data\obj\Debug\net8.0\Workshop.Data.AssemblyInfoInputs.cache
+C:\Users\andyi\Dropbox\IT_Skole\hiof\.Net\workshop\workshop3\Workshop\Workshop.Data\obj\Debug\net8.0\Workshop.Data.AssemblyInfo.cs
+C:\Users\andyi\Dropbox\IT_Skole\hiof\.Net\workshop\workshop3\Workshop\Workshop.Data\obj\Debug\net8.0\Workshop.Data.csproj.CoreCompileInputs.cache
+C:\Users\andyi\Dropbox\IT_Skole\hiof\.Net\workshop\workshop3\Workshop\Workshop.Data\obj\Debug\net8.0\Workshop.Data.dll
+C:\Users\andyi\Dropbox\IT_Skole\hiof\.Net\workshop\workshop3\Workshop\Workshop.Data\obj\Debug\net8.0\refint\Workshop.Data.dll
+C:\Users\andyi\Dropbox\IT_Skole\hiof\.Net\workshop\workshop3\Workshop\Workshop.Data\obj\Debug\net8.0\Workshop.Data.pdb
+C:\Users\andyi\Dropbox\IT_Skole\hiof\.Net\workshop\workshop3\Workshop\Workshop.Data\obj\Debug\net8.0\ref\Workshop.Data.dll
